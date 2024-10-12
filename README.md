@@ -16,7 +16,12 @@
 ### Installation
 
 - To run this software, make sure *node.js* and *npm* are installed on your computer.  
-  - You can download node.js (which includes npm) [here](https://nodejs.org/en)  
+  - You can download node.js (which includes npm) [here](https://nodejs.org/en) 
+  - check if you have the same or higher node and npm version:
+    - `node -v`: should get v20.17.0 or higher
+    - `npm -v`: should get 10.8.2 or higher
+    - if you have a lower version, you can use `nvm install 22` to upgrade to newest version of node and npm.
+    - **failed to install required version may cause unexpected issue or failed to connect to database!** 
 - After insuring node.js and npm is on your local machine, connect to this git repo, and clone by:  
   - `git clone [git@github.com](mailto:git@github.com):EECS3311F24/project-snake.git`
 - cd into the project root directory:
