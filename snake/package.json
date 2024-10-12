@@ -4,6 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/server.js",
+    "client": "cd client && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server/server.js"
   },
@@ -41,6 +44,7 @@
     "nodemon": "^3.1.7"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0"
+    "@types/express": "^5.0.0",
+    "concurrently": "^9.0.1"
   }
 }
