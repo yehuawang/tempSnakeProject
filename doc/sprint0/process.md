@@ -2,28 +2,25 @@
 
 ### Team Organization
 
+
 #### Organisation tools:  
 
   - Trello for tracking project progress  
   - Github for code integration  
   - Discord for hosting team meetings and sharing inspiring ideas  
-  - LettuceMeet for scheduling and organising team meetings. 
+  - LettuceMeet for scheduling and organising team meetings.
 
-##### Front End
+##### Roles
 
-1. **Aryan Kalra:** Mainly focusing on UI needs and design using figma and other front-end tasks as needed such as translating said figma concepts to the web page
+1. **Aryan Kalra:** Mainly focusing on UI design using figma and develop front-end components using react by translating figma concepts into webpage.
 
-2. **Junwei Q:** user/chat interface for AI, generative AI API calls, game interface implementation  
+2. **Junwei Q:** user/chat interface for AI, generative AI API calls, game interface implementation, Server side logic for generative AI integration.
 
-##### Back End  
+3. **Lynne Hamd:** Completing detailed design for classes using OOP and perform API testing to ensure smooth link between frontend and backend.
 
-1. **Lynne Hamd:** Focusing on Postman testing to ensure smooth link between frontend and backend  
+4. **Yihan Wang**: Front end and back end project setup, coordination between development and design. Defining interfaces and classes as designed.  
 
-2. **Yihan Wang**: focusing on basic project setup, coordination between development and design. Defining interfaces and classes as designed.  
-
-3. **Pratham:** Database integration, game design and server side logic  
-
-4. **Junwei**: Server side logic for generative AI integration
+5. **Pratham:** Focusing on game design (Both front and back-end), including implementing game interfaces on the web page, integrating database for storing scores and progress, and handling server-side logic for gameplay features.
 
 ### Decision making  
      
