@@ -3,6 +3,8 @@
 ### Project Objective
 
 - The primary objective of our project is to develop a platform offering users a set of simple trending reflection and cognitive games for entertainment purposes. The platform highlights delivery of the most up-to-date popular minigames, and will include performance summaries, visualisations of user rankings, and AI-powered phrase & image generation to keep our game data set always fresh and engaging.
+- This project will be developed as a MERN-stack application, involving Vite-React, MongoDB, Express, Node.js.
+- This project will employ a MVC architecture.
 
 ## Key Personas
 
