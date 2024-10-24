@@ -1,0 +1,54 @@
+.game-main-body {
+    display: flex;
+    justify-content: space-between; /* Distribute child elements */
+    align-items: center;
+    width: 100%;
+    min-width: 1000px;
+    height: 100%;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    border-style: solid;
+    width: 95%; /* Adjust width as needed */
+    min-width: 600px;
+    height: 100%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.previous-attempts, .helpful-tips {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    margin: 20px;
+    min-width:300px;
+    width: 20%;
+    height: 90%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-style: solid;
+}
+
+.game-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 1500px) {
+    .previous-attempts, .helpful-tips {
+        display: none;
+    }
+
+    .game-main-body {
+        justify-content: center; /* Center the game board when side elements are hidden */
+    }
+
+    .game-board {
+        width: 100%; /* Adjust the width of the game board to take full width */
+        min-width: 0; /* Remove the min-width constraint */
+    }
+}
