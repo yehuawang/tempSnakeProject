@@ -1,14 +1,15 @@
-import './GameBoard.css'
+import '../styles/GameBoard.css'
 import PreviousAttemps from './PreviousAttempt'
 import HelpfulTips from './HelpfulTips'
-import GameCanvas from './GameCanvas'
+import GameLoader from './GameLoader'
 
-function GameBoard(props) {
+function GameBoard( {gamebody} ) {
   return (
     <div className="game-board">
         <PreviousAttemps />
         <div className="game-canvas">
-            <GameCanvas game="snake" />
+            <GameLoader gamebody={gamebody} />
+            <h1>game canvas here</h1>
         </div>
         <HelpfulTips />
     </div>

@@ -1,4 +1,4 @@
-import './App.css'
+import './styles/App.css'
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
@@ -10,14 +10,16 @@ import AboutUs from './pages/AboutUs'
 
 function App() {
 
+    const reactionGame = { name: "reaction game", gamebody: "snake" }
+    const memoryGame = { name: "memory game", gamebody: "memory" }
     return (
         <BrowserRouter>
             <div className="App">
                 <Navbar />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/reaction-game" element={<GamePage />} />
-                        <Route path='/memory-game' element={<GamePage />} />
+                        <Route path="/reaction-game" element={<GamePage game={ reactionGame } />} />
+                        <Route path='/memory-game' element={<GamePage game={ memoryGame }/>} />
                         <Route path='/about' element={<AboutUs />} />
                         <Route path="/login" element={<LoginPage />} />
                     </Routes>

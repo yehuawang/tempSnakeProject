@@ -1,8 +1,8 @@
 
-function GameHeader(props) {
+function GameHeader({ gameName }) {
     return (
         <div className="game-header">
-            <h1>{props.gameName}</h1>
+            <h1>{ gameName }</h1>
         </div>
     )
 }

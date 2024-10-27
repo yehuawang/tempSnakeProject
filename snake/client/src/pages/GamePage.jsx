@@ -1,16 +1,16 @@
 import React from 'react'
-import './GamePage.css'
+import '../styles/GamePage.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import GameBoard from '../components/GameBoard'
 import GameHeader from '../components/GameHeader'
-import GameCanvas from '../components/GameCanvas'
+import GameLoader from '../components/GameLoader'
 
-function GamePage() {
+function GamePage({ game }) {
     return (
         <div className="game-container container-xlg text-center">
-            <GameHeader gameName="Snake Game" />
-            <GameBoard>
-                <GameCanvas game="snake" />
+            <GameHeader gameName={game.name}/>
+            <GameBoard gamebody={game.gamebody}>
+                <GameLoader gamebody={game.gamebody} />
             </GameBoard>
         </div>
     )

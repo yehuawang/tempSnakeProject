@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import './LoginPage.css'
+import '../styles/LoginPage.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function LoginPage() {
     const [name, setName] = useState('')
@@ -29,44 +30,52 @@ function LoginPage() {
     return (
         <>
             <div className="login-container">
+                <div className="login-content">
+                <h2>Sign Up</h2>
                 <form className="signup-form" onSubmit={handleSubmitUser}>
                     <div className="form-container">
-                        <div className="label-group">
-                            <label className="label-field" htmlFor="name-input">Name:</label>
-                            <label className="label-field" htmlFor="email-input">Email:</label>
-                            <label className="label-field" htmlFor="password-input">Password:</label>
-                        </div>
-                        <div className="input-group">
-                            <input 
-                                className="input-field"
+                        <div className="form-box">
+                            <input
                                 id="name-input"
                                 type="text" 
+                                placeholder="Your Name"
                                 value={name} 
                                 onChange={(e) => setName(e.target.value)} 
                                 required 
                             />
-                            <input 
-                                className="input-field"
+                        </div>
+                        <div className="form-box">
+                            <input
                                 id="email-input"
-                                type="email" 
+                                type="email"
+                                placeholder="yourname@example.com" 
                                 value={email} 
                                 onChange={(e) => setEmail(e.target.value)} 
                                 required 
                             />
-                            <input 
-                                className="input-field"
+                        </div>
+                        <div className="form-box">
+                            <input
                                 id="password-input"
                                 type="password" 
+                                placeholder="password..."
                                 value={password} 
                                 onChange={(e) => setPassword(e.target.value)} 
                                 required 
                             />
                         </div>
                     </div>
-                    <button type="submit">Create User</button>
+                    <div className="assist-box">
+                        <span>Log in</span>
+                        <span>Forgot Password</span>
+                    </div>
+                    <div className="form-box">
+                        <button type="submit">Create User</button>
+                    </div>
                 </form>
                 <div className="response-message">
                     <p>{message}</p>
+                </div>
                 </div>
             </div>
         </>
