@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import Dashboard from './Dashboard'
 import '../styles/LoginPage.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -8,76 +8,159 @@ function LoginPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState('')
-  
-    const handleSubmitUser = async (e) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isSignedUp, setIsSignedUp] = useState(false)
+
+    const handleRegisterNewUser = async (e) => {
         e.preventDefault()
         const user = { name, email, password }
         try {
-            const response = await fetch('http://localhost:5001/api/users', {
+            const response = await fetch('http://localhost:5001/api/users/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(user)
             })
-            setMessage("user created successfully")
+            if (!response.ok) {
+                throw new Error('Failed to register user')
+            } else {
+                setIsSignedUp(true)
+                setMessage("new user registered successfully")
+            }
         } catch (error) {
             console.log(error)
-            setMessage("Failed to create user")
+            setMessage("Failed to register user")
         }
     }
+
+    const handleUserLogin = async (e) => {
+        e.preventDefault()
+        const user = { email, password }
+        try {
+            const response = await fetch('http://localhost:5001/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user)
+            })
+            if (!response.ok) {
+                throw new Error('Failed to login user')
+            } else {
+                setIsLoggedIn(true)
+                setMessage("logged in user successfully")
+            }
+        } catch (error) {
+            console.log(error)
+            setMessage("Failed to log in user")
+        }
+    }
+
+    const switchLoginSignup = () => {
+        setIsLoggedIn(!isLoggedIn)
+        setMessage('')
+    }
+  
   
     return (
         <>
-            <div className="login-container">
-                <div className="login-content">
-                <h2>Sign Up</h2>
-                <form className="signup-form" onSubmit={handleSubmitUser}>
-                    <div className="form-container">
-                        <div className="form-box">
-                            <input
-                                id="name-input"
-                                type="text" 
-                                placeholder="Your Name"
-                                value={name} 
-                                onChange={(e) => setName(e.target.value)} 
-                                required 
-                            />
-                        </div>
-                        <div className="form-box">
-                            <input
-                                id="email-input"
-                                type="email"
-                                placeholder="yourname@example.com" 
-                                value={email} 
-                                onChange={(e) => setEmail(e.target.value)} 
-                                required 
-                            />
-                        </div>
-                        <div className="form-box">
-                            <input
-                                id="password-input"
-                                type="password" 
-                                placeholder="password..."
-                                value={password} 
-                                onChange={(e) => setPassword(e.target.value)} 
-                                required 
-                            />
+            {/* redirect to dashboard if IsLoggedIn is true */}
+            { isLoggedIn && (
+                <Dashboard />
+            )}
+
+            { !isLoggedIn && (
+                <div className="login-container">
+                    <div className="login-content">
+                        <h2>{ isSignedUp ? 'Log In' : 'Sign Up' }</h2>
+
+                        {/* Log In */}
+                        { isSignedUp && (
+                            <form className="signup-form" onSubmit={handleUserLogin}>
+                                <div className="form-container">
+                                    <div className="form-box">
+                                        <input
+                                            id="email-input"
+                                            type="email"
+                                            placeholder="yourname@example.com" 
+                                            value={email} 
+                                            onChange={(e) => setEmail(e.target.value)} 
+                                            required 
+                                        />
+                                    </div>
+                                    <div className="form-box">
+                                        <input
+                                            id="password-input"
+                                            type="password" 
+                                            placeholder="password..."
+                                            value={password} 
+                                            onChange={(e) => setPassword(e.target.value)} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+                                <div className="assist-box">
+                                    <span onClick={ switchLoginSignup }>Sign up</span>
+                                    <span>Forgot Password</span>
+                                </div>
+                                <div className="form-box">
+                                    <button type="submit">Log in now!</button>
+                                </div>
+                            </form>
+                        )}
+
+
+                        {/* Sign Up */}
+                        { !isSignedUp && (
+                            <form className="signup-form" onSubmit={handleRegisterNewUser}>
+                                <div className="form-container">
+                                    <div className="form-box">
+                                        <input
+                                            id="name-input"
+                                            type="text" 
+                                            placeholder="Your Name"
+                                            value={name} 
+                                            onChange={(e) => setName(e.target.value)} 
+                                            required 
+                                        />
+                                    </div>
+                                    <div className="form-box">
+                                        <input
+                                            id="email-input"
+                                            type="email"
+                                            placeholder="yourname@example.com" 
+                                            value={email} 
+                                            onChange={(e) => setEmail(e.target.value)} 
+                                            required 
+                                        />
+                                    </div>
+                                    <div className="form-box">
+                                        <input
+                                            id="password-input"
+                                            type="password" 
+                                            placeholder="password..."
+                                            value={password} 
+                                            onChange={(e) => setPassword(e.target.value)} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+                                <div className="assist-box">
+                                    <span onClick={ switchLoginSignup }>Log in</span>
+                                    <span>Forgot Password</span>
+                                </div>
+                                <div className="form-box">
+                                    <button type="submit">Sign up now!</button>
+                                </div>
+                            </form>
+                        )}
+                        <div className="response-message">
+                            <p>{message}</p>
                         </div>
                     </div>
-                    <div className="assist-box">
-                        <span>Log in</span>
-                        <span>Forgot Password</span>
-                    </div>
-                    <div className="form-box">
-                        <button type="submit">Create User</button>
-                    </div>
-                </form>
-                <div className="response-message">
-                    <p>{message}</p>
                 </div>
-                </div>
-            </div>
+            )}
         </>
     )
   }

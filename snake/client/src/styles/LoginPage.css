@@ -53,3 +53,10 @@ input, button {
     width: 80%;
 }
 
+.assist-box span {
+    cursor: pointer;
+}
+
+.assist-box span:hover {
+    color: var(--accent-color);
+}
