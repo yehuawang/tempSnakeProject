@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import '../styles/Navbar.css'
+import MountAllRouters from '../routers/MountAllRouters';
 
 function Navbar() {
   return (
@@ -10,8 +11,8 @@ function Navbar() {
             <Link className="snake-logo" to="/">SNAKE!</Link>
         </div>
         <div className="navbar-item-list">
-            <Link className="nav-item" to="/reaction-game">Reaction</Link>
-            <Link className="nav-item" to="/memory-game">Memory</Link>
+            <Link className="nav-item" to="/reaction-games">Reaction</Link>
+            <Link className="nav-item" to="/memory-games">Memory</Link>
             <Link className="nav-item" to="/about">About Us</Link>
             <Link className="nav-item" to="/login">Log in</Link>
         </div>
