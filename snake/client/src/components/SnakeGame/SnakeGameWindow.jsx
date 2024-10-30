@@ -7,7 +7,7 @@ const BOARD_WIDTH = 500
 const BOARD_HEIGHT = 500
 const FRAME = 100
 
-const SnakeGameWindow = ({ score, setScore, isGameOver }) => {
+const SnakeGameWindow = ({ score, setScore, isGameOver, setGameOver, collideWith, setCollideWith, highestScore, setHighestScore }) => {
     const windowRef = useRef(null)
     const [dir, setDir] = useState("D")
     const [snake, setSnake] = useState(spawnSnake)
@@ -15,6 +15,7 @@ const SnakeGameWindow = ({ score, setScore, isGameOver }) => {
     const [moved, setMoved] = useState(false)
 
     function spawnSnake() {
+        setScore(0)
         let snake = []
         for (let i = 0; i < INITIAL_SNAKE_SIZE; i++) {
             snake.push({ x: 100 - (i * UNIT_SIZE), y: 100 })
@@ -89,7 +90,7 @@ const SnakeGameWindow = ({ score, setScore, isGameOver }) => {
         const frame = setInterval(() => {
             context.clearRect(0, 0, canv.width, canv.height)
             move()
-            eatFood()
+            detectCollision()
             drawSnake(context)
             drawFood(context)
             setMoved(false)
@@ -125,23 +126,38 @@ const SnakeGameWindow = ({ score, setScore, isGameOver }) => {
                 }
 
                 tempSnake.unshift(head)
-                tempSnake.pop()
+
+                if (tempSnake[0].x === food.x && tempSnake[0].y === food.y) {
+                    eatFood()
+                } else {
+                    tempSnake.pop()
+                }
                 return tempSnake
             })
         }
     }
 
     const eatFood = () => {
-        setSnake((curSnake) => {
-            const head = curSnake[0]
-            if (head.x === food.x && head.y === food.y) {
-                const newSnake = [...curSnake, { x: head.x, y: head.y }]
-                setFood(spawnFood())
-                setScore(score + 1)
-                return newSnake
+        setFood(spawnFood())
+        const newScore = score + 1
+        setScore(newScore)
+        if (newScore > highestScore) {
+            setHighestScore(newScore)
+        }
+    }
+
+    const detectCollision = () => {
+        const head = snake[0]
+        if (head.x < 0 || head.x >= BOARD_WIDTH || head.y < 0 || head.y >= BOARD_HEIGHT) {
+            setCollideWith("wall")
+            setGameOver(true)
+        }
+        for (let i = 1; i < snake.length; i++) {
+            if (head.x === snake[i].x && head.y === snake[i].y) {
+                setCollideWith("self")
+                setGameOver(true)
             }
-            return curSnake
-        })
+        }
     }
 
     const drawSnake = (context) => {

@@ -7,14 +7,14 @@ function GameListRouters() {
     const reactionRouters = reactionGameList.listOfGames.map(game =>
         <Route 
             key={game.id}
-            path={"/" + game.name}
+            path={"/" + game.gamebody}
             element={<GamePage game={game} />}
         />
     )
     const memoryRouters = memoryGameList.listOfGames.map(game =>
         <Route 
             key={game.id}
-            path={"/" + game.name} 
+            path={"/" + game.gamebody} 
             element={<GamePage game={game} />}
         />
     )

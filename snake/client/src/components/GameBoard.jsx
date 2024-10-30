@@ -9,7 +9,6 @@ function GameBoard( {gamebody} ) {
         <PreviousAttemps />
         <div className="game-canvas">
             <GameLoader gamebody={gamebody} />
-            <h1>game canvas here</h1>
         </div>
         <HelpfulTips />
     </div>
