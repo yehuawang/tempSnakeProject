@@ -1,0 +1,14 @@
+.game-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100vw;
+    min-width: 1000px;
+    background-color: var(--container-background-color);
+    color: var(--text-color);
+    border-style: solid;
+}
