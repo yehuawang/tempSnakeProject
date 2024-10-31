@@ -1,0 +1,55 @@
+/* Container for the entire login page */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:300px;
+    height: 100vh; 
+    background-color: #f0f2f5;
+}
+
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px; 
+    background-color: var(--background-color); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-content h2 {
+    color: var(--primary-color);
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-container div{
+    margin: 20px;
+    width: 100%;
+}
+
+input, button {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+}
+
+.assist-box {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
