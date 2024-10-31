@@ -2,12 +2,12 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  profile_image: { type: String, default: '' },
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    profile_image: { type: String, default: '' },
 }, {
-  timestamps: true
+    timestamps: true
 })
 
 // password hashing
