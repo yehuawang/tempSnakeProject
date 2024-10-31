@@ -1,14 +1,19 @@
-import express from "express";
-import { createUser, deleteUser, getUser, updateUser } from "../controllers/user.controller.js";
+import express from "express"
+import { createUser, deleteUser, getUser, updateUser, loginUser } from "../controllers/user.controller.js"
+import { protectRoute } from "../middlewares/protectRoute.jwt.js"
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/", getUser);
+router.get("/", protectRoute, getUser)
 
-router.post("/", createUser);
 
-router.put("/:id", updateUser);
+// to be implemented with updating the user profile
+router.post("/register", createUser)
 
-router.delete("/:id", deleteUser);
+router.put("/:id", protectRoute, updateUser)
 
-export default router;
+router.delete("/:id", protectRoute, deleteUser)
+
+router.post("/login", loginUser)
+
+export default router
