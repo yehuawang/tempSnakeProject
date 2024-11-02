@@ -4,6 +4,7 @@ import HomePage from '../pages/HomePage'
 import LoginPage from '../pages/LoginPage'
 import AboutUs from '../pages/AboutUs'
 import GameList from '../pages/GameList'
+import ChatBot from '../pages/ChatBot.jsx'
 import { reactionGameList, memoryGameList } from '../data/tempGameListDatabase.js'
 
 function NavRouters() {
@@ -14,6 +15,7 @@ function NavRouters() {
             <Route path="/memory-games" element={<GameList gameListObject={memoryGameList} />} />
             <Route path='/about' element={<AboutUs />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/chatbox" element={<ChatBot />} />
         </Routes>
     )
 }

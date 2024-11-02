@@ -4,12 +4,16 @@ import { connectDB } from "./config/db.js"
 import cors from "cors"
 import userRoutes from "./routes/user.route.js"
 import snakeUserDataRoutes from "./routes/snakeUserData.route.js"
-import chatRoutes from "./routes/userAiChatBoxConversation.route.js"
+import chatRoutes from "./routes/chat.route.js"
+
 
 dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5001
+
+import userRoutes from "./routes/user.route.js"
+import cors from "cors"
 
 
 app.use(cors({
