@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { v4 } from 'uuid'
 import '../../styles/Chatbot.css'
+
 import Messages from './Messages'
 
 function ChatContainer() {
@@ -56,32 +57,13 @@ function ChatContainer() {
     //         </div>
     //     </div>
     // )
-
-
     return (
-        <div className="chat-container">
-            <div className="chat-header">
-                <h1>Playground</h1>
-            </div>
-            {/* <div className="chat-messages" id="chat-messages">
-                <div className="message user-message">
-                    Hello, how can I help you today?
-                </div>
-            </div> */}
-            <Messages userEmail="testChat@email.com" updateWindow={true} />
-            <div className="input-container">
-                <input
-                    id="message-input"
-                    type="text"
-                    placeholder="Message Alice..." 
-                    required 
-                />
-                <button id="send-button">
-                    <img src="/right-arrow.png" alt="right-arrow" width="30" height="30" />
-                </button>
-            </div>
-        </div>
+      <div>
+        <h1> old container to be deleted <h1>
+      </div>
     )
 }
 
+
 export default ChatContainer
+

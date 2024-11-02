@@ -11,10 +11,10 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5001
-const AI_KEY = process.env.AI_KEY
 
 import userRoutes from "./routes/user.route.js"
 import cors from "cors"
+
 
 app.use(cors({
     origin: 'http://localhost:5173'
@@ -25,7 +25,6 @@ app.use(express.json())
 app.use("/api/users", userRoutes)
 app.use("/api/snakeUserData", snakeUserDataRoutes)
 app.use("/api/chat", chatRoutes)
- 
 
 app.listen(PORT, () => {
     connectDB()
