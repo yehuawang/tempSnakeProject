@@ -13,6 +13,9 @@ const app = express()
 const PORT = process.env.PORT || 5001
 
 
+import userRoutes from "./routes/user.route.js"
+import cors from "cors"
+
 app.use(cors({
     origin: 'http://localhost:5173'
 }))
