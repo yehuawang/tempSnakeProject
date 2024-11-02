@@ -6,11 +6,11 @@ import userRoutes from "./routes/user.route.js"
 import snakeUserDataRoutes from "./routes/snakeUserData.route.js"
 
 
-
 dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5001
+const AI_KEY=process.env.AI_KEY
 
 app.use(cors({
     origin: 'http://localhost:5173'
