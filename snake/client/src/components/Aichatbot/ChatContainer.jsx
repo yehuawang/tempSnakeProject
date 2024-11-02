@@ -59,7 +59,7 @@ function ChatContainer() {
     // )
     return (
       <div>
-        <h1> old container to be deleted <h1>
+        <h1> old container to be deleted </h1>
       </div>
     )
 }
