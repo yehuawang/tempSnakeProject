@@ -11,7 +11,7 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5001
-
+const AI_KEY = process.env.AI_KEY
 
 import userRoutes from "./routes/user.route.js"
 import cors from "cors"
