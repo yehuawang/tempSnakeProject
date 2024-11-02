@@ -115,7 +115,7 @@ export const deleteUser = async (req, res) => {
             success: true,
             message: "User is successfully deleted"
         })
-    }catch (e) {
+    } catch (e) {
         console.log(e);
         res.status(500).json({
             success: false,
