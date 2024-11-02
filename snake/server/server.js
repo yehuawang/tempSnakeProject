@@ -4,13 +4,13 @@ import { connectDB } from "./config/db.js"
 import cors from "cors"
 import userRoutes from "./routes/user.route.js"
 import snakeUserDataRoutes from "./routes/snakeUserData.route.js"
-
-
+import chatRoutes from "./routes/userAiChatBoxConversation.route.js"
 
 dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5001
+
 
 app.use(cors({
     origin: 'http://localhost:5173'
@@ -20,7 +20,7 @@ app.use(express.json())
 
 app.use("/api/users", userRoutes)
 app.use("/api/snakeUserData", snakeUserDataRoutes)
- 
+app.use("/api/chat", chatRoutes)
 
 app.listen(PORT, () => {
     connectDB()
