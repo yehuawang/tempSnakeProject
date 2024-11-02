@@ -1,85 +1,151 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { v4 } from 'uuid'
+import '../../styles/Chatbot.css'
 
-function ChatContainer() {
-    const messageInput = document.getElementById('message-input');
-const sendButton = document.getElementById('send-button');
-const chatMessages = document.getElementById('chat-messages');
-const loadingIndicator = document.getElementById('loading');
+function ChatContainer({ userEmail }) {
 
-// Message handling functions
-function addMessage(content, isUser = false) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${isUser ? 'user-message' : 'llm-message'}`;
-    messageDiv.textContent = content;
-    chatMessages.appendChild(messageDiv);
-    // Scroll to bottom
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+    
+    const [messageInput, setMessageInput] = useState('')
+    const [messages, setMessages] = useState([])
+    const [prompt, setPrompt] = useState('')
+    const [isUser, setIsUser] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+    const [conversationId, setConversationId] = useState('')
 
-function clearInput() {
-    messageInput.value = '';
-}
+    const launchConversation = async (userEmail) => {
+        try {
+            console.log(`try creating new conversation collection for user ${userEmail}...`)
+            const conversationCollection = await fetch('http://localhost:5001/api/userAiChatBox/createNewConversationCollection', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userEmail })
+            })
+            const stat = conversationCollection.status
+            if (stat == 404) {
+                throw new Error('Failed to create conversation collection because the user is not yet in the database')
+            }
+            if (stat == 400) {
+                console.log(`user ${userEmail} already has a conversation collection, try generating new conversation now...`)
+                const newConversation = await fetch('http://localhost:5001/api/userAiChatBox/createConversation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userEmail })
+                })
+                if (!newConversation.ok) {
+                    throw new Error('Failed to create new conversation for some reason... debug later...')
+                }
+                const newConversationId = newConversation.conversationId
+                console.log(`new conversation created:\n${newConversation}`)
+                console.log(`fetching first message from conversation ${newConversationId}...`)
+                const firstMessage = await fetch('http://localhost:5001/api/userAiChatBox/getNewestMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userEmail: userEmail, conversationId: newConversationId })
+                })
+                console.log(`first message fetched:${firstMessage}`)
+    
 
-function toggleLoading(show) {
-    loadingIndicator.style.display = show ? 'block' : 'none';
-}
+                return {firstMessage, newConversationId}
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-// Event Listeners
-sendButton.addEventListener('click', handleSend);
-messageInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    useEffect(() => {
+        const initializer = async () => {
+            const {firstMessage, conversationId} = await launchConversation(userEmail)
+            setMessages([firstMessage])
+            setConversationId(conversationId)
+        }
+        initializer()
+    }, [])
+
+
+    const handleSend = async (e) => {
         e.preventDefault();
-        handleSend();
-    }
-});
+        setIsUser(true)
+        setPrompt(messageInput.trim());
+        if (!prompt) return; // no empty messages
 
-// Handle sending messages
-async function handleSend() {
-    const prompt = messageInput.value.trim();
-    if (!prompt) return; // no empty messages
-    sendButton.disabled = true;
-    addMessage(prompt, true);
-    clearInput();
-    toggleLoading(true);
-    try {
-        const API_KEY = await (await fetch("API_KEY")).text();
-        const genAI = new GoogleGenerativeAI(API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const result = await model.generateContent(`Please provide an concise response for ${prompt}, referencing emoji if applicable. Don't show the prompt`);
-        addMessage(result.response.text());
-    } catch (error) {
-        console.error('Error:', error);
-        addMessage('Sorry, there was an error sending your message.');
+        setMessages([...messages, {
+            content: prompt,
+            isUser,
+            id: v4()
+        }])
+        setIsUser(false)
+        // setIsButtonDisabled(false);
+        clearInput();
+        setIsLoading(true);
+
+        try{
+            
+
+        } catch (error) {
+            console.log(error);
+            setMessageInput([...messages, {
+                content: 'Sorry, there was an error sending your message.', 
+                isUser,
+                id: v4()
+            }]);
+        }
+    
+            
     }
-    toggleLoading(false);
-    sendButton.disabled = false;
-}
-document.addEventListener('DOMContentLoaded', () => {
-    addMessage("Hello! I'm Alice. How can I help you today?");
-});
-  return (
-      <div class="chat-container">
-          <div class="chat-header">
-              <h1>Playground</h1>
-          </div>
-          <div class="chat-messages" id="chat-messages">
-          </div>
-          <div class="loading" id="loading">
-              Alice is typing...
-          </div>
-          <div class="input-container">
-          <input
+    
+    const clearInput = () => {
+        setMessageInput('');
+    }
+    
+
+    return (
+        <div className="chat-container">
+            <div className="chat-header">
+                <h1>Playground</h1>
+            </div>
+            <div className="chat-messages" id="chat-messages">
+                {
+                    messages.map((message) => {
+                        return (
+                            <div 
+                                key={message.uuid}
+                                className={`message ${message.isUser ? 'user-message' : 'llm-message'}`}
+                            >
+                                {message.content}
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            { isLoading && (
+                <div className="loading" id="loading">
+                    Alice is typing...
+                </div>
+            )}
+            <div className="input-container">
+                <input
                     id="message-input"
                     type="text"
                     placeholder="Message Alice..." 
-                    value={email} 
+                    value={messageInput}
+                    onChange={(e) => setMessageInput(e.target.value)}
                     required 
-            />
-              <input type="text" id="message-input" placeholder="Message Alice...">
-                  <button id="send-button"><img src="right-arrow.png" alt="right-arrow" width="30" height="30"></button>
-          </div>
-      </div>
-  )
+                />
+                <button id="send-button" onClick={handleSend} disabled={isButtonDisabled}>
+                    <img src="right-arrow.png" alt="right-arrow" width="30" height="30" />
+                </button>
+            </div>
+        </div>
+    )
 }
+
+
 
 export default ChatContainer
