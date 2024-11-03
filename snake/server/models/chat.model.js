@@ -3,7 +3,7 @@ import { v4 } from 'uuid'
 
 const messageSchema = new mongoose.Schema({
     content: { type: String, required: true },
-    role: { type: String, required: true, enum: ['user', 'model'] },
+    role: { type: String, required: true },
     message_id: { type: String, default: v4 }
 }, {
     _id: false

@@ -1,5 +1,33 @@
 import Chat from '../models/chat.model.js'
+import { GoogleGenerativeAI } from "@google/generative-ai"
+import dotenv from 'dotenv'
 
+
+dotenv.config()
+const API_KEY = process.env.AI_KEY
+
+/**
+ * 
+ * @param {userInput: String} req 
+ * @param {*} res 
+ */
+export const generateResponse = async (req, res) => {
+    const { userInput } = req.body
+
+    try {
+        const genAI = new GoogleGenerativeAI(API_KEY)
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+        const result = await model.generateContent(userInput)
+        const responseText = result.response.text()
+        console.log(responseText)
+        res.status(200).json({
+            responseString: responseText
+        })
+    } catch (error) {
+        console.error('Error generating ai response:', error)
+        res.status(500).json({ message: 'Response could not be generated', error: error.message })
+    }
+}
 
 /**
  * 
@@ -14,6 +42,13 @@ export const createChat = async (req, res) => {
     }
 
     try {
+        const existingChat = await Chat.findOne({ user_email: userEmail })
+        if (existingChat) {
+            console.log("Existing chat found, returning this chat found")
+            return res.status(200).json({
+                chat: existingChat
+            })
+        }
         const chat = await Chat.create({ 
             user_email: userEmail,
             messages: [
@@ -82,5 +117,23 @@ export const getLatestMessage = async (req, res) => {
     } catch (error) {
         console.error('Error retrieving latest message:', error); // Added detailed error logging
         res.status(500).json({ message: 'Could not retrieve latest message', error: error.message })
+    }
+}
+
+
+/**
+ * 
+ * @param {userEmail: String} req 
+ * @param {*} res 
+ */
+export const getAllMessages = async (req, res) => {
+    const { userEmail } = req.body
+
+    try {
+        const chat = await Chat.findOne({ user_email: userEmail })
+        res.status(200).json({ messages: chat.messages })
+    } catch (error) {
+        console.error('Error retrieving all messages:', error)
+        res.status(500).json({ message: 'Could not retrieve all messages', error: error.message })
     }
 }

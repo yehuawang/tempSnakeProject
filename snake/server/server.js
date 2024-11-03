@@ -12,11 +12,12 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 5001
 
-app.use(cors({
-    origin: 'http://localhost:5173'
-}))
+// app.use(cors({
+//     origin: 'http://localhost:5173'
+// }))
 
 app.use(express.json())
+app.use(cors())
 
 app.use("/api/users", userRoutes)
 app.use("/api/snakeUserData", snakeUserDataRoutes)
