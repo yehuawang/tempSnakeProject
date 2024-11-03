@@ -1,12 +1,14 @@
+import React from 'react'
 import Snake from './SnakeGame/Snake'
 import '../styles/Gameboard.css'
 
-function GameLoader({ gamebody }) {
-    console.log("gameloader received game body: ", gamebody)
+function GameLoader({ gamebody, loggedInUser}) {
+    console.log(loggedInUser)
     if (gamebody === "snake") {
         return (
             <div>
-                <Snake />
+                {console.log(`passing ${loggedInUser} to Snake`)}
+                <Snake loggedInUser={loggedInUser} />
             </div>
         )
     } else {

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import SnakeGameWindow from './SnakeGameWindow'
 
-function SnakeGameState() {
+function SnakeGameState({ loggedInUser }) {
+    const playerEmail = loggedInUser.email
 
     const [score, setScore] = useState(0)   
     const [highestScore, setHighestScore] = useState(parseInt(localStorage.getItem('highScore')) || 0)

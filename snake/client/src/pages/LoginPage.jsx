@@ -3,7 +3,7 @@ import Dashboard from './Dashboard'
 import '../styles/LoginPage.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function LoginPage() {
+function LoginPage({ loggedInUser, setLoggedInUser }) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -48,6 +48,13 @@ function LoginPage() {
             if (!response.ok) {
                 throw new Error('Failed to login user')
             } else {
+                const data = await response.json()
+                setLoggedInUser({
+                    email: data.data.user.email,
+                    name: data.data.user.name,
+                    profileImage: data.data.user.profile_image
+                })
+                console.log(loggedInUser)
                 setIsLoggedIn(true)
                 setMessage("logged in user successfully")
             }
@@ -58,7 +65,7 @@ function LoginPage() {
     }
 
     const switchLoginSignup = () => {
-        setIsLoggedIn(!isLoggedIn)
+        setIsSignedUp(!isSignedUp)
         setMessage('')
     }
   
@@ -66,11 +73,13 @@ function LoginPage() {
     return (
         <>
             {/* redirect to dashboard if IsLoggedIn is true */}
-            { isLoggedIn && (
-                <Dashboard />
-            )}
+            {
+                loggedInUser.email !== 'guest' && (
+                    <Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+                )
+            }
 
-            { !isLoggedIn && (
+            { loggedInUser.email === 'guest' && (
                 <div className="login-container">
                     <div className="login-content">
                         <h2>{ isSignedUp ? 'Log In' : 'Sign Up' }</h2>
