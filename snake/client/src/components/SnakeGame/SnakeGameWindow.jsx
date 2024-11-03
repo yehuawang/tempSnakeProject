@@ -141,9 +141,6 @@ const SnakeGameWindow = ({ score, setScore, isGameOver, setGameOver, collideWith
         setFood(spawnFood())
         const newScore = score + 1
         setScore(newScore)
-        if (newScore > highestScore) {
-            setHighestScore(newScore)
-        }
     }
 
     const detectCollision = () => {

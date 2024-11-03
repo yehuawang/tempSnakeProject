@@ -1,0 +1,69 @@
+html,
+body{
+    background-color: var(--default);
+}
+:root{
+    --default: #121213;
+    --empty: #3a3a3c;
+    --wrong-one: #FF9A98;
+    --right-one: #CFFBCF;
+}
+
+
+#game{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 600px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-template-rows: repeat(5, auto);
+}
+
+.box{
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--empty);
+    margin: 4px;
+    color: white;
+    text-transform: uppercase;
+    display: grid;
+    place-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5rem;
+}
+
+.box.wrong-empty{
+    background: var(--empty);
+
+}
+
+.box.wrong-placement{
+    background: var(--wrong-one);
+
+}
+
+.box.right-placement{
+    background: var(--right-one);
+}
+
+.animated{
+    animation: flip-tile 0.6s ease;
+}
+
+@keyframes flip-tile{
+    0%{
+        transform: scaleY(1);
+
+    }
+    50%{
+        transform: scaleY(0);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+ 
