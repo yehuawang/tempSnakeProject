@@ -53,3 +53,8 @@ input, button {
     width: 80%;
 }
 
+.assist-box span:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+

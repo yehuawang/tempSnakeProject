@@ -1,14 +1,13 @@
 import NavRouters from './NavRouters'
 import GameListRouters from './GameListRouters'
 
-function MountAllRouters() {
+function MountAllRouters({ loggedInUser, setLoggedInUser }) {
     return (
         <>
-            <NavRouters />
-            <GameListRouters />
+            <NavRouters loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+            <GameListRouters loggedInUser={loggedInUser} />
         </>
     )
 }
-
 
 export default MountAllRouters

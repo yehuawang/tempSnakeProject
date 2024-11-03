@@ -1,5 +1,5 @@
 
-function GameHeader({ gameName }) {
+function GameHeader({ gameName, loggedInUser }) {
     return (
         <div className="game-header">
             <h1>{ gameName }</h1>
