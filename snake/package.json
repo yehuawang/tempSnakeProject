@@ -48,6 +48,7 @@
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.1",
     "nodemon": "^3.1.7",
+    "react-markdown": "^9.0.1",
     "server": "file:",
     "supertest": "^7.0.0",
     "uuid": "^11.0.2"

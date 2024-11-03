@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 import '../../styles/Chatbot.css'
 
 function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRendered }) {
@@ -134,7 +135,7 @@ function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRender
         <div className="chat-messages">
             { true && messages.map((message, index) => (
                 <div key={index} className={`message ${message.role === 'user' ? 'user-message' : 'llm-message'}`}>
-                    {message.content}
+                    <ReactMarkdown>{message.content}</ReactMarkdown>
                 </div>
             ))}
         </div>
