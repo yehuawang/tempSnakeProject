@@ -1,9 +1,11 @@
 import express from "express"
-import { generateResponse, createChat, appendMessage, getLatestMessage, getAllMessages } from "../controllers/chat.controller.js"
+import { findChat, generateResponse, createChat, appendMessage, getLatestMessage, getAllMessages } from "../controllers/chat.controller.js"
 const router = express.Router()
 
 const AI_KEY=process.env.AI_KEY
 
+
+router.post("/find", findChat) 
 router.post("/generate", generateResponse)
 router.post("/create", createChat)
 router.post("/append", appendMessage)

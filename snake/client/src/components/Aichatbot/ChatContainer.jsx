@@ -4,7 +4,7 @@ import '../../styles/Chatbot.css'
 
 import Messages from './Messages'
 
-function ChatContainer() {
+function ChatContainer({ userEmail }) {
     const [inputValue, setInputValue] = useState('Ask alice...')
     const [messageInput, setMessageInput] = useState('default user input')
     const [isLoading, setIsLoading] = useState(false)
@@ -35,7 +35,7 @@ function ChatContainer() {
             <Messages 
                 isUser={isUser}
                 userInput={messageInput} 
-                userEmail="1234567@email.com" 
+                userEmail={userEmail} 
                 updateWindow={isLoading} 
                 onMessagesRendered={handleMessagesRender}
                 />

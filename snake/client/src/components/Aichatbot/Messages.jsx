@@ -7,7 +7,7 @@ function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRender
     useEffect(() => {
         const createChat = async () => {
             try {
-                const response = await fetch('http://localhost:5001/api/chat/create', {
+                const findChat = await fetch('http://localhost:5001/api/chat/find', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -15,14 +15,26 @@ function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRender
                     body: JSON.stringify({
                         userEmail
                     })
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`)
+                })
+                const exist = await findChat.json()
+                if (!exist.chatFound) {
+                    const response = await fetch('http://localhost:5001/api/chat/create', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            userEmail
+                        })
+                    })
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`)
+                    }
+                    const newChat = await response.json()
+                    const newMessage = newChat.chat.messages[0]
+                    console.log(newMessage)
+                    setMessages([newMessage])
                 }
-                const newChat = await response.json()
-                const newMessage = newChat.chat.messages[0]
-                console.log(newMessage)
-                setMessages([newMessage])
                 if (onMessagesRendered) {
                     onMessagesRendered()
                 }

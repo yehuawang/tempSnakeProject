@@ -7,7 +7,7 @@ function ChatBot() {
     <div>
 
         <h1>ChatBot</h1>
-        <ChatContainer userEmail="Leslie@example.com" />
+        <ChatContainer userEmail="alice123996@google.com" />
         <h1>chatbot</h1>
     </div>
   )
