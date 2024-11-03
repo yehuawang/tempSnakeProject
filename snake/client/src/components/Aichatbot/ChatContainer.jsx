@@ -15,6 +15,7 @@ function ChatContainer({ userEmail }) {
         if (inputValue.trim() !== '') {
             setIsUser(true)
             setMessageInput(inputValue)
+            setInputValue('')
             setIsLoading(true)
             setIsButtonDisabled(true)
         }
