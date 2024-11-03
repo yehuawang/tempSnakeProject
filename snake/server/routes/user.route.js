@@ -4,7 +4,7 @@ import { protectRoute } from "../middlewares/protectRoute.jwt.js"
 
 const router = express.Router()
 
-router.get("/", protectRoute, getUser)
+router.post("/getUser", getUser)
 
 
 // to be implemented with updating the user profile

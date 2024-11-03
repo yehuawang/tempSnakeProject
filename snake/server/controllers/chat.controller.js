@@ -8,6 +8,33 @@ const API_KEY = process.env.AI_KEY
 
 /**
  * 
+ * @param {userEmail: String} req 
+ * @param {*} res 
+ */
+export const findChat = async (req, res) => {
+    const { userEmail } = req.body
+
+    try {
+        const chat = await Chat.findOne({ user_email: userEmail })
+        if (!chat) {
+            return res.status(200).json({ 
+                chatFount: false,
+                message: 'Chat not found'
+            })
+        }
+        return res.status(200).json({
+            chatFound: true,
+            message: 'Chat found',
+        })
+    } catch (error) {
+        console.error('Error finding chat:', error)
+        res.status(500).json({ message: 'Chat could not be found', error: error.message })
+    }
+}
+
+
+/**
+ * 
  * @param {userInput: String} req 
  * @param {*} res 
  */
