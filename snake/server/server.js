@@ -5,6 +5,7 @@ import cors from "cors"
 import userRoutes from "./routes/user.route.js"
 import snakeUserDataRoutes from "./routes/snakeUserData.route.js"
 import chatRoutes from "./routes/chat.route.js"
+import snakeScoreRoutes from "./routes/snakeScore.route.js"
 
 
 dotenv.config()
@@ -22,6 +23,7 @@ app.use(cors())
 app.use("/api/users", userRoutes)
 app.use("/api/snakeUserData", snakeUserDataRoutes)
 app.use("/api/chat", chatRoutes)
+app.use("/api/snake/score", snakeScoreRoutes)
 
 app.listen(PORT, () => {
     connectDB()
