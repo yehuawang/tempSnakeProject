@@ -2,44 +2,7 @@
 
 Updated as of Nov 3rd, 2024
 
-
-#### DONE at end of sprint 1
-
-1. **User interface for selecting different games**
-
-- An employee works at her office and is very busy throughout the day, she only has 10 minutes during her lunch break to play a quick game. So, a simple interface allows her to choose a game easily and not waste time searching on multiple platforms.
-
-2. **Categorization of games**
-
-- A young new user feels overwhelmed searching through hundreds of games on different platforms, they want to find games more efficiently that match their interests. This user pecifically wants to challenge his brain with cryptic games, so they find word games by browsing the categories.
-
-3. **AI chatbot**
-
-- A user is stuck on a competitive, tough game and is unsure how to play, the AI chat box allows them to get answers, suggestions and hints immediately.
-
-4. **User profile (Dashboard)**
-
-- A user wants to show their friends and compare their progress, so they want a page that displays this and other personalized settings.
-
-5. **User login / signup**
-
-- A new user wants to save their scores, so they create an account on the sign up page to do so.
-
-
-7. **Guest Mode access**
-
-- A young student is playing the game on the shared/common computers at their school library, they don't want anyone to use their account and damage their scores so they use guest mode to play games during break time without signing in.
-
-8. **Darkmode / themes**
-
-- A student in University spent a long day studying for exams and wants to wind down playing games before sleeping. To avoid their eye straining and disturbing their roommate with the bright laptop screen, they switch to dark mode.
-
-10. **Reaction Game**
-
-- A player is looking for a reaction game test and improve their reaction time, a snake game is a natural web reaction game that is simple but tests the basis of a person’s reaction. so he went to SNAKE! website and starts playing on his leisure time
-
-
-#### Unimplemented User Stories 
+#### Unimplemented User Stories from sprint 1
 
 6. **Score board and levels in game**
 
