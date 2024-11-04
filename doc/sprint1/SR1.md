@@ -2,7 +2,7 @@
 
 **Team Name:** Snake  
 **Sprint:** 1  
-**Notetaker:** Pratham 
+**Notetaker:** Pratham  
 **Date:** Nov 3, 2024  
 
 ---
