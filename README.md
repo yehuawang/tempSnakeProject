@@ -15,6 +15,12 @@
 
 ### Installation
 
+- **UPDATE 2024.11.05**:
+    - now navigate to `snake` folder by: `cd snake`
+    - then run `npm run build` to automate the following commands.
+        - both front and backend server will run after this command
+        - you can access the front end at "localhost:5173"
+
 - To run this software, make sure *node.js* and *npm* are installed on your computer.  
   - You can download node.js (which includes npm) [here](https://nodejs.org/en) 
   - check if you have the same or higher node and npm version:
