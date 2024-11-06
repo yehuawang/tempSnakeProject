@@ -4,6 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build": "npm run installserver && npm run installclient && npm run start",
+    "installserver": "npm install",
+    "installclient": "cd client && npm install && cd ..",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server/server.js",
     "client": "cd client && npm run dev",
