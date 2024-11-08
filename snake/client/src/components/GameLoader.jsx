@@ -1,5 +1,6 @@
 import React from 'react'
 import Snake from './SnakeGame/Snake'
+import ImageMemory from './ImageMemory/ImageMemory'
 import '../styles/Gameboard.css'
 
 function GameLoader({ gamebody, loggedInUser}) {
@@ -9,6 +10,12 @@ function GameLoader({ gamebody, loggedInUser}) {
             <div>
                 {console.log(`passing ${loggedInUser} to Snake`)}
                 <Snake loggedInUser={loggedInUser} />
+            </div>
+        )
+    } else if (gamebody === "image-memory") {
+        return (
+            <div>
+                <ImageMemory loggedInUser={loggedInUser} />
             </div>
         )
     } else {
