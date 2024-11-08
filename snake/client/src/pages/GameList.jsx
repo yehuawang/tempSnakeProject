@@ -6,7 +6,7 @@ function GameList({ gameListObject }) {
     const type = gameListObject.listType
     const list = gameListObject.listOfGames.map(game => 
         <li className="game-list-item" key={game.id}>
-            <Link className="game-list-selection-item" to={"/" + game.name}>{game.name}</Link>
+            <Link className="game-list-selection-item" to={"/" + game.gamebody}>{game.name}</Link>
         </li>
     )
     return (
