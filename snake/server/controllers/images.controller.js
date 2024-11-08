@@ -1,0 +1,1 @@
+import Image from '../models/Images.model.js'

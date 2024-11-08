@@ -1,35 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import ImageUploader from '../components/ImageUploader'
 import '../styles/Dashboard.css'
 
 
 function Dashboard({ loggedInUser, setLoggedInUser }) {
-    const [profileImageIsSet, setProfileImageIsSet] = useState(false)
-    const [profileImage, setProfileImage] = useState('/default-snake-profile-image.png')
-    const [uploadingImg, setUploadingImg] = useState(false)
-
-    useEffect(() => {
-        //** async function to fetch profile image from database or handle set... */
-
-
-    },[profileImageIsSet])
-
-
-    useEffect(() => {
-        const handleProfileImgUpload = async (e) => {
-
-        }
-    },[uploadingImg])
 
     return (
         <div className="dashboardContainer">
             <div className="userInfoContainer">
                 <div className="userInfo">
-                    <div className="profileImage">
+                    <ImageUploader userEmail={loggedInUser.email} />
+                    {/* <div className="profileImage">
                         <button className="profileImgUploadButton" >
                             <img src={profileImage} alt="profile-image" />
                             <img src="/profile-img-upload-button.png" className="image-upload" />
                         </button>
-                    </div>
+                    </div> */}
                     <div className="userText">
                         <h1>{loggedInUser.name}</h1>
                         <h3>{loggedInUser.email}</h3>
