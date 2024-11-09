@@ -2,6 +2,88 @@ import User from "../models/user.model.js"
 import mongoose from "mongoose"
 import { genToken } from "../utils/genToken.jwt.js"
 import { verToken } from "../utils/verToken.jwt.js"
+import multer from "multer"
+
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
+
+
+/**
+ * 
+ * @param {userEmail, mimeType, buffer} req 
+ * @param {*} res 
+ */
+export const uploadProfileImage = async (req, res) => {
+    try {
+        const { userEmail, mimetype, buffer } = req.body
+        const base64 = buffer.toString('base64')
+
+        const newProfileImage = {
+            mimetype: mimetype,
+            data: base64
+        }
+
+        const updatedUser = await User.findOneAndUpdate(
+            { email: userEmail },
+            { profile_image: newProfileImage },
+            { new: true }
+        )
+
+        console.log(updatedUser)
+
+        if (!updatedUser) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            user: updatedUser,
+            message: "Profile image successfully uploaded to database"
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })
+    }
+}
+
+
+/**
+ * 
+ * @param {userEmail} req 
+ * @param {*} res 
+ */
+export const getUserProfileImage = async (req, res) => {
+    const { userEmail } = req.body
+
+    try {
+        const user = await User.findOne({ email: userEmail })
+        const profileImage = user.profile_image
+
+        if (!profileImage) {
+            return res.status(404).json({
+                success: false,
+                message: "User has no profile image set"
+            })
+        }
+
+        res.status(200).json({profileImage})
+    } catch (error) {   
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })
+    }
+
+
+}
 
 export const getUser = async (req, res) => {
   try {
