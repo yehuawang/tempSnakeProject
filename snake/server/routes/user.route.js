@@ -1,5 +1,5 @@
 import express from "express"
-import { getUserProfileImage, uploadProfileImage, createUser, deleteUser, getUser, updateUser, loginUser } from "../controllers/user.controller.js"
+import { getCoinCount, updateCoinCount, getUserProfileImage, uploadProfileImage, createUser, deleteUser, getUser, updateUser, loginUser } from "../controllers/user.controller.js"
 import { protectRoute } from "../middlewares/protectRoute.jwt.js"
 import multer from "multer"
 
@@ -9,6 +9,9 @@ const uploadMiddleware = upload.single('profile-image')
 const router = express.Router()
 
 router.post("/getUser", getUser)
+
+router.post("/getCoinCount", getCoinCount)
+router.post("/updateCoinCount", updateCoinCount)
 
 
 // to be implemented with updating the user profile

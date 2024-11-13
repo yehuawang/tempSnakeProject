@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     profile_image: { type: profileImageSchema, default: null },
+    coins: { type: Number, default: 0 }
 }, {
     timestamps: true
 })
