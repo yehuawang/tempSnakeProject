@@ -1,6 +1,15 @@
-const dictionary = ['plane', 'happy', 'audio', 'house'];
+const dictionary = [
+    "apple", "arrow", "awake", "blaze", "block", "brave", "bring", "broad", "claim", "climb",
+    "close", "cover", "dance", "depth", "dream", "eager", "earth", "faith", "fight", "flame",
+    "focus", "force", "grace", "great", "happy", "heart", "house", "human", "jolly", "layer",
+    "learn", "light", "lucky", "magic", "match", "mover", "never", "other", "paint", "place",
+    "plane", "proud", "reach", "ready", "scale", "sense", "serve", "shine", "skill", "smart",
+    "smile", "solid", "sound", "space", "stand", "steal", "style", "sweet", "table", "taste",
+    "teach", "thank", "think", "total", "tough", "trust", "unity", "vivid", "waste", "watch",
+    "where", "whirl", "wider", "world", "write"
+];
 
-const state = {
+const gameState = {
     secret: dictionary[Math.floor(Math.random() * dictionary.length)],
     grid: Array(5).fill().map(() => Array(5).fill('')),
     currentColPosition: 0,
@@ -8,20 +17,19 @@ const state = {
 };
 
 function updateGrid() {
-    for (let i = 0; i < state.grid.length; i++) {
-        for (let j = 0; j < state.grid[i].length; j++) {
+    for (let i = 0; i < gameState.grid.length; i++) {
+        for (let j = 0; j < gameState.grid[i].length; j++) {
             const box = document.getElementById(`box${i}${j}`);
-            box.textContent = state.grid[i][j];
+            box.textContent = gameState.grid[i][j];
         }
     }
 }
 
-function createBox(container, row, col, letter = '') {
+function createBox(container, row, col) {
     const box = document.createElement('div');
     box.className = 'box';
     box.id = `box${row}${col}`;
     container.appendChild(box);
-    return box;
 }
 
 function createGrid(container) {
@@ -41,24 +49,24 @@ function storeKeyboardActions() {
         const key = e.key;
 
         if (key === 'Backspace') {
-            removeLetter();
+            deleteLetter();
         }
 
         if (key === 'Enter') {
-            if (state.currentColPosition === 5) {
+            if (gameState.currentColPosition === 5) {
                 const word = getCurrentWord();
-                if (isWordValid(word)) {
+                if (isWordInDictionary(word)) {
                     revealWord(word);
-                    state.currentRowPosition++;
-                    state.currentColPosition = 0;
+                    gameState.currentRowPosition++;
+                    gameState.currentColPosition = 0;
                 } else {
                     alert("This is not a word.");
                 }
             }
         }
 
-        if (isALetter(key)) {
-            addLetter(key);
+        if (isLetterKey(key)) {
+            insertLetter(key);
         }
 
         updateGrid();
@@ -66,20 +74,20 @@ function storeKeyboardActions() {
 }
 
 function getCurrentWord() {
-    return state.grid[state.currentRowPosition].reduce((prev, curr) => prev + curr);
+    return gameState.grid[gameState.currentRowPosition].reduce((prev, curr) => prev + curr);
 }
 
 function revealWord(guess) {
-    const row = state.currentRowPosition;
+    const row = gameState.currentRowPosition;
     const animationDuration = 400;
     for (let i = 0; i < 5; i++) {
         const box = document.getElementById(`box${row}${i}`);
         const letter = box.textContent;
 
         setTimeout(() => {
-            if (letter === state.secret[i]) {
+            if (letter === gameState.secret[i]) {
                 box.classList.add('right-placement');
-            } else if (state.secret.includes(letter)) {
+            } else if (gameState.secret.includes(letter)) {
                 box.classList.add('wrong-placement');
             } else {
                 box.classList.add('wrong-empty');
@@ -89,42 +97,44 @@ function revealWord(guess) {
         box.classList.add('animated');
     }
 
-    const isWinner = state.secret === guess;
-    const isGameOver = state.currentRowPosition === 5;
+    const hasWon = gameState.secret === guess;
+    const isGameOver = gameState.currentRowPosition === 5;
 
     setTimeout(() => {
-        if (isWinner) {
+        if (hasWon) {
             alert('Congratulations!');
         } else if (isGameOver) {
-            alert(`Try again! The word was ${state.secret}.`);
+            alert(`Try again! The word was ${gameState.secret}.`);
         }
     }, 3 * animationDuration);
 }
 
-function isALetter(key) {
+function isLetterKey(key) {
     return key.length === 1 && key.match(/[a-z]/i);
 }
 
-function addLetter(letter) {
-    if (state.currentColPosition === 5) return;
-    state.grid[state.currentRowPosition][state.currentColPosition] = letter;
-    state.currentColPosition++;
+function insertLetter(letter) {
+    if (gameState.currentColPosition < 5) {
+        gameState.grid[gameState.currentRowPosition][gameState.currentColPosition] = letter;
+        gameState.currentColPosition++;
+    }
 }
 
-function removeLetter() {
-    if (state.currentColPosition === 0) return;
-    state.grid[state.currentRowPosition][state.currentColPosition - 1] = '';
-    state.currentColPosition--;
+function deleteLetter() {
+    if (gameState.currentColPosition > 0) {
+        gameState.currentColPosition--;
+        gameState.grid[gameState.currentRowPosition][gameState.currentColPosition] = '';
+    }
 }
 
-function isWordValid(word) {
+function isWordInDictionary(word) {
     return dictionary.includes(word);
 }
 
-function startup() {
+function initializeGame() {
     const game = document.getElementById('game');
     createGrid(game);
     storeKeyboardActions();
 }
 
-startup();
+initializeGame();

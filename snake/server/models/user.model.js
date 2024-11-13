@@ -1,15 +1,21 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
+const profileImageSchema = new mongoose.Schema({
+    mimetype: { type: String, required: true },
+    data: { type: Buffer, required: true }
+})
+
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    profile_image: { type: String, default: '' },
-    coins: { type: Number, default: 0 },
+    profile_image: { type: profileImageSchema, default: null },
+    coins: { type: Number, default: 0 }
 }, {
     timestamps: true
 })
+
 
 // password hashing
 userSchema.pre('save', async function(next) {
@@ -29,4 +35,3 @@ userSchema.methods.matchPassword = async function(password) {
 
 const User = mongoose.model('User', userSchema);
 export default User
-
