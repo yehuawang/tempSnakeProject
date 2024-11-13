@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/Dashboard.css'
+import CoinCount from '../components/CoinCount'
 
 
 function Dashboard({ loggedInUser, setLoggedInUser }) {
@@ -14,6 +15,7 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
     },[profileImageIsSet])
 
 
+
     useEffect(() => {
         const handleProfileImgUpload = async (e) => {
 
@@ -24,6 +26,7 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
         <div className="dashboardContainer">
             <div className="userInfoContainer">
                 <div className="userInfo">
+                    <CoinCount userEmail={loggedInUser.email} />
                     <div className="profileImage">
                         <button className="profileImgUploadButton" >
                             <img src={profileImage} alt="profile-image" />
