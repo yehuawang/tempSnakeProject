@@ -1,49 +1,90 @@
 import User from "../models/user.model.js"
 import mongoose from "mongoose"
 import { genToken } from "../utils/genToken.jwt.js"
-import { verToken } from "../utils/verToken.jwt.js"
-import multer from "multer"
 
-const storage = multer.memoryStorage()
-const upload = multer({ storage: storage })
 
 
 /**
  * 
- * @param {userEmail, mimeType, buffer} req 
+ * @param {userEmail} req 
+ * @param {*} res 
+ */
+export const getCoinCount = async (req, res) => {
+    try {
+        const { userEmail } = req.body;
+        const email = userEmail.value || userEmail
+        const user = await User.findOne({ email })
+        res.status(200).json({
+            coinCount: user.coins
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when retrieving user coin count"
+        })
+    }
+}
+
+
+
+/**
+ * 
+ * @param {userEmail, deltaCoinCount} req 
+ * @param {*} res 
+ */
+export const updateCoinCount = async (req, res) => {
+    const { userEmail, deltaCoinCount } = req.body
+    try {
+        const user = await User.findOne({ email: userEmail })
+        user.coins += deltaCoinCount
+        await user.save()
+        res.status(200).json({
+            newCoinCount: user.coins
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when updating user coin count"
+        })
+    }
+}
+
+
+
+
+
+
+
+
+
+/**
+ * 
+ * @param { userEmail } req.body
+ * @param { image_file } req.file
  * @param {*} res 
  */
 export const uploadProfileImage = async (req, res) => {
+    console.log("req.file of calling uploadProfileImage", req.file)
+    const profileImageName = req.file.filename
+    const { userEmail } = req.body
+
     try {
-        const { userEmail, mimetype, buffer } = req.body
-        const base64 = buffer.toString('base64')
-
-        const newProfileImage = {
-            mimetype: mimetype,
-            data: base64
-        }
-
-        const updatedUser = await User.findOneAndUpdate(
-            { email: userEmail },
-            { profile_image: newProfileImage },
-            { new: true }
-        )
-
-        console.log(updatedUser)
-
-        if (!updatedUser) {
+        const user = await User.findOne({ email: userEmail })
+        if (!user) {
             return res.status(404).json({
                 success: false,
                 message: "User not found"
             })
         }
 
+        user.profile_image = profileImageName
+        await user.save()
+
         res.status(200).json({
             success: true,
-            user: updatedUser,
-            message: "Profile image successfully uploaded to database"
+            message: "Profile image uploaded successfully",
+            profileImageName
         })
-
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -73,7 +114,9 @@ export const getUserProfileImage = async (req, res) => {
             })
         }
 
-        res.status(200).json({profileImage})
+        res.status(200).json({
+            profileImage
+        })
     } catch (error) {   
         console.log(error)
         res.status(500).json({

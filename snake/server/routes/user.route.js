@@ -3,16 +3,24 @@ import { getCoinCount, updateCoinCount, getUserProfileImage, uploadProfileImage,
 import { protectRoute } from "../middlewares/protectRoute.jwt.js"
 import multer from "multer"
 
-const storage = multer.memoryStorage()
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "uploads/")
+    },
+    filename: function (req, file, cb) {
+        const ext = file.mimetype.split('/')[1]
+        cb(null, "profile-img-" + Date.now() + "." + ext)
+    }
+})
 const upload = multer({ storage: storage })
-const uploadMiddleware = upload.single('profile-image')
+
 const router = express.Router()
 
 router.post("/getUser", getUser)
 
 router.post("/getCoinCount", getCoinCount)
 router.post("/updateCoinCount", updateCoinCount)
-
 
 // to be implemented with updating the user profile
 router.post("/register", createUser)
@@ -23,7 +31,8 @@ router.delete("/:id", protectRoute, deleteUser)
 
 router.post("/login", loginUser)
 
-router.post("/upload-profile-image", uploadMiddleware, uploadProfileImage)
+router.post("/upload-profile-image", upload.single("image"), uploadProfileImage)
+
 router.post("/get-profile-image", getUserProfileImage)
 
 export default router

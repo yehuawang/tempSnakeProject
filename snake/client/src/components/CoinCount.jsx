@@ -46,7 +46,7 @@ function CoinCount({ userEmail }) {
             </span>
             <span className="coinSpan">{coinCount}</span>
             <span className="coinSpan">
-                <img src={plusImage} alt="PlusImage" onClick={testAddCoin} />
+                <img src={plusImage} alt="PlusImage" onClick={testAddCoin} style={{ cursor: 'pointer' }} />
             </span>
         </div>
     )

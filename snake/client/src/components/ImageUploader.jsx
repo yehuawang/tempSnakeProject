@@ -2,26 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import DefaultProfileImage from '/default-snake-profile-image.png';
 import UploadIcon from '/profile-img-upload-button.png';
 import '../styles/ImageUploader.css';
+import axios from 'axios';
 
 const MAX_PROFILE_IMAGE_SIZE = 3 * 1024 * 1024;
 
 function ImageUploader({ userEmail }) {
     const [profileImageURL, setProfileImageURL] = useState(DefaultProfileImage);
     const [tooLarge, setTooLarge] = useState(false);
-
+    const [image, setImage] = useState(null);
     const profileImageRef = useRef(null);
 
-    useEffect(() => {
-        fetchProfileImage();
-    }, []);
 
-    const handleUpload = (e) => {
-        e.preventDefault();
-        profileImageRef.current.click();
-    };
-
-
-    const fetchProfileImage = async () => {
+    const fetchProfileImage = async () => { 
+        console.log("fetching profile image string from db...");
         try {
             const response = await fetch('http://localhost:5001/api/users/get-profile-image', {
                 method: 'POST',
@@ -30,66 +23,67 @@ function ImageUploader({ userEmail }) {
                 },
                 body: JSON.stringify({ userEmail: userEmail }),
             });
-    
-            if (!response.ok) {
-                throw new Error('Failed to fetch profile image');
+
+            if (response.status === 404) {
+                console.log("User has no profile image set yet");
+                return;
             }
-    
+
             const data = await response.json();
-            console.log('Data received from server:', data); // Debugging
-    
-            const { mimetype, data: base64Data } = data.profileImage;
-            console.log('MIME type:', mimetype); // Debugging
-            console.log('Base64 data:', base64Data); // Debugging
-    
-            // Create a data URL from the Base64 string
-            const imgURL = `data:${mimetype};base64,${base64Data}`;
-            setProfileImageURL(imgURL);
+            const profileImageString = data.profileImage;
+            console.log(`profile image string fetched: ${profileImageString}`);
+            const imageUrl = `http://localhost:5001/uploads/${profileImageString}`;
+            setProfileImageURL(imageUrl);
+            console.log(`profileImageURL set to: ${imageUrl}`);
         } catch (error) {
             console.error('Error fetching profile image:', error);
         }
     };
+    
+    useEffect(() => {
+        
+        fetchProfileImage();
+    }, [userEmail]);
 
-    const displayNewProfileImage = () => {
-        const newProfileImage = profileImageRef.current.files[0];
+    const handleUpload = async (selectedImage) => {
+        if (!selectedImage) {
+            console.error("No image selected");
+            return;
+        }
+
+        const imageData = new FormData();
+        imageData.append('image', selectedImage);
+        imageData.append('userEmail', userEmail);
+
+        try {
+            const response = await axios.post(
+                'http://localhost:5001/api/users/upload-profile-image', 
+                imageData,
+                {
+                    headers: { "Content-Type": "multipart/form-data" },
+                }
+            );
+            console.log("Image uploaded successfully:", response.data);
+            fetchProfileImage();
+        } catch (error) {
+            console.error("Error uploading image:", error);
+        }
+    };
+
+    const displayNewProfileImage = (e) => {
+        const newProfileImage = e.target.files[0];
         if (newProfileImage.size > MAX_PROFILE_IMAGE_SIZE) {
             setTooLarge(true);
             return;
         }
-        const bufferedURL = URL.createObjectURL(newProfileImage);
-        setProfileImageURL(bufferedURL);
+        setImage(newProfileImage);
         setTooLarge(false);
-
-        const reader = new FileReader();
-        reader.onload = async () => {
-            const base64 = reader.result.split(',')[1]; // Extract Base64 data
-            try {
-                const response = await fetch('http://localhost:5001/api/users/upload-profile-image', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        userEmail: userEmail,
-                        mimeType: newProfileImage.type,
-                        buffer: base64,
-                    }),
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to upload profile image');
-                }
-                console.log('Profile image uploaded successfully to database');
-                fetchProfileImage(); // Fetch the updated profile image
-            } catch (error) {
-                console.error('Error uploading profile image:', error);
-            }
-        };
-        reader.readAsDataURL(newProfileImage); // Read the file as a data URL
+        handleUpload(newProfileImage);
     };
 
     return (
         <div className="image-uploader">
-            <button type="button" className="profile-img-upload-button" onClick={handleUpload}>
+            <button type="button" className="profile-img-upload-button" onClick={() => profileImageRef.current.click()}>
                 <img className="profile-img" src={profileImageURL} alt="profile-image" />
                 <img src={UploadIcon} alt="upload-icon" className="image-upload" />
             </button>
