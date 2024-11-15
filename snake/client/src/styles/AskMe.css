@@ -1,0 +1,40 @@
+.ask-me-container {
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 50vh;
+    background-color: var(---background-color);
+    z-index: 2000;
+}
+
+.dialogue-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 20vh;
+    background-color: var(---contianer-background-color);
+}
+
+.ask-me-button {
+    position: absolute;
+    width: 70%;
+    bottom: 50px;
+    right: 0;
+    margin: 0;
+}
+
+.round-ask-me-button {
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}

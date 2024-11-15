@@ -4,7 +4,6 @@ import HomePage from '../pages/HomePage'
 import LoginPage from '../pages/LoginPage'
 import AboutUs from '../pages/AboutUs'
 import GameList from '../pages/GameList'
-import ChatBot from '../pages/ChatBot.jsx'
 import Dashboard from '../pages/Dashboard.jsx'
 import { reactionGameList, memoryGameList } from '../data/tempGameListDatabase.js'
 
@@ -17,7 +16,6 @@ function NavRouters({ loggedInUser, setLoggedInUser }) {
             <Route path='/about' element={<AboutUs />} />
             <Route path="/login" element={<LoginPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
             <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
-            <Route path="/chatbox" element={<ChatBot />} />
         </Routes>
     )
 }

@@ -31,7 +31,7 @@ function ChatContainer({ userEmail }) {
     return (
         <div className="chat-container">
             <div className="chat-header">
-                <h1>AI Chat Bot</h1>
+                <h1>Alice</h1>
             </div>
             <Messages 
                 isUser={isUser}

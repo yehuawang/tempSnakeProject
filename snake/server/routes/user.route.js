@@ -1,5 +1,19 @@
 import express from "express"
-import { getCoinCount, updateCoinCount, getUserProfileImage, uploadProfileImage, createUser, deleteUser, getUser, updateUser, loginUser } from "../controllers/user.controller.js"
+import {            
+            getUserThemeList,
+            getUserBackgroundTheme,
+            setUserBackgroundTheme,
+            purchaseTheme,
+            getCoinCount, 
+            updateCoinCount, 
+            getUserProfileImage, 
+            uploadProfileImage, 
+            createUser, 
+            deleteUser, 
+            getUser, 
+            updateUser, 
+            loginUser,
+    } from "../controllers/user.controller.js"
 import { protectRoute } from "../middlewares/protectRoute.jwt.js"
 import multer from "multer"
 
@@ -16,6 +30,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 const router = express.Router()
+
+
+/* --- THEMES --- */
+router.post("/getUserThemeList", getUserThemeList)
+router.post("/getUserBackgroundTheme", getUserBackgroundTheme)
+router.post("/setUserBackgroundTheme", setUserBackgroundTheme)
+router.post("/purchaseTheme", purchaseTheme)
+
 
 router.post("/getUser", getUser)
 
