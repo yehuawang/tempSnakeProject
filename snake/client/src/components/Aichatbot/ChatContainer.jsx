@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { v4 } from 'uuid'
 import '../../styles/Chatbot.css'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import Messages from './Messages'
 
@@ -31,7 +31,7 @@ function ChatContainer({ userEmail }) {
     return (
         <div className="chat-container">
             <div className="chat-header">
-                <h1>Playground</h1>
+                <h1>AI Chat Bot</h1>
             </div>
             <Messages 
                 isUser={isUser}
@@ -55,7 +55,7 @@ function ChatContainer({ userEmail }) {
                     required 
                 />
                 <button id="send-button" onClick={handleSend} disabled={isButtonDisabled}>
-                    <img src="right-arrow.png" alt="right-arrow" width="30" height="30" />
+                    <i className="bi bi-send-fill"></i>
                 </button>
             </div>
         </div>

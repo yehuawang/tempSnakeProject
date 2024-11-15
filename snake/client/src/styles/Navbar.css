@@ -1,51 +1,116 @@
-/* found this handwritten font from a random template*/
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 .navbar {
+    background-color: var(--primary-color);
+    color: white !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    min-height: 70px; 
+}
+
+.navbar-logo-fixed {
+    position: absolute;
+    left: 0;
+}
+
+.navbar-item-list-container {
+    margin-left: 130px;
+}
+
+.navbar-toggler {
+    position: absolute;
+    right: 100px;
+    width: 50px;
+    height: 50px;
+    border: none !important;
+    color: white !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    color: var(--accent-color) !important;
+}
+
+.navbar-darkmode-container {
+    position: absolute;
+    right: 5px;
     display: flex;
     justify-content: space-between;
+    gap: 1px;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--primary-color);
-    color: var(--secondary-text-color);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    z-index: 1000;
+    padding: 1rem;
 }
+
 
 .theme-toggle {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
-    color: var(--text-color); /* Adjusts color based on theme */
+    color: var(--text-color);
     margin-left: 1rem;
 }
 
 .theme-toggle:hover {
-    color: var(--accent-color); /* Optional hover effect */
+    color: var(--accent-color);
 }
 
-.logo-div {
-    font-family: 'Patrick Hand', sans-serif;
+.theme-toggle-button {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    background-color: var(--container-background-color);
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.theme-toggle-button::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.theme-toggle-button.dark-mode::before {
+    transform: translateX(25px);
+}
+
+.dark-mode-icon {
+    transition: opacity 0.7s ease;
+}
+
+.dark-mode-icon.hidden {
+    opacity: 0;
+}
+
+.snake-logo {
+    font-family: 'Patrick Hand', sans-serif; 
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
     background: linear-gradient(90deg, #a8e6cf, #dcedc1, #ffd3b6, #ffaaa5, #ff8b94);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: transparent; /* Fallback */
+    color: transparent;
     padding: 1rem;
 }
 
 .navbar-item-list {
     display: flex;
-    justify-content: flex-end; /* found this on w3 */
+    justify-content: flex-end; 
     font-weight: bold;
     color: var(--secondary-color);
-    padding-right: 2rem; /* Extra space from the right */
+    padding-right: 2rem;
     gap: 1.5rem;
 }
 
@@ -57,10 +122,23 @@
 }
 
 .navbar-item-list a:hover {
-    color: var(--accent-color);
+    color: var(--secondary-accent-color);
 }
 
-.navbar-item-list .active {
-    color: var(--accent-color);
+.navbar-item-list a.active {
+    color: var(--accent-color) !important; 
     border-bottom: 2px solid var(--accent-color);
 }
+
+.send-button {
+    color: var(--text-color);
+    transition: color 0.5s ease;
+}
+
+.dark-mode .send-button {
+    color: var(--text-color);
+}
+
+
+
+
