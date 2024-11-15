@@ -5,7 +5,7 @@
     align-items: center;
     padding-bottom:300px;
     height: 100vh; 
-    background-color: #f0f2f5;
+    background-color: var(--background-color);
 }
 
 
@@ -14,7 +14,7 @@
     flex-direction: column;
     align-items: center;
     min-width: 400px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--background-color);
     border-radius: 8px;
     padding: 20px; 
     background-color: var(--background-color); 

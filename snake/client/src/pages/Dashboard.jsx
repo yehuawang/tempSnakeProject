@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ImageUploader from '../components/ImageUploader'
 import CoinCount from '../components/CoinCount'
 import '../styles/Dashboard.css'
-import profileImage from '/default-snake-profile-image.png'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 function Dashboard({ loggedInUser, setLoggedInUser }) {

@@ -25,22 +25,6 @@
     padding-right: 20px;
   }
   
-  /* .userInfoContainer img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-    object-fit: cover;
-  } */
-  
-  /* .profileImage img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    object-fit: cover;
-    border: 2px solid #ddd;
-    box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.5);
-  } */
   
   .userInfo {
     display: flex;
@@ -89,35 +73,3 @@
       border-radius: 5px;
   }
   
-  /* .profileImgUploadButton {
-    position: relative;
-    border: none;
-    background: none;
-    padding: 0;
-  }
-  
-  .profileImgUploadButton img {
-      position: absolute;
-      top: 10px;
-      left: 40px;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-  }
-  
-  .profileImgUploadButton .image-upload {
-    position: absolute;
-    top: 10px;
-    left: 40px;
-    padding: 20px;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .profileImgUploadButton:hover .image-upload {
-    display: flex;
-  } */

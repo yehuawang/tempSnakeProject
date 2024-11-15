@@ -1,36 +1,39 @@
 :root {
     --primary-color: #283593; /* Indigo */
     --secondary-color: #1565c0; /* Vibrant Blue */
-    --accent-color: #ffca28; /* Amber */
+    --tertiary-color: #616ab0; /* Purple */
+    --accent-color: #ffbf00; /* Amber */
+    --secondary-accent-color: #ff8f00; /* Dark Orange */
     --background-color: #f5f5f5; /* Light Gray */
     --text-color: #212121; /* Dark Gray */
-    --container-background-color: #e0e0e0; /* Medium Gray */
+    --container-background-color: #f0f0f0; /* Light Gray */
     --secondary-text-color: #ffffff; /* White */
-    --tertiary-color: #616ab0; /* Purple */
-    --box-color: #424242; /* Dark Gray */
+    --box-color: #e3e3e3; /* Light Gray */
+    --border-color: #9a9a9a; /* Medium Gray */
 }
 
 .dark-theme {
     --primary-color: #1e1e1e; /* Almost Black */
     --secondary-color: #4a90e2; /* Soft Blue */
+    --tertiary-color: #1e3a93; /* Dark blue */
+    --accent-color: #ffbf00; /* Amber */
+    --secondary-accent-color: #ff8f00; /* Dark Orange */
     --background-color: #2d2d2d; /* Dark Gray */
-    --text-color: #e0e0e0; /* Light Gray */
+    --text-color: #ffffff; /* White */
     --container-background-color: #3a3a3a; /* Medium Dark Gray */
-    --secondary-text-color: #ffffff; /* White */
-    --box-color: #333333; /* Dark Gray */
+    --secondary-text-color:  #212121; /* Dark Gray */
+    --box-color: #424242; /* Lighter Dark Gray */
+    --border-color: #a7a7a7; /* Light Gray */
 }
 
-* 
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
     background-color: var(--background-color);
     color: var(--text-color);
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+    min-width: 400px;
 }
 
 footer {
@@ -52,7 +55,7 @@ a:hover {
 }
 
 button {
-    background-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
     color: var(--secondary-text-color);
     font-size: 1em;
     font-weight: bold;
