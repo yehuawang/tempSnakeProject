@@ -128,6 +128,52 @@ export const getUserProfileImage = async (req, res) => {
 
 }
 
+/**
+ * 
+ * @param {userEmail} req 
+ * @param {*} res 
+ */
+export const getCoinCount = async (req, res) => {
+    try {
+        const { userEmail } = req.body;
+        const email = userEmail.value || userEmail
+        const user = await User.findOne({ email })
+        res.status(200).json({
+            coinCount: user.coins
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when retrieving user coin count"
+        })
+    }
+}
+
+
+
+/**
+ * 
+ * @param {userEmail, deltaCoinCount} req 
+ * @param {*} res 
+ */
+export const updateCoinCount = async (req, res) => {
+    const { userEmail, deltaCoinCount } = req.body
+    try {
+        const user = await User.findOne({ email: userEmail })
+        user.coins += deltaCoinCount
+        await user.save()
+        res.status(200).json({
+            newCoinCount: user.coins
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when updating user coin count"
+        })
+    }
+}
+
+
 export const getUser = async (req, res) => {
   try {
     const users = await User.find({});
