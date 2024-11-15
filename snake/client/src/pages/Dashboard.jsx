@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import ImageUploader from '../components/ImageUploader'
+import CoinCount from '../components/CoinCount'
 import '../styles/Dashboard.css'
+import profileImage from '/default-snake-profile-image.png'
 
 
 function Dashboard({ loggedInUser, setLoggedInUser }) {
@@ -10,12 +12,7 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
             <div className="userInfoContainer">
                 <div className="userInfo">
                     <ImageUploader userEmail={loggedInUser.email} />
-                    {/* <div className="profileImage">
-                        <button className="profileImgUploadButton" >
-                            <img src={profileImage} alt="profile-image" />
-                            <img src="/profile-img-upload-button.png" className="image-upload" />
-                        </button>
-                    </div> */}
+                    <CoinCount userEmail={loggedInUser.email} />
                     <div className="userText">
                         <h1>{loggedInUser.name}</h1>
                         <h3>{loggedInUser.email}</h3>

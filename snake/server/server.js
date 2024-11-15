@@ -6,7 +6,8 @@ import userRoutes from "./routes/user.route.js"
 import snakeUserDataRoutes from "./routes/snakeUserData.route.js"
 import chatRoutes from "./routes/chat.route.js"
 import snakeScoreRoutes from "./routes/snakeScore.route.js"
-
+import path from "path"
+import { fileURLToPath } from 'url'
 
 dotenv.config()
 
@@ -17,6 +18,11 @@ app.use(express.json())
 app.use(cors({
     origin: 'http://localhost:5173'
 }))
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 app.use("/api/users", userRoutes)
 app.use("/api/snakeUserData", snakeUserDataRoutes)
