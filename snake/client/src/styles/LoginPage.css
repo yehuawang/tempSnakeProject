@@ -18,7 +18,7 @@
     border-radius: 8px;
     padding: 20px; 
     background-color: var(--background-color); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px var(--shadow-color);
 }
 
 .login-content h2 {
@@ -48,6 +48,7 @@ input, button {
 }
 
 .assist-box {
+    margin-bottom: 3px;
     display: flex;
     justify-content: space-between;
     width: 80%;
@@ -57,4 +58,3 @@ input, button {
     cursor: pointer;
     color: var(--secondary-color);
 }
-
