@@ -4,72 +4,103 @@
     align-items: space-between;
     padding: 0;
     margin: 0;
-  }
-  
-  .userInfoContainer {
-    display: flex;
-    flex-direction: row;
-    height: min(50vh, 300px);
-    padding: 20px;
-    background-color: var(--container-background-color);
-    position: relative;
-  }
-  
-  .logoutButton {
-    position: absolute; 
-    top: 10px; 
-    right: 10px;
-  }
-  
-  .profileImage {
-    padding-right: 20px;
-  }
-  
-  
-  .userInfo {
-    display: flex;
-    flex-direction: row;
+    min-width: 500px;
+}
+
+.userInfoContainer {
+display: flex;
+flex-direction: row;
+height: min(50vh, 300px);
+padding: 20px;
+background-color: var(--container-background-color);
+position: relative;
+}
+
+
+/* ----- theme backgrounds ----- */
+
+.theme-bg {
     width: 100%;
-  }
-  
-  .userInfoContainer h1, .userInfoContainer h2 {
-    margin: 5px 0;
-  }
-  
-  .achievementsContainer {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-  }
-  
-  .badge {
-      display: block;
-      background-color: var(--primary-color);
-      text-align: center;
-      height: 30px;
-      padding: 5px 10px;
-      border-radius: 5px;
-  }
-  
-  .gameStatContainer {
-      margin: 40px 0 0 0;
-      display: flex;
-      gap: 40px;
-      justify-content: center;
-  }
-  
-  .gameStat {
-      height: max(30vh, 200px);
-      width: max(30vh, 600px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: var(--secondary-color);
-      color: var(--secondary-text-color);
-      padding: 10px 20px;
-      border-radius: 5px;
-  }
-  
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+}
+
+.jelly-fish-theme {
+    background-image: url('/StoreCarouselAds/jelly-fish.jpg');
+}
+
+.whales-theme {
+    background-image: url('/StoreCarouselAds/whales.jpg');
+}
+
+.caramel-theme {
+    background-image: url('/StoreCarouselAds/caramel.jpg');
+}
+
+
+/* ----------------------------- */
+
+
+
+.logoutButton {
+position: absolute; 
+top: 10px; 
+right: 10px;
+}
+
+.profileImage {
+padding-right: 20px;
+}
+
+
+.userInfo {
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+
+.userInfoContainer h1, .userInfoContainer h2 {
+margin: 5px 0;
+}
+
+.achievementsContainer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.badge {
+    display: block;
+    background-color: var(--primary-color);
+    text-align: center;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.dash-bottom-panel {
+    margin: 10px;
+}
+
+.game-stat-container, .store-container {
+    margin: 10px 0 10px 0;
+    min-height: 55vh;
+    border: solid;
+    border-radius: 5px;
+}
+
+.gameStat {
+    height: max(30vh, 200px);
+    width: max(30vh, 600px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: var(--secondary-text-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+}

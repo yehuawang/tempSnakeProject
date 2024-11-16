@@ -1,0 +1,85 @@
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.carousel-image-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.carousel-image-card img {
+    flex: 1;
+    width: 100%;
+    object-fit: cover;
+}
+
+.price-purchase-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.price-tag {
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+    opacity: 0.8;
+    color: white;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 0 5px 5px 0;
+    position: absolute;
+    right: 160px;
+    top: 5%;
+}
+
+
+
+.purchase-button {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+}
+
+.purchase-button.purchased {
+    background-color: green;
+}
+
+.purchase-button.purchased:hover {
+    background-color: var(--accent-color);
+}
+
+.purchase-button.not-purchased:hover {
+    background-color: var(--secondary-accent-color);
+}
+
+/* .purchase-button span, .purchase-button i {
+    position: absolute;
+    top: 0;
+    left: 0;
+} */
+
