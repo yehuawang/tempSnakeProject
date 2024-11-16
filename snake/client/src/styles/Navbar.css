@@ -86,6 +86,8 @@
 }
 
 .dark-mode-icon {
+    width: 25px;
+    height: 25px;
     transition: opacity 0.7s ease;
 }
 
@@ -107,7 +109,7 @@
 
 .navbar-item-list {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end; /* Center the navbar items */
     font-weight: bold;
     color: var(--secondary-color);
     padding-right: 2rem;
@@ -138,7 +140,6 @@
 .dark-mode .send-button {
     color: var(--text-color);
 }
-
 
 
 
