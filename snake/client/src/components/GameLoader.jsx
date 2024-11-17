@@ -1,9 +1,10 @@
 import React from 'react'
 import Snake from './SnakeGame/Snake'
 import ImageMemory from './ImageMemory/ImageMemory'
+import WordGame from './WordGame/WordGame'
 import '../styles/Gameboard.css'
 
-function GameLoader({ gamebody, loggedInUser}) {
+function GameLoader({ gamebody, loggedInUser }) {
     console.log(loggedInUser)
     if (gamebody === "snake") {
         return (
@@ -16,6 +17,12 @@ function GameLoader({ gamebody, loggedInUser}) {
         return (
             <div>
                 <ImageMemory loggedInUser={loggedInUser} />
+            </div>
+        )
+    } else if (gamebody === "word-game") {
+        return (
+            <div>
+                <WordGame loggedInUser={loggedInUser} />
             </div>
         )
     } else {

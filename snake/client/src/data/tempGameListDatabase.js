@@ -9,7 +9,7 @@ export const memoryGameList = {
     listType: "Memory Games",
     listOfGames: [
         { id: 1, name: "Flip Cards", gamebody: "flip-cards" },
-        { id: 2, name: "Word Match", gamebody: "word-match" },
+        { id: 2, name: "Word Game", gamebody: "word-game" },
         { id: 3, name: "Image Memory", gamebody: "image-memory"}
     ]
 }
