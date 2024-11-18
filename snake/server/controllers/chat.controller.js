@@ -52,7 +52,9 @@ export const generateResponse = async (req, res) => {
         })
     } catch (error) {
         console.error('Error generating ai response:', error)
-        res.status(500).json({ message: 'Response could not be generated', error: error.message })
+        res.status(200).json({
+            responseString: `Sorry there was an error generating a response due to GoogleGenerativeAI internal token limits. Please try again later... Check terminal console for more information. [error: $(error.message)]`
+        })
     }
 }
 

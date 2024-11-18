@@ -75,6 +75,11 @@ body {
     text-align: center;
 }
 
+.send-button {
+    display: flex;
+    align-items: center;
+}
+
 
 button:disabled {
     opacity: 0.5;
