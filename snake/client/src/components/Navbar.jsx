@@ -11,11 +11,24 @@ import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 function Navbar({ loggedInUser }) {
     const [darkMode, setDarkMode] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true); // Audio state
     const location = useLocation();
 
     const toggleTheme = () => {
         document.body.classList.toggle('dark-theme');
         setDarkMode(!darkMode);
+    };
+
+    const toggleAudio = () => {
+        const audio = document.getElementById("background-audio"); // Get the audio element
+        if (audio) {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            setIsPlaying(!isPlaying); // Update play state
+        }
     };
 
     const isActive = (path) => location.pathname === path;
@@ -42,12 +55,23 @@ function Navbar({ loggedInUser }) {
                             )}
                         </Nav>
                     </BootstrapNavbar.Collapse>
-                    <div className="navbar-darkmode-container">
-                        <img src={!darkMode ? moonIcon : sunIcon} alt="Dark Mode" className="dark-mode-icon" />
+                    <div className="navbar-controls-container">
+                        {/* Dark Mode Toggle */}
+                        <div className="navbar-darkmode-container">
+                            <img src={!darkMode ? moonIcon : sunIcon} alt="Dark Mode" className="dark-mode-icon" />
+                            <button 
+                                onClick={toggleTheme} 
+                                className={`theme-toggle-button ${darkMode ? 'dark-mode' : ''}`}
+                            ></button>
+                        </div>
+                        {/* Audio Toggle */}
                         <button 
-                            onClick={toggleTheme} 
-                            className={`theme-toggle-button ${darkMode ? 'dark-mode' : ''}`}
-                        ></button>
+                            onClick={toggleAudio} 
+                            className="audio-toggle-button"
+                            title={isPlaying ? "Pause Music" : "Play Music"}
+                        >
+                            {isPlaying ? <i className="bi bi-pause-circle"></i> : <i className="bi bi-play-circle"></i>}
+                        </button>
                     </div>
                 </Container>
             </BootstrapNavbar>

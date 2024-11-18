@@ -140,3 +140,16 @@
 .dark-mode .send-button {
     color: var(--text-color);
 }
+
+.audio-toggle-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: inherit;
+}
+  
+.audio-toggle-button:hover {
+    color: #007bff;
+}
+  

@@ -1,0 +1,89 @@
+.typin-test {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.sample-text {
+    margin: 20px auto;
+    width: 80%;
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fdfdfd;
+    user-select: none;
+}
+
+.sample-text span {
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.sample-text .correct-char {
+    color: green;
+}
+
+.sample-text .incorrect-char {
+    color: red;
+}
+
+.sample-text .current-char {
+    border-left: 1px solid black;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { border-color: black; }
+    50% { border-color: transparent; }
+    100% { border-color: black; }
+}
+
+.current-word {
+    background-color: #d9f7be; /* Highlight current word */
+}
+
+.correct-word {
+    color: #52c41a; /* Correct words are green */
+}
+
+.remaining-word {
+    color: #d9d9d9; /* Remaining words are greyed out */
+}
+
+textarea,
+.input-area {
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+button {
+    background-color: #1890ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #d9d9d9;
+    cursor: not-allowed;
+}
+
+.results {
+    margin-top: 20px;
+    font-size: 1.2em;
+}

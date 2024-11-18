@@ -83,3 +83,7 @@ button {
 .game-heading {
     font: 2em var(--default-heading-font);
 }
+
+#background-audio {
+    display: none;
+  }
