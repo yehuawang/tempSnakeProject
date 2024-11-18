@@ -8,8 +8,8 @@ export const reactionGameList = {
 export const memoryGameList = {
     listType: "Memory Games",
     listOfGames: [
-        { id: 1, name: "Flip Cards", gamebody: "flip-cards" },
+        { id: 1, name: "Emoji Memo", gamebody: "emoji-memo" },   
         { id: 2, name: "Word Game", gamebody: "word-game" },
-        { id: 3, name: "Image Memory", gamebody: "image-memory"}
+        { id: 3, name: "Flip Cards", gamebody: "flip-cards" }
     ]
 }
