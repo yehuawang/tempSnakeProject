@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/Chatbot.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { Spinner } from 'react-bootstrap'
 
 import Messages from './Messages'
 
@@ -31,20 +32,16 @@ function ChatContainer({ userEmail }) {
     return (
         <div className="chat-container">
             <div className="chat-header">
-                <h1>Alice</h1>
+                <h1>Ask Alice something!</h1>
             </div>
             <Messages 
                 isUser={isUser}
                 userInput={messageInput} 
                 userEmail={userEmail} 
-                updateWindow={isLoading} 
+                isLoading={isLoading} 
+                setIsLoading={setIsLoading}
                 onMessagesRendered={handleMessagesRender}
-                />
-            { isLoading && (
-                <div className="loading" id="loading">
-                    Alice is typing...
-                </div>
-            )}
+            />
             <div className="input-container">
                 <input
                     id="message-input"
@@ -53,9 +50,22 @@ function ChatContainer({ userEmail }) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     required 
-                />
+                    />
+                    { isButtonDisabled ? (
+                        <Spinner animation="border" role="status" variant="primary">
+                            <span className={`visually-hidden`}>Loading...</span>
+                        </Spinner>
+                    ) : null }
                 <button id="send-button" onClick={handleSend} disabled={isButtonDisabled}>
-                    <i className="bi bi-send-fill"></i>
+                    {/* {
+                        !isButtonDisabled ? (  */}
+                            <i className="bi bi-send-fill"></i> 
+                        {/* ) : (
+                            <Spinner animation="border" role="status" variant="primary">
+                                <span className={`visually-hidden`}>Loading...</span>
+                            </Spinner>
+                        )         
+                    }           */}
                 </button>
             </div>
         </div>

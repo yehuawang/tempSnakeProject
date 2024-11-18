@@ -51,7 +51,7 @@ function Navbar({ loggedInUser }) {
                     </div>
                 </Container>
             </BootstrapNavbar>
-            <AskMe />
+            <AskMe loggedInUser={loggedInUser} />
         </>
     );
 }

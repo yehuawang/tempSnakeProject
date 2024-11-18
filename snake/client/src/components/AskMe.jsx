@@ -3,7 +3,7 @@ import '../styles/AskMe.css'
 import ChatContainer from './Aichatbot/ChatContainer'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-function AskMe() {
+function AskMe({ loggedInUser }) {
     const [expand, setExpand] = useState(false)
     const [showLongButton, setShowLongButton] = useState(false)
 
@@ -23,7 +23,7 @@ function AskMe() {
     return (
         <div className="ask-me-container">
             <div className="dialogue-box" hidden={ !expand && true }>
-                <ChatContainer userEmail="alice157@google.com"/>
+                <ChatContainer userEmail={loggedInUser.email} />
             </div>
             <div className="triangle" hidden={ !expand && true }></div>
             {
