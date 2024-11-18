@@ -1,6 +1,7 @@
 import React from 'react'
 import Snake from './SnakeGame/Snake'
 import WordGame from './WordGame/WordGame'
+import TypinTest from './TypinTest/TypinTest'
 import EmojiMemo from './EmojiMemo/EmojiMemo'
 import '../styles/Gameboard.css'
 
@@ -25,6 +26,12 @@ function GameLoader({ gamebody, loggedInUser }) {
                 <EmojiMemo loggedInUser={loggedInUser} />
             </div>
         )
+    } else if (gamebody === "typin-test") {
+            return (
+                <div>
+                    <TypinTest loggedInUser={loggedInUser} />
+                </div>
+            )
     } else {
         return (
             <div>

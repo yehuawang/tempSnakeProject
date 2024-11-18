@@ -2,9 +2,11 @@ export const reactionGameList = {
     listType: "Reaction Games",
     listOfGames: [
         { id: 1, name: "Snake", gamebody: "snake" },
-        { id: 2, name: "Aim Trainer", gamebody: "aim-trainer" }
+        { id: 2, name: "Aim Trainer", gamebody: "aim-trainer" },
+        { id: 3, name: "Typin Test", gamebody: "typin-test"}
     ]
 }
+
 export const memoryGameList = {
     listType: "Memory Games",
     listOfGames: [
