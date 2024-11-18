@@ -52,3 +52,13 @@ Updated as of Nov 3rd, 2024
 20. **Audio**
 
 - A returning gamer wants an interactive and immersive game to relax from their personal life, so they play this game which includes background music to add tension and sound effects while playing, which enhances the entire experience.
+
+***New Features added since last spring***
+
+21. **Typing Test**
+- User wishes to improve their typing speed for a certain job requirement so they practice the typing test everyday to track their improvement.
+
+22. **Theme Store**
+- User wants to customize their dashboard and show their characteristics. they also find earning coins to purchase themes motivates them to practice more.
+
+
