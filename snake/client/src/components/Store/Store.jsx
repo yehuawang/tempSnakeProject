@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Carousel, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import CarouselContent from './Store/CarouselContent'
+import CarouselContent from './CarouselContent'
 
 
 function Store( props ) {
@@ -16,7 +16,7 @@ function Store( props ) {
             <Row>
                 <Col xs={12}>
                     <h3 className="text-center">Theme Store</h3>
-                    <CarouselContent { ...props }/>
+                    <CarouselContent { ...props } />
                 </Col>
                 <Col xs={12}>
                     <h3 className="text-center">Game Store</h3>

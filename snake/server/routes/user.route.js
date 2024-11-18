@@ -1,5 +1,7 @@
 import express from "express"
 import {            
+            getUserAboutMe,
+            updateUserAboutMe,
             getUserThemeList,
             getUserBackgroundTheme,
             setUserBackgroundTheme,
@@ -12,7 +14,7 @@ import {
             deleteUser, 
             getUser, 
             updateUser, 
-            loginUser,
+            loginUser
     } from "../controllers/user.controller.js"
 import { protectRoute } from "../middlewares/protectRoute.jwt.js"
 import multer from "multer"
@@ -31,6 +33,11 @@ const upload = multer({ storage: storage })
 
 const router = express.Router()
 
+
+/* --- ABOUT ME --- */
+
+router.post("/getUserAboutMe", getUserAboutMe)
+router.post("/updateUserAboutMe", updateUserAboutMe)
 
 /* --- THEMES --- */
 router.post("/getUserThemeList", getUserThemeList)
