@@ -9,6 +9,54 @@ import { genToken } from "../utils/genToken.jwt.js"
  * @param {userEmail} req 
  * @param {*} res 
  */
+export const getUserAboutMe = async (req, res) => {
+    const { userEmail } = req.body
+    try {
+        const user = await User.findOne({ email: userEmail })
+        res.status(200).json({
+            aboutMe: user.about_me
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when retrieving user's about me"
+        })
+    }
+
+}
+
+
+
+/**
+ * 
+ * @param {userEmail, aboutMe: String} req 
+ * @param {*} res 
+ */
+export const updateUserAboutMe = async (req, res) => {
+    const { userEmail, aboutMe } = req.body
+    try {
+        const user = await User.findOne({ email: userEmail })
+        user.about_me = aboutMe
+        await user.save()
+        res.status(200).json({
+            message: "User about me updated successfully",
+            aboutMe: user.about_me
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when updating user's about me"
+        })
+    }
+}
+
+
+
+/**
+ * 
+ * @param {userEmail} req 
+ * @param {*} res 
+ */
 export const getUserThemeList = async (req, res) => {
     const { userEmail } = req.body
     try {
@@ -57,32 +105,26 @@ export const setUserBackgroundTheme = async (req, res) => {
             })
         }
         const user = await User.findOne({ email: userEmail })
-        const theme_list = await user.theme_list.json()
+        const theme_list = user.theme_list
 
-        theme_list.forEach((themeItem) => {
+        for (const themeItem of theme_list) {
             console.log(`theme_name: ${themeItem.theme_name}, purchased: ${themeItem.purchased}`)
             if (themeItem.theme_name === theme && themeItem.purchased === true) {
-                if (themeItem.purchased === true) {
-                    user.theme = theme
-                    user.save()
-                    return res.status(200).json({
-                        message: "User background theme updated successfully"
-                    })
-                } else {
-                    return res.status(400).json({
-                        message: "User has not yet purchased this theme"
-                    })
-                }
+                user.theme = theme
+                await user.save()
+                return res.status(200).json({
+                    message: "User background theme updated successfully"
+                })
             }
-        })
+        }
         
-        res.status(404).json({
+        return res.status(404).json({
             message: "User theme not found in record"
         })
         
     } catch (error) {
         console.log(error)
-        res.status(500).json({
+        return res.status(500).json({
             message: "Error when updating user background theme"
         })
     }

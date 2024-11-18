@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import '../../styles/CarouselContent.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-function CarouselContent({ userEmail, userTheme, setUserTheme }) {
+function CarouselContent({ userEmail, userTheme, setUserTheme, setUpdatingCoinCount }) {
     const [carouselList, setCarouselList] = useState([]);
 
     useEffect(() => {
@@ -48,6 +48,7 @@ function CarouselContent({ userEmail, userTheme, setUserTheme }) {
                     body: JSON.stringify({ userEmail: userEmail })
                 });
                 const data = await response.json();
+                console.log(`data fecthed from getUserTheme: ${data}`);
                 const theme = data.theme;
                 console.log(`current user set theme is: ${theme}`);
                 return theme;
@@ -86,7 +87,8 @@ function CarouselContent({ userEmail, userTheme, setUserTheme }) {
                     }
                     return item;
                 }));
-                setUserTheme(themeName);
+                console.log(`purchased ${themeName} theme`);
+                setUpdatingCoinCount(true);
             }
         } catch (error) {
             console.log(error);
@@ -94,7 +96,21 @@ function CarouselContent({ userEmail, userTheme, setUserTheme }) {
     };
 
     const handleSetTheme = async (themeName) => {
-        setUserTheme(themeName);
+        try {
+            const response = await fetch('http://localhost:5001/api/users/setUserBackgroundTheme', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userEmail: userEmail, theme: themeName })
+            });
+            if (response.ok) {
+                setUserTheme(themeName);
+                setUpdatingCoinCount(true);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -120,8 +136,9 @@ function CarouselContent({ userEmail, userTheme, setUserTheme }) {
                                                 </div>
                                             ) : (
                                                 <div className="button-overlay">
-                                                    <button className="purchase-button not-purchased" onClick={() => handlePurchase(item.theme_name)}></button>
+                                                    <button className="purchase-button not-purchased" onClick={() => handlePurchase(item.theme_name)}>
                                                         <i className="bi bi-cash-coin"><i>Purchase</i></i>
+                                                    </button>
                                                     
                                                 </div>
                                             )}
