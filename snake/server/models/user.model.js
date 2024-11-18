@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     profile_image: { type: String, default: null },
     coins: { type: Number, default: 0 },
+    about_me: { type: String, default: 'Tell people something about yourself!' },
     theme_list: { type: [themeSchema], default: [
         { theme_name: 'whales', price: 30, purchased: false, text: "A serene blue sky stretches above the majestic, towering mountains, their peaks softly kissed by the light of dawn." },
         { theme_name: 'jelly-fish', price: 30, purchased: false, text: "Graceful pink and purple jellyfish drift through the sky, their tendrils swirling like delicate, ethereal ribbons in the breeze." },

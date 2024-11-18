@@ -1,0 +1,55 @@
+.emoji-memo-game-heading {
+    font-size: 3em;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.emoji-memo-container {
+    display: flex;
+    height: 600px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-top: 10px;
+}
+
+.emoji-button {
+    height: 2em;
+    width: 2em;
+    flex: 1;
+    font-size: 5em;
+    border: 5px solid var(--text-color);
+    background-color: transparent;
+}
+
+.emoji-to-remember {
+    height: 100%;
+    width: 100%;
+    font-size: 5em;
+    border: none;
+    background-color: transparent;
+}
+
+.emoji-memo-info, .coin-info {
+    color: var(--text-color);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.coin-info span{
+    font-weight: bold;
+    color: var(--secondary-accent-color);
+}
+
+.feedback {
+  font-size: 1.5em;
+  margin-top: 10px;
+}

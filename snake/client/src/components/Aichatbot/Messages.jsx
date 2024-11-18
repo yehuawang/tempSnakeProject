@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import '../../styles/Chatbot.css'
 
-function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRendered }) {
+function Messages({ isUser, userInput, userEmail, isLoading, setIsLoading, onMessagesRendered }) {
     const [messages, setMessages] = useState([])
 
     useEffect(() => {
         const createChat = async () => {
+            setIsLoading(true)
             try {
                 const findChat = await fetch('http://localhost:5001/api/chat/find', {
                     method: 'POST',
@@ -51,14 +52,14 @@ function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRender
     useEffect(() => {
         const appendMessage = async() => {
             try {
-                if (updateWindow === true) {
+                if (isLoading === true) {
                     const response = await fetch('http://localhost:5001/api/chat/append', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            userEmail,
+                            userEmail: userEmail,
                             inputMessage: userInput,
                             role: "user"
                         })
@@ -121,6 +122,7 @@ function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRender
                     if (onMessagesRendered) {
                         onMessagesRendered()
                     }
+                    setIsLoading(false) 
                 }
             } catch (error) {
                 console.log('Message could not be appended', error)
@@ -130,6 +132,11 @@ function Messages({ isUser, userInput, userEmail, updateWindow, onMessagesRender
             appendMessage()
         }
     },[isUser])
+
+    useEffect(() => {
+        const chatMessages = document.querySelector('.chat-messages');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, [messages]);
 
     return (
         <div className="chat-messages">

@@ -6,11 +6,11 @@ import GameLoader from './GameLoader'
 function GameBoard({ gamebody, loggedInUser }) {
   return (
     <div className="game-board">
-        <PreviousAttemps />
+        {/* <PreviousAttemps /> */}
         <div className="game-canvas">
             <GameLoader gamebody={gamebody} loggedInUser={loggedInUser} />
         </div>
-        <HelpfulTips />
+        {/* <HelpfulTips /> */}
     </div>
   )
 }

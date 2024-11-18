@@ -1,8 +1,8 @@
 import React from 'react'
 import Snake from './SnakeGame/Snake'
-import ImageMemory from './ImageMemory/ImageMemory'
 import WordGame from './WordGame/WordGame'
 import TypinTest from './TypinTest/TypinTest'
+import EmojiMemo from './EmojiMemo/EmojiMemo'
 import '../styles/Gameboard.css'
 
 function GameLoader({ gamebody, loggedInUser }) {
@@ -14,16 +14,16 @@ function GameLoader({ gamebody, loggedInUser }) {
                 <Snake loggedInUser={loggedInUser} />
             </div>
         )
-    } else if (gamebody === "image-memory") {
-        return (
-            <div>
-                <ImageMemory loggedInUser={loggedInUser} />
-            </div>
-        )
     } else if (gamebody === "word-game") {
         return (
             <div>
                 <WordGame loggedInUser={loggedInUser} />
+            </div>
+        )
+    } else if (gamebody === "emoji-memo") {
+        return (
+            <div>
+                <EmojiMemo loggedInUser={loggedInUser} />
             </div>
         )
     } else if (gamebody === "typin-test") {
