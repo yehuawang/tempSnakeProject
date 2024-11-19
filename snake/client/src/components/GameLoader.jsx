@@ -3,6 +3,7 @@ import Snake from './SnakeGame/Snake'
 import WordGame from './WordGame/WordGame'
 import TypinTest from './TypinTest/TypinTest'
 import EmojiMemo from './EmojiMemo/EmojiMemo'
+import ReactionTest from './ReactionTest/ReactionTest'
 import '../styles/Gameboard.css'
 
 function GameLoader({ gamebody, loggedInUser }) {
@@ -32,6 +33,13 @@ function GameLoader({ gamebody, loggedInUser }) {
                     <TypinTest loggedInUser={loggedInUser} />
                 </div>
             )
+        
+    } else if (gamebody === "reaction-test") {
+        return (
+            <div>
+                <ReactionTest loggedInUser={loggedInUser} />
+            </div>
+        )
     } else {
         return (
             <div>

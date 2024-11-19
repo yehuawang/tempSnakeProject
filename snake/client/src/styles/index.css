@@ -7,18 +7,18 @@
     --default-cursive-font: 'Cedarville Cursive', cursive;
     --default-cute-font: 'Sour Gummy', cursive;
 
-    --primary-color: #283593; /* Indigo */
-    --secondary-color: #1565c0; /* Vibrant Blue */
+    --primary-color: #18181A; /* Indigo */
+    --secondary-color: #47BAC0; /* Vibrant Blue */
     --tertiary-color: #616ab0; /* Purple */
-    --accent-color: #ffbf00; /* Amber */
-    --secondary-accent-color: #ff8f00; /* Dark Orange */
-    --message-color: #b3efed; /* Sky blue */
-    --background-color: #f5f5f5; /* Light Gray */
-    --text-color: #212121; /* Dark Gray */
-    --container-background-color: #f0f0f0; /* Light Gray */
+    --accent-color: #C05384; /* Amber */
+    --secondary-accent-color: #18181A; /* Dark Orange */
+    --message-color: #47BAC0; /* Sky blue */
+    --background-color: #18181A; /* Light Gray */
+    --text-color: #47BAC0; /* Dark Gray */
+    --container-background-color: #18181A; /* Light Gray */
     --secondary-text-color: #ffffff; /* White */
-    --box-color: #e3e3e3; /* Light Gray */
-    --border-color: #9a9a9a; /* Medium Gray */
+    --box-color: #18181A; /* Light Gray */
+    --border-color: #18181A; /* Medium Gray */
     --shadow-color: rgba(0, 0, 0, 0.1);
     --semi-transparent-shadow: rgba(255, 255, 255, 0.4);
 }

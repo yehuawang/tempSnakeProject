@@ -30,7 +30,7 @@
 .game-list-selection-item {
     display: block;
     padding: 10px 15px;
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
     color: var(--text-color);
     text-decoration: none;
     border-radius: 4px;
@@ -38,6 +38,6 @@
 }
 
 .game-list-selection-item:hover {
-    background-color: var(--secondary-accent-color);
+    background-color: var(--accent-color);
     color: var(--secondary-text-color)!important;
 }
