@@ -1,4 +1,5 @@
 .typin-test {
+    width: 100vw;
     text-align: center;
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -7,12 +8,12 @@
 .sample-text {
     margin: 20px auto;
     width: 80%;
-    font-size: 1.2em;
+    font-size: 1.8em;
     line-height: 1.6;
-    text-align: left;
-    border: 1px solid #ccc;
+    text-align: center;
+    border: 0px solid #ccc;
     padding: 10px;
-    background-color: #fdfdfd;
+    background-color: var(--primary-color);
     user-select: none;
 }
 
@@ -22,11 +23,11 @@
 }
 
 .sample-text .correct-char {
-    color: green;
+    opacity: 0.2;
 }
 
 .sample-text .incorrect-char {
-    color: red;
+    color: var(--accent-color);
 }
 
 .sample-text .current-char {
@@ -54,11 +55,12 @@
 
 textarea,
 .input-area {
-    width: 80%;
-    height: 100px;
-    padding: 10px;
+    opacity: 0;
+    width: 100%;
+    height: 1px;
+    padding: 0px;
     font-size: 1.2em;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     border: 2px solid #ccc;
     border-radius: 5px;
     resize: none;
@@ -86,4 +88,17 @@ button:disabled {
 .results {
     margin-top: 20px;
     font-size: 1.2em;
+}
+
+.timer {
+    color: var(--accent-color);
+    font-size: 2em;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    opacity: 0;
+}
+
+.timer.show {
+    opacity: 100;
 }

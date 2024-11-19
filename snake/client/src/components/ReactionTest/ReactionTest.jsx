@@ -24,7 +24,7 @@ const ReactionTest = () => {
       setGameState('early');
     } else if (gameState === 'ready') {
       const endTime = Date.now();
-      const reactionTimeMs = endTime - startTimeRef.current;
+      const reactionTimeMs = endTime - startTimeRef.current - 35;
       setReactionTime(reactionTimeMs);
       setGameState('result');
     } else {
@@ -68,10 +68,10 @@ const ReactionTest = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          height: '30vh',
-          width: '60vw',
+          height: '65vh',
+          width: '100vw',
           backgroundColor: getBackgroundColor(),
-          transition: 'background-color 0.1s',
+          
         }}
         onClick={handleClick}
       >

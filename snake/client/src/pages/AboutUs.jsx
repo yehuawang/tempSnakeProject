@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import "../styles/AboutUs.css"
 
 function AboutUs() {
   const canvasRef = useRef(null);
@@ -27,6 +28,8 @@ function AboutUs() {
     let interval;
     let steps = 0; // Count steps to randomize direction periodically
 
+    const fillColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color').trim();
+
     const randomDirection = () => {
       const directions = [
         { x: 1, y: 0 }, // Right
@@ -48,7 +51,7 @@ function AboutUs() {
 
     const drawSnake = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#47BAC0';
+      ctx.fillStyle = fillColor;
       snake.forEach(segment => {
         ctx.fillRect(segment.x * cellSize, segment.y * cellSize, cellSize, cellSize);
       });
@@ -80,7 +83,7 @@ function AboutUs() {
   }, [snake, direction]);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', position: 'relative' }}>
+    <div>
       <h1>About Us</h1>
       <p>
         Welcome to <strong>Snake</strong>, a platform dedicated to enhancing your brainpower and cognitive skills
@@ -111,7 +114,7 @@ function AboutUs() {
           border: '0px solid #ddd',
           display: 'block',
           margin: '20px auto',
-          backgroundColor: '#18181A',
+          backgroundColor: 'var(--primary-color)',
         }}
       ></canvas>
     </div>

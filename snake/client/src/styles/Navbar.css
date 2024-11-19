@@ -2,7 +2,7 @@
 
 .navbar {
     background-color: var(--primary-color);
-    color: --secondary-color !important;
+    color: --secondary-color;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -15,9 +15,7 @@
     left: 0;
 }
 
-.navbar-item-list-container {
-    margin-left: 130px;
-}
+
 
 .navbar-toggler {
     position: absolute;
@@ -25,7 +23,7 @@
     width: 50px;
     height: 50px;
     border: none !important;
-    color: --secondary-color !important;
+    color: var(--secondary-color) !important;
     transition: color 0.3s ease;
 }
 
@@ -50,7 +48,7 @@
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
-    color: var(--text-color);
+    color: var(--secondary-color);
     margin-left: 1rem;
 }
 
@@ -101,7 +99,7 @@
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
-    background: #C05384;
+    background: var(--accent-color);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
@@ -149,7 +147,7 @@
 }
 
 .dark-mode .send-button {
-    color: var(--text-color);
+    color: var(--secondary-color);
 }
 
 .audio-toggle-button {

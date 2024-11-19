@@ -216,7 +216,7 @@ function EmojiMemo({ loggedInUser }) {
                 {!gameStarted ? (
                     <>
                         <h1 className="game-heading emoji-memo-game-heading">Ready to roast your brain?</h1>
-                        <Button onClick={() => setGameStarted(true)}>Let's Go!</Button>
+                        <button onClick={() => setGameStarted(true)}>Let's Go!</button>
                     </>
                 ) : (
                     hearts === 0 ? 
@@ -244,7 +244,7 @@ function EmojiMemo({ loggedInUser }) {
                                             <h3>Choose the previous emoji you saw:</h3>
                                             <div className="emoji-grid">
                                             {currentGrid.map((emoji, index) => (
-                                                <Button className="emoji-button" key={index} onClick={() => {setUserSelection(emoji)}}>{emoji}</Button>
+                                                <button className="emoji-button" key={index} onClick={() => {setUserSelection(emoji)}}>{emoji}</button>
                                             ))}
                                             </div>
 

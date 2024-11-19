@@ -6,11 +6,11 @@
 }
 
 .word-game-canvas {
-    background-color: var(--wordgame-default);
+    background-color: var(--primary-color);
 }
 
 .word-game-heading {
-    color: white;
+    color: var(--secondary-color);
     font-size: 3.5rem !important;
     margin-bottom: 1rem;
 }
@@ -31,9 +31,9 @@
 .word-game-box {
     width: 55px;
     height: 55px;
-    border: 4px solid var(--wordgame-empty);
+    border: 1px solid var(--secondary-color);
     margin: 5px;
-    color: white;
+    color: var(--secondary-color);
     text-transform: uppercase;
     display: grid;
     place-items: center;
@@ -46,11 +46,11 @@
 }
 
 .word-game-box.wrong-placement {
-    background: var(--wordgame-wrong-one);
+    background: var(--accent-color);
 }
 
 .word-game-box.right-placement {
-    background: var(--wordgame-right-one);
+    background: var(--primary-color);
 }
 
 .animated {
@@ -71,7 +71,7 @@
     width: 100%;
     align-items: center;
     padding-bottom: 0.5rem;
-    color: white;
+    color: var(--secondary-color);
 }
 
 .player-info span {
@@ -86,7 +86,7 @@
     width: 100%;
     align-items: center;
     padding-bottom: 1rem;
-    color: white;
+    color: var(--secondary-color);
 }
 
 .coin-info span {
@@ -98,7 +98,7 @@
 
 .win-word-game {
     font-size: 1rem !important;
-    color: white;
+    color: var(--secondary-color);
 }
 
 .start-word-game-button {
