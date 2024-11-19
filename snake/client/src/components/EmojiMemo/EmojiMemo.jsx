@@ -224,7 +224,9 @@ function EmojiMemo({ loggedInUser }) {
 
                         <>
                             <h1 className="game-headings">Game Over!</h1>
-                            <p className="emoji-memo-info">You have lost all your ❤️</p>
+                            <span className="emoji-memo-info">You have lost all your 
+                                <span className="heart"><i className="bi bi-heart-fill"></i></span>
+                            </span>
                             <p className="coin-info">You have earned: <span><i className="bi bi-coin"></i>{points}</span></p>
                             <button onClick={startNewGame}>Start New Game</button>
                         </>
@@ -253,7 +255,7 @@ function EmojiMemo({ loggedInUser }) {
                                 <div className="heart-count">
                                     {
                                         Array(hearts).fill().map((_, i) => (
-                                            <span key={i} className="heart">❤️</span>
+                                            <span key={i} className="heart"><i className="bi bi-heart-fill"></i></span>
                                         ))
                                     }
                                 </div>
