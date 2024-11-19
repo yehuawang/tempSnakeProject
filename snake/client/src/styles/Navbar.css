@@ -59,6 +59,7 @@
 }
 
 .theme-toggle-button {
+    margin-left: 5px;
     position: relative;
     width: 50px;
     height: 25px;
@@ -160,6 +161,5 @@
 }
   
 .audio-toggle-button:hover {
-    color: #C05384;
+    color: var(--accent-color);
 }
-  

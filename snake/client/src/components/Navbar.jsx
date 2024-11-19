@@ -47,7 +47,7 @@ function Navbar({ loggedInUser }) {
                         <Nav className="mb-2 navbar-item-list">
                             <Nav.Link as={Link} to="/reaction-games" className={`nav-link ${isActive('/reaction-games') ? 'active' : ''}`}>Reaction</Nav.Link>
                             <Nav.Link as={Link} to="/memory-games" className={`nav-link ${isActive('/memory-games') ? 'active' : ''}`}>Memory</Nav.Link>
-                            <Nav.Link as={Link} to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>About Us</Nav.Link>
+                            <Nav.Link as={Link} to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>About Us</Nav.Link>
                             {loggedInUser.email === 'guest' ? (
                                 <Nav.Link as={Link} to="/login" className={`nav-link ${isActive('/login') ? 'active' : ''}`}>Log in</Nav.Link>
                             ) : (
@@ -58,7 +58,8 @@ function Navbar({ loggedInUser }) {
                     <div className="navbar-controls-container">
                         {/* Dark Mode Toggle */}
                         <div className="navbar-darkmode-container">
-                            <img src={!darkMode ? moonIcon : sunIcon} alt="Dark Mode" className="dark-mode-icon" />
+                            {/* <img src={!darkMode ? moonIcon : sunIcon} alt="Dark Mode" className="dark-mode-icon" /> */}
+                            <i className={`bi bi-${darkMode?"moon":"sun"}-fill`}></i>
                             <button 
                                 onClick={toggleTheme} 
                                 className={`theme-toggle-button ${darkMode ? 'dark-mode' : ''}`}

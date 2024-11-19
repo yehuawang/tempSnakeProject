@@ -10,10 +10,10 @@ import { reactionGameList, memoryGameList } from '../data/tempGameListDatabase.j
 function NavRouters({ loggedInUser, setLoggedInUser }) {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<AboutUs />} />
             <Route path="/reaction-games" element={<GameList  gameListObject={reactionGameList} />} />
             <Route path="/memory-games" element={<GameList  gameListObject={memoryGameList} />} />
-            <Route path='/about' element={<AboutUs />} />
+            {/* <Route path='/about' element={<AboutUs />} /> */}
             <Route path="/login" element={<LoginPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
             <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
         </Routes>
