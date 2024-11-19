@@ -1,0 +1,28 @@
+.reaction-test-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.reaction-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    /* transition: background-color 0.1s; */
+}
+
+.color-red {
+    background-color: var(--accent-color);
+}
+
+.color-green {
+    background-color: var(--secondary-color);
+}
+
+.color-default {
+    background-color: var(--background-color);
+}

@@ -46,10 +46,15 @@
 
 .coin-info span{
     font-weight: bold;
-    color: var(--secondary-accent-color);
+    color: var(--accent-color);
 }
 
 .feedback {
   font-size: 1.5em;
   margin-top: 10px;
+}
+
+.heart {
+    color: var(--accent-color);
+    padding: 5px;
 }

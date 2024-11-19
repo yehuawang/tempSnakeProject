@@ -3,7 +3,7 @@ export const reactionGameList = {
     listOfGames: [
         { id: 1, name: "Snake", gamebody: "snake" },
         { id: 2, name: "Aim Trainer", gamebody: "aim-trainer" },
-        { id: 3, name: "Typin Test", gamebody: "typin-test"},
+        { id: 3, name: "Typing Test", gamebody: "typin-test"},
         {id: 4, name: "Reaction Test", gamebody: "reaction-test"}
     ]
 }
