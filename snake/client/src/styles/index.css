@@ -26,9 +26,55 @@
 
 .tiramisu {
     --primary-color: #CFC6B9;
-    --secondary-color : #C0976F;
-    --accent-color: #7D5448;
+    --secondary-color : #90673c;
+    --accent-color: #543830;
 }
+.beach {
+    --primary-color: #FFEEAD;
+    --secondary-color : #96CEB4;
+    --accent-color: #5B7869;
+}
+.earth {
+    --primary-color: #292521;
+    --secondary-color : #509452;
+    --accent-color: #F5AE2D;
+}
+.stealth {
+    --primary-color: #010203;
+    --secondary-color : #5E676E;
+    --accent-color: #383E42;
+}
+.vaporwave {
+    --primary-color: #A4A7EA;
+    --secondary-color : #E368DA;
+    --accent-color: #7C7FAF;
+}
+.joker {
+    --primary-color: #1A0E25;
+    --secondary-color : #99DE1E;
+    --accent-color: #E9E2F5;
+}
+.matrix {
+    --primary-color: #000000;
+    --secondary-color : #15FF00;
+    --accent-color: #fff;
+}
+.midnight {
+    --primary-color: #0B0E13;
+    --secondary-color : #60759F;
+    --accent-color: #fff;
+}
+.strawberry {
+    --primary-color: #F37F83;
+    --secondary-color : #FCFCF8;
+    --accent-color: #E53C58;
+}
+.tangerine {
+    --primary-color: #FFEDE0;
+    --secondary-color : #FE5503;
+    --accent-color: rgb(2, 53, 2);
+}
+
 
 .dark-theme {
     --primary-color: #1e1e1e; /* Almost Black */

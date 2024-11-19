@@ -1,7 +1,9 @@
 import React from 'react';
 import "../../styles/GameList.css";
 
-const themes = ["default", "tiramisu"];
+const themes = ["default", "tiramisu", "beach", "earth", "stealth", "vaporwave",
+                "joker", "matrix", "midnight", "strawberry", "tangerine"
+];
 
 function Themes({ loggedInUser }) {
     const handleThemeChange = (theme) => {
