@@ -11,7 +11,7 @@ import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 function Navbar({ loggedInUser }) {
     const [darkMode, setDarkMode] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(true); // Audio state
+    const [isPlaying, setIsPlaying] = useState(false); // Audio state
     const location = useLocation();
 
     const toggleTheme = () => {
@@ -45,14 +45,15 @@ function Navbar({ loggedInUser }) {
                     </BootstrapNavbar.Toggle>
                     <BootstrapNavbar.Collapse id="navbarSupportedContent" className="navbar-item-list-container">
                         <Nav className="mb-2 navbar-item-list mx-auto">
+                            <Nav.Link as={Link} to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>About Us</Nav.Link>
                             <Nav.Link as={Link} to="/reaction-games" className={`nav-link ${isActive('/reaction-games') ? 'active' : ''}`}>Reaction</Nav.Link>
                             <Nav.Link as={Link} to="/memory-games" className={`nav-link ${isActive('/memory-games') ? 'active' : ''}`}>Memory</Nav.Link>
-                            <Nav.Link as={Link} to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>About Us</Nav.Link>
                             {loggedInUser.email === 'guest' ? (
                                 <Nav.Link as={Link} to="/login" className={`nav-link ${isActive('/login') ? 'active' : ''}`}>Log in</Nav.Link>
                             ) : (
                                 <Nav.Link as={Link} to="/dashboard" className={`nav-link ${isActive('/dashboard') ? 'active' : ''}`}>Dashboard</Nav.Link>
                             )}
+                            <Nav.Link as={Link} to="/themes" className={`nav-link ${isActive('/themes') ? 'active' : ''}`}>Themes</Nav.Link>
                         </Nav>
                     </BootstrapNavbar.Collapse>
                     {/* <div className="navbar-controls-container"> */}

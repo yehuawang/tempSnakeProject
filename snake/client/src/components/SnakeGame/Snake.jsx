@@ -1,7 +1,7 @@
 import SnakeGameState from './SnakeGameState'
 import React, { useState, useEffect } from 'react'
 
-function Snake({ loggedInUser }) {
+function Snake({ snakeTheme, loggedInUser }) {
     const player = loggedInUser.name
     
     return(
