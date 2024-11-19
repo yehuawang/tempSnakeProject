@@ -44,7 +44,7 @@ function Navbar({ loggedInUser }) {
                         <i className="bi bi-list"></i>
                     </BootstrapNavbar.Toggle>
                     <BootstrapNavbar.Collapse id="navbarSupportedContent" className="navbar-item-list-container">
-                        <Nav className="mb-2 navbar-item-list">
+                        <Nav className="mb-2 navbar-item-list mx-auto">
                             <Nav.Link as={Link} to="/reaction-games" className={`nav-link ${isActive('/reaction-games') ? 'active' : ''}`}>Reaction</Nav.Link>
                             <Nav.Link as={Link} to="/memory-games" className={`nav-link ${isActive('/memory-games') ? 'active' : ''}`}>Memory</Nav.Link>
                             <Nav.Link as={Link} to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>About Us</Nav.Link>
@@ -55,25 +55,24 @@ function Navbar({ loggedInUser }) {
                             )}
                         </Nav>
                     </BootstrapNavbar.Collapse>
-                    <div className="navbar-controls-container">
+                    {/* <div className="navbar-controls-container"> */}
                         {/* Dark Mode Toggle */}
-                        <div className="navbar-darkmode-container">
-                            {/* <img src={!darkMode ? moonIcon : sunIcon} alt="Dark Mode" className="dark-mode-icon" /> */}
+                        {/* <div className="navbar-darkmode-container">
                             <i className={`bi bi-${darkMode?"moon":"sun"}-fill`}></i>
                             <button 
                                 onClick={toggleTheme} 
                                 className={`theme-toggle-button ${darkMode ? 'dark-mode' : ''}`}
                             ></button>
-                        </div>
+                        </div> */}
                         {/* Audio Toggle */}
-                        <button 
+                        {/* <button 
                             onClick={toggleAudio} 
                             className="audio-toggle-button"
                             title={isPlaying ? "Pause Music" : "Play Music"}
                         >
                             {isPlaying ? <i className="bi bi-pause-circle"></i> : <i className="bi bi-play-circle"></i>}
                         </button>
-                    </div>
+                    </div> */}
                 </Container>
             </BootstrapNavbar>
             <AskMe loggedInUser={loggedInUser} />

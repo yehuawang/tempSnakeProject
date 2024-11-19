@@ -1,24 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Rubik+80s+Fade&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Rubik+80s+Fade&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 :root {
     --default-text-font: 'Hubot Sans', sans-serif;
-    --default-heading-font: 'Rubik 80s Fade', sans-serif;
+    --default-heading-font: 'Patric Hand', sans-serif;
     --default-cursive-font: 'Cedarville Cursive', cursive;
     --default-cute-font: 'Sour Gummy', cursive;
 
     --primary-color: #18181A; /* Indigo */
     --secondary-color: #47BAC0; /* Vibrant Blue */
-    --tertiary-color: #616ab0; /* Purple */
     --accent-color: #C05384; /* Amber */
-    --secondary-accent-color: #18181A; /* Dark Orange */
-    --message-color: #47BAC0; /* Sky blue */
-    --background-color: #18181A; /* Light Gray */
-    --text-color: #47BAC0; /* Dark Gray */
-    --container-background-color: #18181A; /* Light Gray */
-    --secondary-text-color: #ffffff; /* White */
-    --box-color: #18181A; /* Light Gray */
-    --border-color: #18181A; /* Medium Gray */
+    
+  
+    
     --shadow-color: rgba(0, 0, 0, 0.1);
     --semi-transparent-shadow: rgba(255, 255, 255, 0.4);
 }
@@ -42,8 +37,8 @@
 
 
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     font: 1em var(--default-text-font);
     margin: 0;
     padding: 0;
@@ -61,7 +56,7 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: var(--primary-color);
-    color: var(--secondary-text-color);
+    color: var(--secondary-color);
 }
 
 
@@ -75,12 +70,12 @@ a:hover {
 }
 
 button {
-    background-color: var(--secondary-color);
-    color: var(--secondary-text-color);
+    background-color: transparent;
+    color: var(--secondary-color);
     font-size: 1em;
     font-weight: bold;
     padding: 10px;
-    border: none;
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
     cursor: pointer;
 }

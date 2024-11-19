@@ -158,14 +158,14 @@ const SnakeGameWindow = ({ score, setScore, isGameOver, setGameOver, collideWith
     }
 
     const drawSnake = (context) => {
-        context.fillStyle = "green"
+        context.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color').trim();
         snake.forEach((part) => {
             context.fillRect(part.x, part.y, UNIT_SIZE, UNIT_SIZE)
         })
     }
 
     const drawFood = (context) => {
-        context.fillStyle = "red"
+        context.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
         context.fillRect(food.x, food.y, UNIT_SIZE, UNIT_SIZE)
     }
 

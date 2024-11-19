@@ -9,7 +9,7 @@
     align-items: center;
     height: 80vh;
     width: max(30vw, 700px);
-    background-color: var(---background-color);
+    background-color: var(---primary-color);
     z-index: 2000;
 }
 
@@ -19,7 +19,7 @@
     bottom: 70px;
     right: 10px;
     margin: 0;
-    background-color: var(---contianer-background-color);
+    background-color: var(---primary-color);
 }
 
 .triangle {
@@ -30,7 +30,7 @@
     margin: 10;
     bottom: 110px;
     transform: rotate(45deg);
-    background-color: var(--container-background-color);
+    background-color: var(--primary-color);
 }
 
 .ask-me-button {
