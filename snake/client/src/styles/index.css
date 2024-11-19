@@ -18,6 +18,18 @@
     --semi-transparent-shadow: rgba(255, 255, 255, 0.4);
 }
 
+.default {
+    --primary-color: #18181A; /* Indigo */
+    --secondary-color: #47BAC0; /* Vibrant Blue */
+    --accent-color: #C05384; /* Amber */
+}
+
+.tiramisu {
+    --primary-color: #CFC6B9;
+    --secondary-color : #C0976F;
+    --accent-color: #7D5448;
+}
+
 .dark-theme {
     --primary-color: #1e1e1e; /* Almost Black */
     --secondary-color: #4a90e2; /* Soft Blue */

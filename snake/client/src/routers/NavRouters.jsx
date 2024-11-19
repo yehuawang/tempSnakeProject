@@ -5,6 +5,7 @@ import LoginPage from '../pages/LoginPage'
 import AboutUs from '../pages/AboutUs'
 import GameList from '../pages/GameList'
 import Dashboard from '../pages/Dashboard.jsx'
+import Themes from '../components/Themes/Themes.jsx'
 import { reactionGameList, memoryGameList } from '../data/tempGameListDatabase.js'
 
 function NavRouters({ loggedInUser, setLoggedInUser }) {
@@ -16,6 +17,7 @@ function NavRouters({ loggedInUser, setLoggedInUser }) {
             {/* <Route path='/about' element={<AboutUs />} /> */}
             <Route path="/login" element={<LoginPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
             <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
+            <Route path="/themes" element={<Themes loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
         </Routes>
     )
 }
