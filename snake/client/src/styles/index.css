@@ -4,7 +4,7 @@
 
 :root {
     --default-text-font: 'Hubot Sans', sans-serif;
-    --default-heading-font: 'Patric Hand', sans-serif;
+    --default-heading-font: 'Patrick Hand', sans-serif;
     --default-cursive-font: 'Cedarville Cursive', cursive;
     --default-cute-font: 'Sour Gummy', cursive;
 
@@ -147,8 +147,8 @@ button {
 }
 
 
-.game-heading {
-    font: 2em var(--default-heading-font);
+.game-header {
+    font: 2em var(--default-cute-font);
 }
 
 #background-audio {

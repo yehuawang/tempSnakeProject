@@ -17,11 +17,11 @@ function GamePage({ game, loggedInUser }) {
         <div className="page-element-div">
             <div className="game-container center justify-content-center text-center">
                 <GameHeader gameName={game.name} loggedInUser={loggedInUser} />
-                <GameBoard gamebody={game.gamebody} loggedInUser={loggedInUser}>
+                <GameBoard game={game} loggedInUser={loggedInUser}>
                     {console.log("passing\n" + loggedInUser + "\nto GameLoader")}
                     {console.log(`name is ${loggedInUser.name}, email is ${loggedInUser.email}, profileImage is ${loggedInUser.profileImage}`)} 
-                    
-                    <GameLoader gamebody={game.gamebody} loggedInUser={loggedInUser} player={player} />
+{/*                     
+                    <GameLoader game={game} loggedInUser={loggedInUser} player={player} /> */}
                 </GameBoard>
             </div>
         </div>

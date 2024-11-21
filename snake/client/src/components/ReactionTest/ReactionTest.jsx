@@ -61,15 +61,16 @@ const ReactionTest = () => {
   };
 
   return (
-    <div className="reaction-test-container">
+    <>
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          height: '65vh',
-          width: '100vw',
+          height: '100%',
+          width: '100%',
+          borderRadius: '15px',
           backgroundColor: getBackgroundColor(),
           
         }}
@@ -79,7 +80,7 @@ const ReactionTest = () => {
           {getMessage()}
         </h1>
       </div>
-    </div>
+    </>
   );
 };
 

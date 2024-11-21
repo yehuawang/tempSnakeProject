@@ -1,0 +1,14 @@
+.snake-game-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.start-snake-game-button, .play-snake-game-again-button {
+    margin: 50px;
+}

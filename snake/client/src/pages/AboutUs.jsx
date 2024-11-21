@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "../styles/AboutUs.css"
+import LogGame from '../components/LogGame';
 
 function AboutUs() {
   const canvasRef = useRef(null);
@@ -117,6 +118,8 @@ function AboutUs() {
           backgroundColor: 'var(--primary-color)',
         }}
       ></canvas>
+        {/* Developer use to add new games into database in a simple way... */}
+      {/* <LogGame /> */}
     </div>
   );
 }
