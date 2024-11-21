@@ -35,7 +35,7 @@ function Navbar({ loggedInUser }) {
 
     return (
         <>
-            <BootstrapNavbar expand="md" className="navbar">
+            <BootstrapNavbar expand="lg" className="navbar">
                 <Container>
                     <BootstrapNavbar.Brand className="navbar-logo-fixed">
                         <Link className="snake-logo" to="/">SNAKE!</Link>

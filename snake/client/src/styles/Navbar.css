@@ -2,35 +2,32 @@
 
 .navbar {
     background-color: var(--primary-color);
-    color: --secondary-color;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; 
+    color: var(--secondary-color);
     min-height: 70px; 
+    z-index: 100;
+    position: fixed !important; 
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 15px var(--secondary-color);
 }
 
 .navbar-logo-fixed {
     position: absolute;
     left: 0;
+    top: 0;
 }
 
 
 
 .navbar-toggler {
     position: absolute;
-    right: 100px;
-    width: 50px;
-    height: 50px;
+    top: 0.75rem;
     border: none !important;
     color: var(--secondary-color) !important;
     transition: color 0.3s ease;
 }
 
-.navbar-toggler:focus,
-.navbar-toggler:active {
-    color: var(--accent-color) !important;
-}
+
 
 .navbar-darkmode-container {
     position: absolute;
@@ -104,19 +101,14 @@
     -webkit-text-fill-color: transparent;
     color: transparent;
     padding: 1rem;
-}
-
-.snake-logo2 {
-    background: linear-gradient(90deg, #a8e6cf, #dcedc1, #ffd3b6, #ffaaa5, #ff8b94);
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color)); /* Added linear gradient */
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: transparent;
-    padding: 1rem;
 }
 
 .navbar-item-list {
     display: flex;
-    justify-content: flex-end; /* Center the navbar items */
     font-weight: bold;
     color: var(--secondary-color);
     padding-right: 2rem;

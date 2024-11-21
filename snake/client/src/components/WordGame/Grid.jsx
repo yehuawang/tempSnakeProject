@@ -40,7 +40,6 @@ function Grid({ loggedInUser, coinsToEarn, setCoinsToEarn, setGameStarted, userW
                                 gameEnded: true,
                             }));
                             setUserWin(true);
-                            alert('Congratulations! You guessed the word!');
                         } else if (gameState.currentRowPosition === 4) {
                             setGameState((prevState) => ({
                                 ...prevState,

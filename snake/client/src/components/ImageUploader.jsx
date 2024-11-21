@@ -3,6 +3,7 @@ import DefaultProfileImage from '/default-snake-profile-image.png';
 import UploadIcon from '/profile-img-upload-button.png';
 import '../styles/ImageUploader.css';
 import axios from 'axios';
+import { Container } from 'react-bootstrap';
 
 const MAX_PROFILE_IMAGE_SIZE = 3 * 1024 * 1024;
 
@@ -82,11 +83,23 @@ function ImageUploader({ userEmail }) {
     };
 
     return (
-        <div className="image-uploader">
-            <button type="button" className="profile-img-upload-button" onClick={() => profileImageRef.current.click()}>
-                <img className="profile-img" src={profileImageURL} alt="profile-image" />
-                <img src={UploadIcon} alt="upload-icon" className="image-upload" />
-            </button>
+        // <Container className="image-uploader">
+        //     <button type="button" className="profile-img-upload-button" onClick={() => profileImageRef.current.click()}>
+        //         <img className="profile-img" src={profileImageURL} alt="profile-image" />
+        //     </button>
+        //     <input
+        //         type="file"
+        //         name="profile-image"
+        //         id="profile-image"
+        //         accept="image/*"
+        //         ref={profileImageRef}
+        //         hidden
+        //         onChange={displayNewProfileImage}
+        //     />
+        //     {tooLarge && <span className="error-message">File size too large, please upload an image less than 3MB.</span>}
+        // </Container>
+
+        <>
             <input
                 type="file"
                 name="profile-image"
@@ -96,8 +109,11 @@ function ImageUploader({ userEmail }) {
                 hidden
                 onChange={displayNewProfileImage}
             />
-            {tooLarge && <span className="error-message">File size too large, please upload an image less than 3MB.</span>}
-        </div>
+            <Container className="img-container" onClick={() => profileImageRef.current.click()}>
+                <img className="profile-img" src={profileImageURL} alt="profile-image" />
+                <img className="overlay" src={UploadIcon}/>
+            </Container>
+        </>
     );
 }
 

@@ -12,10 +12,6 @@
     --secondary-color: #47BAC0; /* Vibrant Blue */
     --accent-color: #C05384; /* Amber */
     
-  
-    
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --semi-transparent-shadow: rgba(255, 255, 255, 0.4);
 }
 
 .default {
@@ -94,27 +90,39 @@
 }
 
 
+
+
 body {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     font: 1em var(--default-text-font);
     margin: 0;
     padding: 0;
-    min-width: 400px;
     overflow-y: auto;
+    min-width: 400px;
+    min-height: 400px;
+}
+
+.page-element-div {
+    margin-top: 70px;
+    align-items: center;
 }
 
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+}
+
+footer p {
+    margin: auto;
 }
 
 
@@ -138,10 +146,48 @@ button {
     cursor: pointer;
 }
 
+
 .game-heading {
     font: 2em var(--default-heading-font);
 }
 
 #background-audio {
     display: none;
-  }
+}
+
+input {
+    background: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+    caret-color: var(--secondary-color);
+}
+
+input:focus {
+    outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+input{
+    -webkit-box-shadow: 0 0 0 30px var(--primary-color) inset !important;
+    -webkit-text-fill-color: var(--secondary-color) !important;
+}
+
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.navbar-item-list-container {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    color: var(--secondary-color);
+    padding-right: 2rem;
+    gap: 1.5rem;
+}

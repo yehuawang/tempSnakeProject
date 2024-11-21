@@ -14,7 +14,7 @@ function GamePage({ game, loggedInUser }) {
     }
     console.log(`GamePage prepared player: ${player}, player name: ${player.name}, player profileImage: ${player.profileImage}`)
     return (
-        <div>
+        <div className="page-element-div">
             <div className="game-container center justify-content-center text-center">
                 <GameHeader gameName={game.name} loggedInUser={loggedInUser} />
                 <GameBoard gamebody={game.gamebody} loggedInUser={loggedInUser}>

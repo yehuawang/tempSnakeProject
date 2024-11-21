@@ -25,7 +25,7 @@ function Themes({ loggedInUser }) {
     );
 
     return (
-        <div className="game-list-container">
+        <div className="page-element-div game-list-container">
             <h1 className="game-list-title">Themes</h1>
             <ul className="game-list-ul">
                 {list}

@@ -1,40 +1,48 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 import '../styles/AskMe.css'
 import ChatContainer from './Aichatbot/ChatContainer'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import Overlay from 'react-bootstrap/Overlay'
+import Popover from 'react-bootstrap/Popover'
+
+
+
+
 
 function AskMe({ loggedInUser }) {
     const [expand, setExpand] = useState(false)
-    const [showLongButton, setShowLongButton] = useState(false)
+    const [target, setTarget] = useState(null)
+    const ref = useRef(null)
 
-    useEffect(() => {
-        const handleWindowSizeChange = () => {
-            setShowLongButton(window.innerWidth > 768)
-        }
-
-        window.addEventListener('resize', handleWindowSizeChange)
-
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange)
-        }
-    },[])
+    const handleClick = (event) => {
+        setTarget(event.target)
+        setExpand(!expand)
+    }
 
 
     return (
-        <div className="ask-me-container">
-            <div className="dialogue-box" hidden={ !expand && true }>
-                <ChatContainer userEmail={loggedInUser.email} />
-            </div>
-            {/* <div className="triangle" hidden={ !expand && true }></div> */}
-            {
-                showLongButton ? (
-                    <button className="ask-me-button" onClick={()=>{setExpand(!expand)}}>Questions? Aks Alice Anything... </button>
-                ) : (
-                    <button className="round-ask-me-button" onClick={()=>{setExpand(!expand)}}>
-                        <i className="bi bi-chat-right-dots-fill"></i>
-                    </button>
-                )
-            }
+        <div ref={ref}>
+            <button className="round-ask-me-button" onClick={handleClick}>
+                <i className="bi bi-chat-left-text-fill"></i>
+            </button>
+
+
+            <Overlay
+                show={expand}
+                target={target}
+                placement="top"
+                container={ref}
+                containerPadding={20}
+                className="ask-me-overlay"
+            >
+                <Popover>
+                    <Popover.Header className="ask-me-popover-header">Ask Alice Anything!</Popover.Header>
+                    <Popover.Body>
+                        <ChatContainer userEmail={loggedInUser.email} />
+                    </Popover.Body>
+                </Popover>
+            </Overlay>
+
         </div>
     )
 }
