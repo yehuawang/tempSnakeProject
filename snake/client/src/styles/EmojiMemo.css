@@ -26,8 +26,13 @@
     width: 2em;
     flex: 1;
     font-size: 5em;
-    border: 5px solid var(--text-color);
+    border: 5px solid var(--secondary-color);
     background-color: transparent;
+}
+
+.emoji-button:hover {
+    background-color: var(--secondary-color);
+    transition: background-color 0.3s;
 }
 
 .emoji-to-remember {
@@ -39,7 +44,7 @@
 }
 
 .emoji-memo-info, .coin-info {
-    color: var(--text-color);
+    color: var(--secondary-color);
     margin-top: 20px;
     margin-bottom: 20px;
 }

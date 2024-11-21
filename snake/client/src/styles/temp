@@ -1,0 +1,8 @@
+  --secondary-accent-color: #18181A; /* Dark Orange */
+    --message-color: #47BAC0; /* Sky blue */
+    --background-color: #18181A; /* Light Gray */
+    --text-color: #47BAC0; /* Dark Gray */
+    --container-background-color: #18181A; /* Light Gray */
+    --secondary-text-color: #ffffff; /* White */
+    --box-color: #18181A; /* Light Gray */
+    --border-color: #18181A; 

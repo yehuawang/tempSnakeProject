@@ -25,7 +25,7 @@ function AskMe({ loggedInUser }) {
             <div className="dialogue-box" hidden={ !expand && true }>
                 <ChatContainer userEmail={loggedInUser.email} />
             </div>
-            <div className="triangle" hidden={ !expand && true }></div>
+            {/* <div className="triangle" hidden={ !expand && true }></div> */}
             {
                 showLongButton ? (
                     <button className="ask-me-button" onClick={()=>{setExpand(!expand)}}>Questions? Aks Alice Anything... </button>

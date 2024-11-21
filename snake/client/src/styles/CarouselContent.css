@@ -61,7 +61,7 @@ img {
     padding: 0 20px;
     border: none;
     background-color: var(--primary-color);
-    color: var(--secondary-text-color);
+    color: var(--secondary-color);
     border-radius: 5px;
 }
 
@@ -74,8 +74,8 @@ img {
 }
 
 .purchase-button.not-purchased:hover {
-    color: var(--secodary-text-color);
-    background-color: var(--secondary-accent-color);
+    color: var(--secodary-color);
+    background-color: var(--accent-color);
 }
 
 /* .purchase-button span, .purchase-button i {

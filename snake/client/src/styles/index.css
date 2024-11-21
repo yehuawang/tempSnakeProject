@@ -1,27 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Rubik+80s+Fade&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Rubik+80s+Fade&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 :root {
     --default-text-font: 'Hubot Sans', sans-serif;
-    --default-heading-font: 'Rubik 80s Fade', sans-serif;
+    --default-heading-font: 'Patric Hand', sans-serif;
     --default-cursive-font: 'Cedarville Cursive', cursive;
     --default-cute-font: 'Sour Gummy', cursive;
 
     --primary-color: #18181A; /* Indigo */
     --secondary-color: #47BAC0; /* Vibrant Blue */
-    --tertiary-color: #616ab0; /* Purple */
     --accent-color: #C05384; /* Amber */
-    --secondary-accent-color: #18181A; /* Dark Orange */
-    --message-color: #47BAC0; /* Sky blue */
-    --background-color: #18181A; /* Light Gray */
-    --text-color: #47BAC0; /* Dark Gray */
-    --container-background-color: #18181A; /* Light Gray */
-    --secondary-text-color: #ffffff; /* White */
-    --box-color: #18181A; /* Light Gray */
-    --border-color: #18181A; /* Medium Gray */
+    
+  
+    
     --shadow-color: rgba(0, 0, 0, 0.1);
     --semi-transparent-shadow: rgba(255, 255, 255, 0.4);
 }
+
+.default {
+    --primary-color: #18181A; /* Indigo */
+    --secondary-color: #47BAC0; /* Vibrant Blue */
+    --accent-color: #C05384; /* Amber */
+}
+
+.tiramisu {
+    --primary-color: #CFC6B9;
+    --secondary-color : #90673c;
+    --accent-color: #543830;
+}
+.beach {
+    --primary-color: #FFEEAD;
+    --secondary-color : #96CEB4;
+    --accent-color: #5B7869;
+}
+.earth {
+    --primary-color: #292521;
+    --secondary-color : #509452;
+    --accent-color: #F5AE2D;
+}
+.stealth {
+    --primary-color: #010203;
+    --secondary-color : #5E676E;
+    --accent-color: #383E42;
+}
+.vaporwave {
+    --primary-color: #A4A7EA;
+    --secondary-color : #E368DA;
+    --accent-color: #7C7FAF;
+}
+.joker {
+    --primary-color: #1A0E25;
+    --secondary-color : #99DE1E;
+    --accent-color: #E9E2F5;
+}
+.matrix {
+    --primary-color: #000000;
+    --secondary-color : #15FF00;
+    --accent-color: #fff;
+}
+.midnight {
+    --primary-color: #0B0E13;
+    --secondary-color : #60759F;
+    --accent-color: #fff;
+}
+.strawberry {
+    --primary-color: #F37F83;
+    --secondary-color : #FCFCF8;
+    --accent-color: #E53C58;
+}
+.tangerine {
+    --primary-color: #FFEDE0;
+    --secondary-color : #FE5503;
+    --accent-color: rgb(2, 53, 2);
+}
+
 
 .dark-theme {
     --primary-color: #1e1e1e; /* Almost Black */
@@ -42,8 +95,8 @@
 
 
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     font: 1em var(--default-text-font);
     margin: 0;
     padding: 0;
@@ -61,7 +114,7 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: var(--primary-color);
-    color: var(--secondary-text-color);
+    color: var(--secondary-color);
 }
 
 
@@ -75,12 +128,12 @@ a:hover {
 }
 
 button {
-    background-color: var(--secondary-color);
-    color: var(--secondary-text-color);
+    background-color: transparent;
+    color: var(--secondary-color);
     font-size: 1em;
     font-weight: bold;
     padding: 10px;
-    border: none;
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
     cursor: pointer;
 }

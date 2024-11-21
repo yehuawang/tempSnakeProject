@@ -11,7 +11,7 @@ import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 function Navbar({ loggedInUser }) {
     const [darkMode, setDarkMode] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(true); // Audio state
+    const [isPlaying, setIsPlaying] = useState(false); // Audio state
     const location = useLocation();
 
     const toggleTheme = () => {
@@ -44,36 +44,36 @@ function Navbar({ loggedInUser }) {
                         <i className="bi bi-list"></i>
                     </BootstrapNavbar.Toggle>
                     <BootstrapNavbar.Collapse id="navbarSupportedContent" className="navbar-item-list-container">
-                        <Nav className="mb-2 navbar-item-list">
+                        <Nav className="mb-2 navbar-item-list mx-auto">
+                            <Nav.Link as={Link} to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>About Us</Nav.Link>
                             <Nav.Link as={Link} to="/reaction-games" className={`nav-link ${isActive('/reaction-games') ? 'active' : ''}`}>Reaction</Nav.Link>
                             <Nav.Link as={Link} to="/memory-games" className={`nav-link ${isActive('/memory-games') ? 'active' : ''}`}>Memory</Nav.Link>
-                            <Nav.Link as={Link} to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>About Us</Nav.Link>
                             {loggedInUser.email === 'guest' ? (
                                 <Nav.Link as={Link} to="/login" className={`nav-link ${isActive('/login') ? 'active' : ''}`}>Log in</Nav.Link>
                             ) : (
                                 <Nav.Link as={Link} to="/dashboard" className={`nav-link ${isActive('/dashboard') ? 'active' : ''}`}>Dashboard</Nav.Link>
                             )}
+                            <Nav.Link as={Link} to="/themes" className={`nav-link ${isActive('/themes') ? 'active' : ''}`}>Themes</Nav.Link>
                         </Nav>
                     </BootstrapNavbar.Collapse>
-                    <div className="navbar-controls-container">
+                    {/* <div className="navbar-controls-container"> */}
                         {/* Dark Mode Toggle */}
-                        <div className="navbar-darkmode-container">
-                            {/* <img src={!darkMode ? moonIcon : sunIcon} alt="Dark Mode" className="dark-mode-icon" /> */}
+                        {/* <div className="navbar-darkmode-container">
                             <i className={`bi bi-${darkMode?"moon":"sun"}-fill`}></i>
                             <button 
                                 onClick={toggleTheme} 
                                 className={`theme-toggle-button ${darkMode ? 'dark-mode' : ''}`}
                             ></button>
-                        </div>
+                        </div> */}
                         {/* Audio Toggle */}
-                        <button 
+                        {/* <button 
                             onClick={toggleAudio} 
                             className="audio-toggle-button"
                             title={isPlaying ? "Pause Music" : "Play Music"}
                         >
                             {isPlaying ? <i className="bi bi-pause-circle"></i> : <i className="bi bi-play-circle"></i>}
                         </button>
-                    </div>
+                    </div> */}
                 </Container>
             </BootstrapNavbar>
             <AskMe loggedInUser={loggedInUser} />
