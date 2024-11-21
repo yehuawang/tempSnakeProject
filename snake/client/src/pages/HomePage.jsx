@@ -2,7 +2,7 @@ import React from 'react'
 
 function HomePage() {
   return (
-    <div className="container-fluid">
+    <div className="page-element-div container-fluid">
         <div className="row">
             <div className="col-md-4">
                 <div className="p-3 border bg-light">

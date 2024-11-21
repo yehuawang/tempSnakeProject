@@ -6,7 +6,7 @@ import { Spinner } from 'react-bootstrap'
 import Messages from './Messages'
 
 function ChatContainer({ userEmail }) {
-    const [inputValue, setInputValue] = useState('Ask alice...')
+    const [inputValue, setInputValue] = useState('')
     const [messageInput, setMessageInput] = useState('default user input')
     const [isLoading, setIsLoading] = useState(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
@@ -31,9 +31,6 @@ function ChatContainer({ userEmail }) {
 
     return (
         <div className="chat-container">
-            <div className="chat-header">
-                <h1>Ask Alice something!</h1>
-            </div>
             <Messages 
                 isUser={isUser}
                 userInput={messageInput} 
@@ -51,21 +48,13 @@ function ChatContainer({ userEmail }) {
                     onChange={(e) => setInputValue(e.target.value)}
                     required 
                     />
-                    { isButtonDisabled ? (
+                    {/* { isButtonDisabled ? (
                         <Spinner animation="border" role="status" variant="primary">
                             <span className={`visually-hidden`}>Loading...</span>
                         </Spinner>
-                    ) : null }
+                    ) : null } */}
                 <button id="send-button" onClick={handleSend} disabled={isButtonDisabled}>
-                    {/* {
-                        !isButtonDisabled ? (  */}
-                            <i className="bi bi-send-fill"></i> 
-                        {/* ) : (
-                            <Spinner animation="border" role="status" variant="primary">
-                                <span className={`visually-hidden`}>Loading...</span>
-                            </Spinner>
-                        )         
-                    }           */}
+                    <i className="bi bi-send-fill"></i> 
                 </button>
             </div>
         </div>

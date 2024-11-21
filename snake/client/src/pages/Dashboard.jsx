@@ -5,7 +5,7 @@ import '../styles/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Store from '../components/Store/Store'
 import GameStats from '../components/GameStats'
-import { Row, Col } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 
 function Dashboard({ loggedInUser, setLoggedInUser }) {
@@ -86,21 +86,25 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
     };
 
     return (
-        <div className={`dashboardCountainer theme-bg ${userTheme}-theme`}>
-            <div className={"userInfoContainer"}>
+        <div className={`dashboard-wrapper theme-bg ${userTheme}-theme`}>
+            <button className="logoutButton" onClick={() => setLoggedInUser({ email: 'guest', name: 'guest', profileImage: 'guest' })}>
+                <span>Log Out</span><i className="bi bi-box-arrow-in-right"></i>
+            </button>
+            <div className="dash-top-panel panel">
                 <div className="userInfo">
+                    <Container className="userImage-CoinCount-div">
+                        <ImageUploader userEmail={loggedInUser.email} />
 
-                    <ImageUploader userEmail={loggedInUser.email} />
-
-                    <CoinCount 
-                        userEmail={loggedInUser.email } 
-                        updatingCoinCount={updatingCoinCount}
-                        setUpdatingCoinCount={setUpdatingCoinCount}
-                    />
+                        <CoinCount 
+                            userEmail={loggedInUser.email } 
+                            updatingCoinCount={updatingCoinCount}
+                            setUpdatingCoinCount={setUpdatingCoinCount}
+                        />
+                    </Container>
 
                     <div className="userText">
-                        <h1>{loggedInUser.name}</h1>
-                        <h3>{loggedInUser.email}</h3>
+                        <h1 className="user-name">{loggedInUser.name}</h1>
+                        <h3 className="user-email">{loggedInUser.email}</h3>
                         <span className="userQuote" onClick={handleQuoteClick}>
                             {editingQuote ? (
                                 <input 
@@ -118,29 +122,11 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
                             <button onClick={handleSaveQuote}>Save</button>
                         )}
                     </div>
-                    <button className="logoutButton" onClick={() => setLoggedInUser({ email: 'guest', name: 'guest', profileImage: 'guest' })}>Log Out</button>
-                </div>
-                <div className="achievementsContainer">
-                    <span className="badge">Badge 1</span>
-                    <span className="badge">Badge 2</span>
-                    <span className="badge">Badge 3</span>
                 </div>
             </div>
 
-            <div className="dash-bottom-panel">
-                <Row>
-                    <Col xs={12} md={6} xl={4}>
-                        <Store 
-                            userEmail={loggedInUser.email}
-                            userTheme={userTheme}
-                            setUserTheme={setUserTheme}
-                            updatingCoinCount={setUpdatingCoinCount}
-                        />
-                    </Col>
-                    <Col xs={12} md={6} xl={8}>
-                        <GameStats />
-                    </Col>
-                </Row>
+            <div className="dash-bottom-panel panel">
+                <GameStats />
             </div>
         </div>
     )

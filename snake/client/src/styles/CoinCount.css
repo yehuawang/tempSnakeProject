@@ -1,23 +1,16 @@
 .coinContainer {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    position: absolute;
-    height: 40px;
-    width: 100px;
-    top: 200px;
-    left: 50px;
-    margin: 10px;
-    padding: 10px;
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    color: white;
+    color: var(--secondary-color);
     font-size: 1.5em;
     font-weight: bold;
-    text-shadow: 2px 2px 2px black;
+    gap: 5px;
+    padding: 0 5px 0 5px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--secondary-color);
 }
 
-.coinSpan {
+.coinContainer span {
     align-items: center;
     flex: 1; 
     display: flex;
@@ -25,9 +18,7 @@
     text-align: center;
 }
 
-.coinSpan img {
-    flex: 1;
-    height: 20px !important;
-    width: 20px !important;
-    margin: 2px;
+.coin-number {
+    color: var(--accent-color);
+    padding: 0 5px 0 5px;
 }

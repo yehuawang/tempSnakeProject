@@ -114,7 +114,7 @@ function LoginPage({ loggedInUser, setLoggedInUser }) {
                                     <span>Forgot Password</span>
                                 </div>
                                 <div className="form-box">
-                                    <button type="submit">Log in now!</button>
+                                    <button className="login-button" type="submit">Log in now!</button>
                                 </div>
                             </form>
                         )}
@@ -160,7 +160,7 @@ function LoginPage({ loggedInUser, setLoggedInUser }) {
                                     <span>Forgot Password</span>
                                 </div>
                                 <div className="form-box">
-                                    <button type="submit">Sign up now!</button>
+                                    <button className="login-button" type="submit">Sign up now!</button>
                                 </div>
                             </form>
                         )}

@@ -7,21 +7,6 @@ function CoinCount({ userEmail, updatingCoinCount, setUpdatingCoinCount }) {
     const email =  userEmail || 'guest'
     const [coinCount, setCoinCount] = useState(0)
 
-
-    const testAddCoin = async () => {
-        const response = await fetch('http://localhost:5001/api/users/updateCoinCount', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ userEmail: email, deltaCoinCount: 1 }) 
-        })
-        const data = await response.json()
-        const newCoinCount = data.newCoinCount
-        setCoinCount(newCoinCount)
-        console.log(`new coin count is set to: ${newCoinCount}`)
-    }
-
     useEffect(() => {
         const getCoinCount = async () => {
             const response = await fetch('http://localhost:5001/api/users/getCoinCount', {
@@ -61,13 +46,10 @@ function CoinCount({ userEmail, updatingCoinCount, setUpdatingCoinCount }) {
 
     return (
         <div className="coinContainer">
-            <span className="coinSpan"> 
-                <img src={coinImage} alt="CoinImage" />
+            <span className="coin-icon"> 
+                <i className="bi bi-coin"></i>
             </span>
-            <span className="coinSpan">{coinCount}</span>
-            <span className="coinSpan">
-                <img src={plusImage} alt="PlusImage" onClick={testAddCoin} style={{ cursor: 'pointer' }} />
-            </span>
+            <span className="coin-number">{coinCount}</span>
         </div>
     )
 }

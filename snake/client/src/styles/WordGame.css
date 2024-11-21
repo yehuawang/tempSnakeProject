@@ -46,11 +46,12 @@
 }
 
 .word-game-box.wrong-placement {
-    background: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .word-game-box.right-placement {
-    background: var(--primary-color);
+    background: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .animated {
