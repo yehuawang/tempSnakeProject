@@ -3,14 +3,26 @@ import PreviousAttemps from './PreviousAttempt'
 import HelpfulTips from './HelpfulTips'
 import GameLoader from './GameLoader'
 
-function GameBoard({ gamebody, loggedInUser }) {
+function GameBoard({ game, loggedInUser }) {
   return (
     <div className="game-board">
         {/* <PreviousAttemps /> */}
+        <div className="game-description">
+            <h1 >Game Description</h1>
+            <p>
+                {game.description}
+            </p>
+        </div>
         <div className="game-canvas">
-            <GameLoader gamebody={gamebody} loggedInUser={loggedInUser} />
+            <GameLoader game={game} loggedInUser={loggedInUser} />
         </div>
         {/* <HelpfulTips /> */}
+        <div className="game-description">
+            <h1 >Game Instruction</h1>
+            <p>
+                {game.instruction}
+            </p>
+        </div>
     </div>
   )
 }

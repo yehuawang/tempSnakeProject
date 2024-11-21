@@ -94,18 +94,19 @@ function SnakeGameState({ loggedInUser }) {
     },[gameOver])
 
     return (
-        <div>
+        <div className="snake-game-div">
+            
             <p>Score: { score }</p>
             <p>Highest Score: { highestScore }</p>
             {   
                 !gameStart ? ( 
-                    <button onClick={ () => setGameStart(true) }>Start Game</button>
+                    <button className="start-snake-game-button" onClick={ () => setGameStart(true) }>Start Game</button>
                 ) : (
                     gameOver ? (
                         <div>
                             <p>Game Over!</p>
                             <p>Reason of death: { collideWith === "wall" ? "Collided with the wall" : "Run into your own body" }</p>
-                            <button onClick={ () => setGameOver(false) }>Play Again</button>
+                            <button className="play-snake-game-again-button" onClick={ () => setGameOver(false) }>Play Again</button>
                         </div>
                     ) : (
                         <SnakeGameWindow 
