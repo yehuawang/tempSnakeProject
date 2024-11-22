@@ -1,0 +1,16 @@
+.snake-part {
+    width: 15px;
+    height: 15px;
+    background-color: var(--secondary-color);
+    margin: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+.food {
+    width: 15px;
+    height: 15px;
+    background-color: var(--accent-color);
+    position: absolute;
+    z-index: 0;
+}
