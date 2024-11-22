@@ -20,8 +20,8 @@
 
 ### Team Capacity
 
-- **Expected Weekly Capacity per Member:** 10 hours  
-- **Total Sprint Capacity (2 weeks):** 100 hours (5 team members * 10 hr/week * 2 weeks)
+- **Expected Weekly Capacity per Member:** 6 hours  
+- **Total Sprint Capacity (2 weeks):** 60 hours (5 team members * 6 hr/week * 2 weeks) = 300 work points
 - each hour is worth 5 points in our scale
 
 ---
