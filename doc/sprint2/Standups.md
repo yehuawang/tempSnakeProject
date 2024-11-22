@@ -88,4 +88,3 @@ Start of new sprint
    - **Pratham**: Error highlighting is still very slow and halting my progress wrt EoT and stats. 
    - **Aryan**:  Currently working on translating the logic from one language to another.
 
-
