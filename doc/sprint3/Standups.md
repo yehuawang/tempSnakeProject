@@ -1,4 +1,4 @@
-# Sprint 3 Standups - combined
+# Sprint 3 Standups
 
 ---
 
@@ -10,14 +10,14 @@ Start of new sprint
 ### 2. What do you commit to next?
    - **Pratham**: 
    - **Aryan**: 
-   - **Junwei**: 
+   - **Junwei**: Creating basic structure for sequence memory game
    - **Yihan**: Creating backend database for logging all games and ranking scores. Move tempGameListData into the db.
    - **Lynne**:
 
 ### 3. When do you think you'll be done?
    - **Pratham**: 
    - **Aryan**: 
-   - **Junwei**: 
+   - **Junwei**: Nov 24
    - **Yihan**: Nov 24
    - **Lynne**: 
 
