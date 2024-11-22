@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
+import SnakeBoard from './SnakeBoard'
+import './Snake.css'
 
 function SnakeGame({ loggedInUser }) {
 
 
-
-
     return (
-        <div>
+        <div className="snake-container">
             <p>Playing as: <span>{ loggedInUser.name }</span></p>
-            <p>Coins to earn: <span>**retrieve coin function**</span></p>
+            
+            <SnakeBoard 
+                userEmail = {loggedInUser.email}
+            />
+                
         </div>
     )
 }

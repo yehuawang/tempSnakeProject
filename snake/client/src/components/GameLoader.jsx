@@ -1,5 +1,6 @@
 import React from 'react'
-import Snake from './SnakeGame/Snake'
+// import Snake from './SnakeGame/Snake'
+import SnakeGame from './Snake/SnakeGame'
 import WordGame from './WordGame/WordGame'
 import TypinTest from './TypinTest/TypinTest'
 import EmojiMemo from './EmojiMemo/EmojiMemo'
@@ -14,7 +15,8 @@ function GameLoader({ game, loggedInUser }) {
         return (
             <>
                 {console.log(`passing ${loggedInUser} to Snake`)}
-                <Snake loggedInUser={loggedInUser} />
+                {/* <Snake loggedInUser={loggedInUser} /> */}
+                <SnakeGame loggedInUser={loggedInUser} />
             </>
         )
     } else if (gamebody === "word-game") {
