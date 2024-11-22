@@ -45,8 +45,18 @@ Updated as of Nov 21, 2024
 - A casual gamer finds it nice and engaging for a game that gives real-time audio feedbacks on every move he makes, so he can find a rythme when he makes each click or type each character or press any key.
 
 
-27. **flip card game**
+24. **flip card game**
 
 - An employee who has a long day at work wants to relax and play a game that is chill but sharps his memory skill which is relaxing but benefitial to his brain, so he wind down playing the flip card game that is classic enough which he knows how to play it and sends positive feedbacks when he make progress.
+
+25. **Dashboard user performance ranking**
+
+- A user wants to see where they are at compared to other users, a performance ranking with appealing graphs and selectors for different games that can be viewed all at one place is ideal for the user.
+
+26. **Sequence Memory Game**
+
+- A user wants to have an interesting way to test its memory skill, he saw tictocers post their videos of them playing this sequence memory game where they are asked to memorize sequence of block positions and the level gets harder as they progress. The user thought that is a fun new way to strengthen his memory skills and went online to find a game similar to what he saw.
+
+
 
 
