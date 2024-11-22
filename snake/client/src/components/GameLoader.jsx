@@ -4,6 +4,7 @@ import WordGame from './WordGame/WordGame'
 import TypinTest from './TypinTest/TypinTest'
 import EmojiMemo from './EmojiMemo/EmojiMemo'
 import ReactionTest from './ReactionTest/ReactionTest'
+import SequenceMemory from './SequenceMemory/SequenceMemory'
 import '../styles/Gameboard.css'
 
 function GameLoader({ game, loggedInUser }) {
@@ -39,6 +40,12 @@ function GameLoader({ game, loggedInUser }) {
         return (
             <>
                 <ReactionTest loggedInUser={loggedInUser} />
+            </>
+        )
+    } else if (gamebody === "sequence-memory") {
+        return (
+            <>
+                <SequenceMemory loggedInUser={loggedInUser} />
             </>
         )
     } else {

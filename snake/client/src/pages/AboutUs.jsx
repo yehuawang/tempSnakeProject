@@ -119,7 +119,7 @@ function AboutUs() {
         }}
       ></canvas>
         {/* Developer use to add new games into database in a simple way... */}
-      {/* <LogGame /> */}
+      <LogGame />
     </div>
   );
 }
