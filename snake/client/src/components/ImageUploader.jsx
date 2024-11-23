@@ -83,22 +83,6 @@ function ImageUploader({ userEmail }) {
     };
 
     return (
-        // <Container className="image-uploader">
-        //     <button type="button" className="profile-img-upload-button" onClick={() => profileImageRef.current.click()}>
-        //         <img className="profile-img" src={profileImageURL} alt="profile-image" />
-        //     </button>
-        //     <input
-        //         type="file"
-        //         name="profile-image"
-        //         id="profile-image"
-        //         accept="image/*"
-        //         ref={profileImageRef}
-        //         hidden
-        //         onChange={displayNewProfileImage}
-        //     />
-        //     {tooLarge && <span className="error-message">File size too large, please upload an image less than 3MB.</span>}
-        // </Container>
-
         <>
             <input
                 type="file"

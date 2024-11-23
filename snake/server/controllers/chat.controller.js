@@ -89,7 +89,7 @@ export const createChat = async (req, res) => {
         })
         res.status(201).json({ chat })
     } catch (error) {
-        console.error('Error creating chat:', error); // Added detailed error logging
+        console.error('Error creating chat:', error); 
         res.status(500).json({ message: 'Chat could not be created', error: error.message })
     }
 
@@ -119,7 +119,7 @@ export const appendMessage = async (req, res) => {
             chat 
         })
     } catch (error) {
-        console.error('Error appending message:', error); // Added detailed error logging
+        console.error('Error appending message:', error);
         res.status(500).json({ 
             message: 'Message could not be appended',
             error: error.message
@@ -144,7 +144,7 @@ export const getLatestMessage = async (req, res) => {
 
         res.status(200).json({ latestMessage })
     } catch (error) {
-        console.error('Error retrieving latest message:', error); // Added detailed error logging
+        console.error('Error retrieving latest message:', error); 
         res.status(500).json({ message: 'Could not retrieve latest message', error: error.message })
     }
 }

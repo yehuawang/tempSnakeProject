@@ -1,0 +1,80 @@
+.game-stats-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    gap: 100px;
+    justify-content: space-evenly;
+}
+
+
+.game-selector-container {
+    display: flex;
+    width: 100%;
+    max-width: 30em;
+    padding: 1em;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2em;
+    border: 1px solid var(--secondary-color);
+}
+
+.game-selector-container button {
+    border: none;
+    width: 100%;
+    padding: 1em;
+}
+
+.game-chart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.category-heading {
+    width: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+}
+
+.category-heading button {
+    width: 100%;
+    border-radius: 0.5em 0.5em 0 0 !important;
+    border-bottom: 2px solid var(--secondary-color);
+    background-color: transparent;
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    font-family: var(--default-cute-font);
+    margin-bottom: 0.5em;
+    padding-bottom: 50px;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.category-heading button:hover {
+    color: var(--accent-color);
+    transition: 0.5s ease-in;
+}
+
+.category-heading button.selected {
+   color: var(--primary-color);
+   background-color: var(--secondary-color);
+   transition: 0.5s ease-in-out;
+}
+
+.game-selector-container .game-selector-item:hover,
+.game-selector-container .game-selector-item:focus {
+    color: var(--accent-color);
+    transition: ease-in-out 0.5s;
+}
+
+.item-selected {
+    background-color: var(--accent-color);
+    color: var(--primary-color) !important;
+    transition: ease-in-out 0.5s;
+}

@@ -101,7 +101,7 @@
     -webkit-text-fill-color: transparent;
     color: transparent;
     padding: 1rem;
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color)); /* Added linear gradient */
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

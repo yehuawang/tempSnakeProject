@@ -3,8 +3,7 @@ import ImageUploader from '../components/ImageUploader'
 import CoinCount from '../components/CoinCount'
 import '../styles/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Store from '../components/Store/Store'
-import GameStats from '../components/GameStats'
+import GameStats from '../components/GameStats/GameStats'
 import { Container, Row, Col } from 'react-bootstrap'
 
 
@@ -43,7 +42,8 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
                     body: JSON.stringify({ userEmail: loggedInUser.email })
                 });
                 const data = await response.json();
-                setQuote(data.about_me || 'This user has not left anything here...');
+                console.log(data);
+                setQuote(data.aboutMe || 'This user has not left anything here...');
                 console.log(`quote is now set to: ${data.about_me} in Dashboard`);
             } catch (error) {
                 console.log(error);
@@ -126,7 +126,7 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
             </div>
 
             <div className="dash-bottom-panel panel">
-                <GameStats />
+                <GameStats userEmail={loggedInUser.email} />
             </div>
         </div>
     )

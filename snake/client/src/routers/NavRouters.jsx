@@ -55,7 +55,6 @@ function NavRouters({ loggedInUser, setLoggedInUser }) {
             <Route path="/" element={<AboutUs />} />
             <Route path="/reaction-games" element={<GameList  gameListObject={reactionGameList} category="reaction" />} />
             <Route path="/memory-games" element={<GameList  gameListObject={memoryGameList} category="memory" />} />
-            {/* <Route path='/about' element={<AboutUs />} /> */}
             <Route path="/login" element={<LoginPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
             <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
             <Route path="/themes" element={<Themes loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
