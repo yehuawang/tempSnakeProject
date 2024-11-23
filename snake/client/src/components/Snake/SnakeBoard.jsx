@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './Snake.css';
+import '../../styles/Snake.css';
 
 
 const BOARD_SIZE = 20;

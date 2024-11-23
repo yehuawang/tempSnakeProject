@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import SnakeBoard from './SnakeBoard'
-import './Snake.css'
+import '../../styles/Snake.css'
 
 function SnakeGame({ loggedInUser }) {
+
 
 
     return (

@@ -42,15 +42,15 @@
 }
 
 .current-word {
-    background-color: #d9f7be; /* Highlight current word */
+    background-color: #d9f7be;
 }
 
 .correct-word {
-    color: #52c41a; /* Correct words are green */
+    color: #52c41a;
 }
 
 .remaining-word {
-    color: #d9d9d9; /* Remaining words are greyed out */
+    color: #d9d9d9;
 }
 
 textarea,
@@ -60,7 +60,6 @@ textarea,
     height: 1px;
     padding: 0px;
     font-size: 1.2em;
-    /* margin-bottom: 20px; */
     border: 2px solid #ccc;
     border-radius: 5px;
     resize: none;

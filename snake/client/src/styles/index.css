@@ -8,16 +8,16 @@
     --default-cursive-font: 'Cedarville Cursive', cursive;
     --default-cute-font: 'Sour Gummy', cursive;
 
-    --primary-color: #18181A; /* Indigo */
-    --secondary-color: #47BAC0; /* Vibrant Blue */
-    --accent-color: #C05384; /* Amber */
+    --primary-color: #18181A; 
+    --secondary-color: #47BAC0; 
+    --accent-color: #C05384; 
     
 }
 
 .default {
-    --primary-color: #18181A; /* Indigo */
-    --secondary-color: #47BAC0; /* Vibrant Blue */
-    --accent-color: #C05384; /* Amber */
+    --primary-color: #18181A; 
+    --secondary-color: #47BAC0; 
+    --accent-color: #C05384; 
 }
 
 .tiramisu {
@@ -73,19 +73,19 @@
 
 
 .dark-theme {
-    --primary-color: #1e1e1e; /* Almost Black */
-    --secondary-color: #4a90e2; /* Soft Blue */
-    --tertiary-color: #1e3a93; /* Dark blue */
-    --accent-color: #ffbf00; /* Amber */
-    --secondary-accent-color: #ff8f00; /* Dark Orange */
-    --message-color: #486074; /* Fog Blue */
-    --background-color: #2d2d2d; /* Dark Gray */
-    --text-color: #ffffff; /* White */
-    --container-background-color: #3a3a3a; /* Medium Dark Gray */
-    --secondary-text-color:  #212121; /* Dark Gray */
-    --box-color: #424242; /* Lighter Dark Gray */
-    --border-color: #a7a7a7; /* Light Gray */
-    --shadow-color: rgba(255, 255, 255, 0.1); /* White */
+    --primary-color: #1e1e1e; 
+    --secondary-color: #4a90e2; 
+    --tertiary-color: #1e3a93; 
+    --accent-color: #ffbf00; 
+    --secondary-accent-color: #ff8f00; 
+    --message-color: #486074; 
+    --background-color: #2d2d2d;
+    --text-color: #ffffff; 
+    --container-background-color: #3a3a3a; 
+    --secondary-text-color:  #212121; 
+    --box-color: #424242; 
+    --border-color: #a7a7a7;
+    --shadow-color: rgba(255, 255, 255, 0.1); 
     --semi-transparent-shadow: rgba(0, 0, 0, 0.4);
 }
 

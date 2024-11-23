@@ -1,5 +1,4 @@
 import React from 'react'
-// import Snake from './SnakeGame/Snake'
 import SnakeGame from './Snake/SnakeGame'
 import WordGame from './WordGame/WordGame'
 import TypinTest from './TypinTest/TypinTest'
@@ -15,7 +14,6 @@ function GameLoader({ game, loggedInUser }) {
         return (
             <>
                 {console.log(`passing ${loggedInUser} to Snake`)}
-                {/* <Snake loggedInUser={loggedInUser} /> */}
                 <SnakeGame loggedInUser={loggedInUser} />
             </>
         )

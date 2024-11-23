@@ -1,9 +1,6 @@
 import Game from '../models/game.model.js'
 import mongoose from 'mongoose'
 
-
-
-
 /**
  * 
  * @param {gameCategory: String} req either "reaction" or "memory"
@@ -23,7 +20,6 @@ export const getGames = async (req, res) => {
                 instruction: game.instruction
             }
         })
-        console.log(games)
         res.status(200).json(
             games
         )
@@ -35,8 +31,6 @@ export const getGames = async (req, res) => {
     }
 }
 
-
-
 /**
  * 
  * @param {gameId: String} req 
@@ -47,7 +41,6 @@ export const getGameScores = async (req, res) => {
     try {
         const response = await Game.findOne({id: gameId})
         const scores = response.scores
-        console.log(scores)
         res.status(200).json(
             scores
         )
@@ -58,7 +51,6 @@ export const getGameScores = async (req, res) => {
         })
     }
 }
-
 
 /**
  * 
@@ -77,7 +69,7 @@ export const updateUserScore = async (req, res) => {
             const oldScore = scoreResponse.score
             if (userScore > oldScore) {
                 scoreResponse.score = userScore
-                await scoreResponse.save()
+                await response.save()
             }
             res.status(200).json({
                 message: "Score updated"
@@ -87,7 +79,7 @@ export const updateUserScore = async (req, res) => {
                 score: userScore,
                 user_email: userEmail
             })
-            await response.save()
+            await response.save() 
             res.status(201).json({
                 message: "score record for new user created"
             })
@@ -101,6 +93,32 @@ export const updateUserScore = async (req, res) => {
 }
 
 
+/** developer use only! */
+export const modifyUserScore = async (req, res) => {
+    const { id } = req.body
+    try {
+        const response = await Game.findOne({
+            id: id
+        })
+        const scores = response.scores
+        scores.forEach(score => {
+                if (score.score > 30) {
+                    score.score = Math.floor(Math.random() * 45)
+                }
+            }
+        )
+        await response.save()
+        console.log("removed negative snake scores")
+        res.status(200).json({
+            message: "User scores modified"
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when modifying user scores"
+        })
+    }
+}
 
 /**
  * 

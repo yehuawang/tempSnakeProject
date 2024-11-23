@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "../styles/AboutUs.css"
-import LogGame from '../components/LogGame';
+import LogGame from '../components/ForDeveloperUserOnly/LogGame';
+import CreateArbitraryUserAndGameData from '../components/ForDeveloperUserOnly/CreateArbitraryUserAndGameData';
 
 function AboutUs() {
   const canvasRef = useRef(null);
   const initialLength = 12;
 
-  // Initialize the snake with a length of 12
   const initializeSnake = () => {
     const snakeArray = [];
     for (let i = 0; i < initialLength; i++) {
-      snakeArray.push({ x: 10 - i, y: 10 }); // Horizontally aligned snake
+      snakeArray.push({ x: 10 - i, y: 10 }); 
     }
     return snakeArray;
   };
 
   const [snake, setSnake] = useState(initializeSnake());
-  const [direction, setDirection] = useState({ x: 1, y: 0 }); // Initially moving right
+  const [direction, setDirection] = useState({ x: 1, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,24 +27,24 @@ function AboutUs() {
     const canvasHeight = canvas.height / cellSize;
 
     let interval;
-    let steps = 0; // Count steps to randomize direction periodically
+    let steps = 0; 
 
     const fillColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color').trim();
 
     const randomDirection = () => {
       const directions = [
-        { x: 1, y: 0 }, // Right
-        { x: -1, y: 0 }, // Left
-        { x: 0, y: 1 }, // Down
-        { x: 0, y: -1 }, // Up
+        { x: 1, y: 0 }, 
+        { x: -1, y: 0 }, 
+        { x: 0, y: 1 }, 
+        { x: 0, y: -1 }, 
       ];
 
       let newDirection;
       do {
         newDirection = directions[Math.floor(Math.random() * directions.length)];
       } while (
-        newDirection.x === -direction.x && // Prevent reversing horizontally
-        newDirection.y === -direction.y // Prevent reversing vertically
+        newDirection.x === -direction.x && 
+        newDirection.y === -direction.y 
       );
 
       setDirection(newDirection);
@@ -74,7 +74,7 @@ function AboutUs() {
 
       steps++;
       if (steps % 10 === 0) {
-        randomDirection(); // Change direction every 10 steps
+        randomDirection(); 
       }
     };
 
@@ -118,8 +118,9 @@ function AboutUs() {
           backgroundColor: 'var(--primary-color)',
         }}
       ></canvas>
-        {/* Developer use to add new games into database in a simple way... */}
-      <LogGame />
+        {/* Developer use to add new games into database in a simple way... DO NOT CLICK THE BUTTON UNLESS YOU KNOW WHAT YOU ARE DOING*/}
+      {/* <LogGame />
+      <CreateArbitraryUserAndGameData /> */}
     </div>
   );
 }

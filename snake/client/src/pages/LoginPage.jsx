@@ -68,7 +68,7 @@ function LoginPage({ loggedInUser, setLoggedInUser }) {
         setIsSignedUp(!isSignedUp)
         setMessage('')
     }
-  
+
   
     return (
         <>
