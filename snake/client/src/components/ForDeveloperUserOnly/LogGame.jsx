@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 
 const games = [
     {
-        id: "M-4",
+        id: "R-4",
         name: "Sequence Memory",
         body: "sequence Memory",
         description: "coming soon",

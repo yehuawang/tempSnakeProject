@@ -27,7 +27,7 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
                 });
                 const data = await response.json();
                 console.log(data);
-                setQuote(data.aboutMe || 'This user has not left anything here...');
+                setQuote(data.aboutMe);
                 console.log(`quote is now set to: ${data.about_me} in Dashboard`);
             } catch (error) {
                 console.log(error);

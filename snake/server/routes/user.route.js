@@ -45,7 +45,7 @@ router.post("/getUserSelectedTheme", getUserSelectedTheme)
 router.post("/setUserTheme", setUserTheme)
 router.post("/purchaseTheme", purchaseTheme)
 
-router.post("/getUser", getUser)
+router.get("/getUser", getUser)
 
 router.post("/getCoinCount", getCoinCount)
 router.post("/updateCoinCount", updateCoinCount)
