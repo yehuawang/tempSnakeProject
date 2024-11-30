@@ -45,7 +45,7 @@ function CreateArbitraryUserAndGameData() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    gameId: 'R-2', // modify this to be the game id you want to change score! If you are just adding arbitrary scores, modify this one only
+                    gameId: 'R-4', // modify this to be the game id you want to change score! If you are just adding arbitrary scores, modify this one only
                     userEmail: email,
                     userScore: score
                 })
@@ -97,7 +97,7 @@ function CreateArbitraryUserAndGameData() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id: 'R-2', // modify this to be the game id you want to update score!
+                    id: 'R-4', // modify this to be the game id you want to update score!
                 })
             });
             const data = await response.json();
@@ -120,7 +120,7 @@ function CreateArbitraryUserAndGameData() {
             const randomName = faker.person.firstName();
             const randomEmail = randomName + '@fakeemail.com';
             const randomPassword = nanoid(16);
-            const randomSnakeScore = Math.abs(Math.round(generateNormalDistribution(60, 35)));
+            const randomSnakeScore = Math.abs(Math.round(generateNormalDistribution(200, 15)));
 
             await createArbitraryUser(randomName, randomEmail, randomPassword);
             await addArbitraryUserSnakeScore(randomEmail, randomSnakeScore);
@@ -130,7 +130,7 @@ function CreateArbitraryUserAndGameData() {
     const addScoreForAllUsersOnGame = async () => { // to use this method, be sure to change the "R-2" to the game id you want to add scores to in addArbitraryUserSnakeScore method, also modify the generateNormalDistribution mean and stdDev to what suits the game.
         const userEmailsArr = await getAllUserEmails();
         userEmailsArr.forEach(async email => {
-            const randomSnakeScore = Math.abs(Math.round(generateNormalDistribution(60, 35)));
+            const randomSnakeScore = Math.abs(Math.round(generateNormalDistribution(150, 30)));
             await addArbitraryUserSnakeScore(email, randomSnakeScore);
         })
     }

@@ -93,6 +93,47 @@ export const updateUserScore = async (req, res) => {
 }
 
 
+/**
+ * 
+ * @param {gameId: String, userEmail: String, userScore} req 
+ * @param {*} res 
+ */
+export const updateUserScoreLessIsBest = async (req, res) => {
+    const { gameId, userEmail, userScore } = req.body
+    try {
+        const response = await Game.findOne({
+            id: gameId
+        })
+        const scores = response.scores
+        const scoreResponse = scores.find(score => score.user_email === userEmail)
+        if (scoreResponse) {
+            const oldScore = scoreResponse.score
+            if (userScore < oldScore) {
+                scoreResponse.score = userScore
+                await response.save()
+            }
+            res.status(200).json({
+                message: "Score updated"
+            })
+        } else {
+            scores.push({
+                score: userScore,
+                user_email: userEmail
+            })
+            await response.save() 
+            res.status(201).json({
+                message: "score record for new user created"
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when updating user score"
+        })
+    }
+}
+
+
 /** developer use only! */
 export const modifyUserScore = async (req, res) => {
     const { id } = req.body
