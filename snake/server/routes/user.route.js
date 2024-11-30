@@ -5,6 +5,7 @@ import {
             getUserPurchasedThemesList,
             getUserSelectedTheme,
             setUserTheme,
+            purchaseTheme,
             getCoinCount, 
             updateCoinCount, 
             getUserProfileImage, 
@@ -42,6 +43,7 @@ router.post("/updateUserAboutMe", updateUserAboutMe)
 router.post("/getUserPurchasedThemesList", getUserPurchasedThemesList)
 router.post("/getUserSelectedTheme", getUserSelectedTheme)
 router.post("/setUserTheme", setUserTheme)
+router.post("/purchaseTheme", purchaseTheme)
 
 router.post("/getUser", getUser)
 

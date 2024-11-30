@@ -1,6 +1,7 @@
-import User from "../models/user.model.js"
-import mongoose from "mongoose"
-import { genToken } from "../utils/genToken.jwt.js"
+import User from "../models/user.model.js";
+import mongoose from "mongoose";
+import { genToken } from "../utils/genToken.jwt.js";
+import bcrypt from 'bcryptjs';
 
 
 
@@ -87,7 +88,7 @@ export const getUserSelectedTheme = async (req, res) => {
     const { userEmail } = req.body
     try {
         const user = await User.findOne({ email: userEmail })
-        const selectedTheme = user.theme
+        const selectedTheme = user.selected_theme
         res.status(200).json({
             selectedTheme
         })
@@ -100,16 +101,20 @@ export const getUserSelectedTheme = async (req, res) => {
 }
 
 
-
+/**
+ * 
+ * @param {userEmail, theme} req 
+ * @param {*} res 
+ */
 export const setUserTheme = async (req, res) => {
     const { userEmail, theme } = req.body
     try {
         const user = await User.findOne({ email: userEmail })
-        user.theme = theme
+        user.selected_theme = theme
         await user.save()
         res.status(200).json({
             message: "User theme updated successfully",
-            selectedTheme: user.theme
+            selectedTheme: user.selected_theme
         })
     } catch (error) {
         console.log(error)
@@ -129,14 +134,13 @@ export const purchaseTheme = async (req, res) => {
     const { userEmail, theme, themePrice } = req.body
     try {
         const user = await User.findOne({ email: userEmail })
-        const theme_list = user.theme_list
+        const theme_list = user.purchased_theme_list
 
         if (theme_list.includes(theme)) {
             return res.status(400).json({
                 message: "User already has this theme"
             })
         }
-
 
         if (user.coins < themePrice) {
             return res.status(400).json({

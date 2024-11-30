@@ -45,7 +45,7 @@
 }
 
 .theme-price {
-    padding-left: 10px;
+    width: 80px;
     height: 50%;
     display: flex;
     align-items: center;
@@ -55,7 +55,6 @@
 
 .theme-price span {
     font-weight: bold;
-    padding: 0 5px 0 5px;
 }
 
 .theme-price:hover {
@@ -63,3 +62,12 @@
     color: var(--primary-color);
 }
 
+.show-user-coin-balance {
+    text-align: right;
+    font-size: 1.2em;
+    color: var(--accent-color);
+}
+
+.show-user-coin-balance span {
+    padding: 0px 10px 0px 5px;
+}

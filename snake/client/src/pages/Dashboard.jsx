@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 import ImageUploader from '../components/ImageUploader'
 import CoinCount from '../components/CoinCount'
 import '../styles/Dashboard.css'
@@ -8,30 +9,13 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 
 function Dashboard({ loggedInUser, setLoggedInUser }) {
-    const [userTheme, setUserTheme] = useState('')
+    const [userSelectedTheme, setUserSelectedTheme] = useState('')
     const [quote, setQuote] = useState('This user has not left anything here...')
     const [editingQuote, setEditingQuote] = useState(false)
     const [newQuote, setNewQuote] = useState('')
     const [updatingCoinCount, setUpdatingCoinCount] = useState(false)
 
     useEffect(() => {
-        const fetchUserTheme = async () => {
-            try {
-                const response = await fetch('http://localhost:5001/api/users/getUserBackgroundTheme', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ userEmail: loggedInUser.email })
-                });
-                const data = await response.json();
-                setUserTheme(data.theme);
-                console.log(`userTheme is now set to: ${data.theme} in Dashboard`);
-            } catch (error) {
-                console.log(error);
-            };
-        };
-
         const fetchQuote = async () => {
             try {
                 const response = await fetch('http://localhost:5001/api/users/getUserAboutMe', {
@@ -51,7 +35,6 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
         }
 
         if (loggedInUser.email !== 'guest') {
-            fetchUserTheme();
             fetchQuote();
         }
         
@@ -86,49 +69,52 @@ function Dashboard({ loggedInUser, setLoggedInUser }) {
     };
 
     return (
-        <div className={`dashboard-wrapper theme-bg ${userTheme}-theme`}>
-            <button className="logoutButton" onClick={() => setLoggedInUser({ email: 'guest', name: 'guest', profileImage: 'guest' })}>
-                <span>Log Out</span><i className="bi bi-box-arrow-in-right"></i>
-            </button>
-            <div className="dash-top-panel panel">
-                <div className="userInfo">
-                    <Container className="userImage-CoinCount-div">
-                        <ImageUploader userEmail={loggedInUser.email} />
+        <>
+            {loggedInUser.email === 'guest' && <Navigate to="/login" />}
+            <div className={`dashboard-wrapper`}>
+                <button className="logoutButton" onClick={() => setLoggedInUser({ email: 'guest', name: 'guest', profileImage: 'guest' })}>
+                    <span>Log Out</span><i className="bi bi-box-arrow-in-right"></i>
+                </button>
+                <div className="dash-top-panel panel">
+                    <div className="userInfo">
+                        <Container className="userImage-CoinCount-div">
+                            <ImageUploader userEmail={loggedInUser.email} />
 
-                        <CoinCount 
-                            userEmail={loggedInUser.email } 
-                            updatingCoinCount={updatingCoinCount}
-                            setUpdatingCoinCount={setUpdatingCoinCount}
-                        />
-                    </Container>
+                            <CoinCount 
+                                userEmail={loggedInUser.email } 
+                                updatingCoinCount={updatingCoinCount}
+                                setUpdatingCoinCount={setUpdatingCoinCount}
+                            />
+                        </Container>
 
-                    <div className="userText">
-                        <h1 className="user-name">{loggedInUser.name}</h1>
-                        <h3 className="user-email">{loggedInUser.email}</h3>
-                        <span className="userQuote" onClick={handleQuoteClick}>
-                            {editingQuote ? (
-                                <input 
-                                    type="text" 
-                                    value={newQuote} 
-                                    onChange={handleQuoteChange} 
-                                    onBlur={handleSaveQuote}
-                                    autoFocus
-                                />
-                            ) : (
-                                quote
+                        <div className="userText">
+                            <h1 className="user-name">{loggedInUser.name}</h1>
+                            <h3 className="user-email">{loggedInUser.email}</h3>
+                            <span className="userQuote" onClick={handleQuoteClick}>
+                                {editingQuote ? (
+                                    <input 
+                                        type="text" 
+                                        value={newQuote} 
+                                        onChange={handleQuoteChange} 
+                                        onBlur={handleSaveQuote}
+                                        autoFocus
+                                    />
+                                ) : (
+                                    quote
+                                )}
+                            </span>
+                            {editingQuote && (
+                                <button onClick={handleSaveQuote}>Save</button>
                             )}
-                        </span>
-                        {editingQuote && (
-                            <button onClick={handleSaveQuote}>Save</button>
-                        )}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="dash-bottom-panel panel">
-                <GameStats userEmail={loggedInUser.email} />
+                <div className="dash-bottom-panel panel">
+                    <GameStats userEmail={loggedInUser.email} />
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
