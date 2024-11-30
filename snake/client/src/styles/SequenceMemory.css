@@ -1,0 +1,44 @@
+.sequence-memory-button {
+    text-align: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 45%;
+    font-size: 25px;
+    background-color: rgb(86, 243, 86);
+    cursor: pointer;
+}
+  
+.sequence-memory-p {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+}
+  
+.info-panel {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.card {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    background-color: lightgray;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.card.highlight {
+    background-color: yellow;
+    transform: scale(1.1);
+}
+
+
+.SequenceBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-gap: 20px;
+    justify-content: center;
+    margin-top: 20px auto;
+}
