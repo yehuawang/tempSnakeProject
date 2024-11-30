@@ -1,4 +1,6 @@
-
+.aboutus-container {
+    margin: 100px !important;
+}
 .p {
     color: var(--secondary-color);
 }

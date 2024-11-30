@@ -84,7 +84,7 @@ function AboutUs() {
   }, [snake, direction]);
 
   return (
-    <div className="page-element-div">
+    <div className="page-element-div aboutus-container">
       <h1>About Us</h1>
       <p>
         Welcome to <strong>Snake</strong>, a platform dedicated to enhancing your brainpower and cognitive skills

@@ -2,10 +2,9 @@ import express from "express"
 import {            
             getUserAboutMe,
             updateUserAboutMe,
-            getUserThemeList,
-            getUserBackgroundTheme,
-            setUserBackgroundTheme,
-            purchaseTheme,
+            getUserPurchasedThemesList,
+            getUserSelectedTheme,
+            setUserTheme,
             getCoinCount, 
             updateCoinCount, 
             getUserProfileImage, 
@@ -40,11 +39,9 @@ router.post("/getUserAboutMe", getUserAboutMe)
 router.post("/updateUserAboutMe", updateUserAboutMe)
 
 /* --- THEMES --- */
-router.post("/getUserThemeList", getUserThemeList)
-router.post("/getUserBackgroundTheme", getUserBackgroundTheme)
-router.post("/setUserBackgroundTheme", setUserBackgroundTheme)
-router.post("/purchaseTheme", purchaseTheme)
-
+router.post("/getUserPurchasedThemesList", getUserPurchasedThemesList)
+router.post("/getUserSelectedTheme", getUserSelectedTheme)
+router.post("/setUserTheme", setUserTheme)
 
 router.post("/getUser", getUser)
 
