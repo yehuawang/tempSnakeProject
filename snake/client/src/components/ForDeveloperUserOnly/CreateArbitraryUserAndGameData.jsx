@@ -45,7 +45,7 @@ function CreateArbitraryUserAndGameData() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    gameId: 'M-4', // modify this to be the game id you want to change score! If you are just adding arbitrary scores, modify this one only
+                    gameId: 'M-1', // modify this to be the game id you want to change score! If you are just adding arbitrary scores, modify this one only
                     userEmail: email,
                     userScore: score
                 })
@@ -97,7 +97,7 @@ function CreateArbitraryUserAndGameData() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id: 'M-4', // modify this to be the game id you want to update score!
+                    id: 'M-1', // modify this to be the game id you want to update score!
                 })
             });
             const data = await response.json();
@@ -130,7 +130,7 @@ function CreateArbitraryUserAndGameData() {
     const addScoreForAllUsersOnGame = async () => { // to use this method, be sure to change the "R-2" to the game id you want to add scores to in addArbitraryUserSnakeScore method, also modify the generateNormalDistribution mean and stdDev to what suits the game.
         const userEmailsArr = await getAllUserEmails();
         userEmailsArr.forEach(async email => {
-            const randomSnakeScore = Math.abs(Math.round(generateNormalDistribution(20, 5)));
+            const randomSnakeScore = Math.abs(Math.round(generateNormalDistribution(100, 20)));
             await addArbitraryUserSnakeScore(email, randomSnakeScore);
         })
     }

@@ -95,8 +95,27 @@ function Grid({ loggedInUser, coinsToEarn, setCoinsToEarn, setGameStarted, userW
                 console.log(error);
             }
         }
-        if (userWin) {
+
+        const updateScore = async () => {
+            try {
+                const response = await fetch(`http://localhost:5001/api/games/updateUserScore`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ gameId: 'M-2', userEmail: loggedInUser.email, userScore: coinsToEarn })
+                });
+                if (response.ok) {
+                    console.log('score sent to backend db');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        if (userWin && loggedInUser.email !== "guest") {
             updateUserCoins();
+            updateScore();
         }
     }, [userWin]);
 

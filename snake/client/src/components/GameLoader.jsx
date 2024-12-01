@@ -6,6 +6,7 @@ import EmojiMemo from './EmojiMemo/EmojiMemo'
 import ReactionTest from './ReactionTest/ReactionTest'
 import SequenceMemory from './SequenceMemory/SequenceMemory'
 import AimTrainer from './AimTrainer/AimTrainer'
+import FlipCard from './FlipCard/FlipCard'
 import '../styles/Gameboard.css'
 
 function GameLoader({ game, loggedInUser }) {
@@ -53,6 +54,12 @@ function GameLoader({ game, loggedInUser }) {
         return (
             <>
                 <AimTrainer loggedInUser={loggedInUser} />
+            </>
+        )
+    } else if (gamebody === "flip-cards") {
+        return (
+            <>
+                <FlipCard loggedInUser={loggedInUser} />
             </>
         )
     } else {
