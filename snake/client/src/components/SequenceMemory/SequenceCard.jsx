@@ -1,10 +1,10 @@
 import React from "react";
-const SequenceCard = ({id, onClick, isHighlighted}) =>{
+const SequenceCard = ({ id, onClick, isHighlighted, additionalClasses }) => {
     return (
         <div
-        id={id}
-        className={`card ${isHighlighted ? "highlight" : ""}`}
-        onClick={onClick}
+            id={id}
+            className={`card ${isHighlighted ? "highlight" : ""} ${additionalClasses}`}
+            onClick={onClick}
         />
     );
 };

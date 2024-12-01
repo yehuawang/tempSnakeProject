@@ -6,10 +6,11 @@ const SequenceBoard = ({ cards, onCardClick, highlightedCard }) => {
         <div className="SequenceBoard">
             {cards.map((card, index) => (
                 <SequenceCard
-                key={index}
-                id={card}
-                onClick={ () => onCardClick(card)}
-                isHighlighted={highlightedCard == card}
+                    key={index}
+                    id={card}
+                    onClick={() => onCardClick(card)}
+                    isHighlighted={highlightedCard === card}
+                    additionalClasses=""
                 />
             ))}
         </div>

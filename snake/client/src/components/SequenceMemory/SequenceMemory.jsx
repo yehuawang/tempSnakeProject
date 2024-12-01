@@ -12,44 +12,134 @@ function SequenceMemory({ loggedInUser }) {
   const [level, setLevel] = useState(0);
   const [score, setScore] = useState(0);
   const [message, setMessage] = useState("Press to Play!");
-  const [flashSpeed, setFlashSpeed] = useState(700); // Speed in ms
+  const [flashSpeed, setFlashSpeed] = useState(700); 
   const [highlightedCard, setHighlightedCard] = useState(null);
+
+  const [coinsToEarn, setCoinsToEarn] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+
+
+
+  const tabulateCoinsToEarn = () => {
+    setCoinsToEarn(level);
+  }
+
+    const updateDBCoins = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/users/updateCoinCount`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userEmail: loggedInUser.email, deltaCoinCount: coinsToEarn })
+            });
+            if (response.ok) {
+                console.log('coins updated');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const updateScore = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/games/updateUserScore`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ gameId: 'M-4', userEmail: loggedInUser.email, userScore: score })
+            });
+            if (response.ok) {
+                console.log('score sent to backend db');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        console.log("gameOver userEffect is called")
+        if (gameOver && loggedInUser.email !== "guest") {
+            updateDBCoins();
+            updateScore();
+        }
+    },[gameOver])
+
 
   useEffect(() => {
     if (userSequence.length && userSequence.length === sequence.length) {
       if (JSON.stringify(userSequence) === JSON.stringify(sequence)) {
         setMessage("Correct! Get ready for the next round.");
-        setScore((prev) => prev + level * 5);
+        setScore((prev) => prev + level);
         setTimeout(() => nextRound(), 1000);
       } else {
         setMessage("Game Over! Try again.");
+        setGameOver(true);
         setIsPlaying(false);
       }
     }
   }, [userSequence]);
 
+  const getRandomCard = (excludeCard) => {
+    let newCard;
+    do {
+        newCard = cards[Math.floor(Math.random() * cards.length)];
+    } while (newCard === excludeCard);
+    return newCard;
+  };
+
   const nextRound = () => {
+    tabulateCoinsToEarn();
     setUserSequence([]);
-    setSequence((prev) => [...prev, cards[Math.floor(Math.random() * 9)]]);
+    setSequence((prev) => {
+        const newCard = getRandomCard(prev.length ? prev[prev.length - 1] : null);
+        return [...prev, newCard];
+    });
     setLevel((prev) => prev + 1);
     if (flashSpeed > 300) {
       setFlashSpeed((prev) => prev - 50);
     }
+    clearCardClasses();
   };
 
   const handleStart = () => {
-    setSequence([cards[Math.floor(Math.random() * 9)]]);
+    setSequence([getRandomCard(null)]);
     setUserSequence([]);
     setLevel(1);
     setScore(0);
     setFlashSpeed(700);
     setIsPlaying(true);
     setMessage("Watch the sequence...");
+    clearCardClasses();
+    setGameOver(false);
+    setCoinsToEarn(0);
+  };
+
+  const clearCardClasses = () => {
+    cards.forEach(card => {
+      const cardElement = document.getElementById(card);
+      if (cardElement) {
+        cardElement.classList.remove('clicked', 'correct', 'wrong');
+      }
+    });
   };
 
   const handleCardClick = (card) => {
     if (!isPlaying) return;
     setUserSequence((prev) => [...prev, card]);
+    const isCorrect = sequence[userSequence.length] === card;
+    const cardElement = document.getElementById(card);
+    cardElement.classList.add('highlight');
+    setTimeout(() => {
+        cardElement.classList.remove('highlight');
+        cardElement.classList.add('clicked');
+        if (isCorrect) {
+            cardElement.classList.add('correct');
+        } else {
+            cardElement.classList.add('wrong');
+        }
+    }, 200);
   };
 
   const playSequence = async () => {
@@ -65,7 +155,7 @@ function SequenceMemory({ loggedInUser }) {
       setHighlightedCard(card);
       setTimeout(() => {
         setHighlightedCard(null);
-        setTimeout(resolve, 300);
+        setTimeout(resolve, 200);
       }, flashSpeed);
     });
   };
@@ -76,7 +166,7 @@ function SequenceMemory({ loggedInUser }) {
 
   return (
     <div>
-      <SequenceInfoPanel level={level} score={score} />
+      <SequenceInfoPanel level={level} score={score} loggedInUser={loggedInUser} coinsToEarn={coinsToEarn} />
       <SequenceBoard
         cards={cards}
         onCardClick={handleCardClick}
