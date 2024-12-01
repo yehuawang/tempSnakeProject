@@ -5,7 +5,7 @@ import "../../styles/SequenceMemory.css"
 
 const cards = Array.from({ length: 9 }, (_, i) => `Card ${i + 1}`);
 
-function SequenceMemory({ loggedInUser }) {
+function SequenceMemory({ loggedInUser, setRefreshAttempts }) {
   const [sequence, setSequence] = useState([]);
   const [userSequence, setUserSequence] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -58,11 +58,29 @@ function SequenceMemory({ loggedInUser }) {
         }
     }
 
+    const updatePrevAttempts = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userEmail: loggedInUser.email, gameId: 'M-4', score: score})
+            });
+            if (response.ok) {
+                console.log('prev attempts updated');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
-        console.log("gameOver userEffect is called")
         if (gameOver && loggedInUser.email !== "guest") {
             updateDBCoins();
             updateScore();
+            setRefreshAttempts(true);
+            updatePrevAttempts();
         }
     },[gameOver])
 

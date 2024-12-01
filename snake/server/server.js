@@ -6,6 +6,7 @@ import userRoutes from "./routes/user.route.js"
 import chatRoutes from "./routes/chat.route.js"
 import gameRoutes from "./routes/game.route.js"
 import themeRoutes from "./routes/theme.route.js"
+import attemptRoutes from "./routes/userPreviousAttempts.route.js"
 import path from "path"
 import { fileURLToPath } from 'url'
 
@@ -28,6 +29,7 @@ app.use("/api/users", userRoutes)
 app.use("/api/chat", chatRoutes)
 app.use("/api/games", gameRoutes)
 app.use("/api/themes", themeRoutes)
+app.use("/api/attempts", attemptRoutes)
 
 app.listen(PORT, () => {
     connectDB()

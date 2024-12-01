@@ -9,7 +9,7 @@ import dictionary from '../../data/wordGameDic.js';
 //     'apple', 'arrow', 'awake', 'amaze', 'alarm'
 // ];
 
-function Grid({ loggedInUser, coinsToEarn, setCoinsToEarn, setGameStarted, userWin, setUserWin }) {
+function Grid({ loggedInUser, coinsToEarn, setCoinsToEarn, setGameStarted, userWin, setUserWin, setRefreshAttempts }) {
     const [gameState, setGameState] = useState({
         secret: dictionary[Math.floor(Math.random() * dictionary.length)],
         grid: Array(5).fill().map(() => Array(5).fill('')),
@@ -113,9 +113,28 @@ function Grid({ loggedInUser, coinsToEarn, setCoinsToEarn, setGameStarted, userW
             }
         }
 
+        const updatePrevAttempts = async () => {
+            try {
+                const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userEmail: loggedInUser.email, gameId: 'M-2', score: coinsToEarn})
+                });
+                if (response.ok) {
+                    console.log('prev attempts updated');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
         if (userWin && loggedInUser.email !== "guest") {
             updateUserCoins();
             updateScore();
+            setRefreshAttempts(true);
+            updatePrevAttempts();
         }
     }, [userWin]);
 

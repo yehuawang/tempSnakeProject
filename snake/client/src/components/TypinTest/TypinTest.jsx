@@ -203,7 +203,7 @@ import "../../styles/TypinTest.css";
 const sampleText =
     "We should always treat others with kindness and respect, no matter the situation. If everyone would take a moment to consider the feelings of others, the world could be a much better place. Remember, words have power, and we should choose them wisely. We should always treat others with kindness and respect, no matter the situation. If everyone would take a moment to consider the feelings of others, the world could be a much better place. Remember, words have power, and we should choose them wisely.";
 
-const TypinTest = () => {
+const TypinTest = ({ loggedInUser, setRefreshAttenpts }) => {
     const [currentCharIndex, setCurrentCharIndex] = useState(0);
     const [inputValue, setInputValue] = useState("");
     const [isRunning, setIsRunning] = useState(false);
@@ -291,12 +291,12 @@ const TypinTest = () => {
     useEffect(() => {
         const handleKey = (e) => {
             if (e.key === "Tab") {
-                e.preventDefault(); // Prevent the default tab behavior
-                startTest(); // Restart the typing test
+                e.preventDefault(); 
+                startTest(); 
             }
 
             if (!isRunning) {
-                startTest(); // Start the test when any key is pressed
+                startTest();
             }
             inputRef.current.focus();
         };

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import '../../styles/FlipCard.css'
 
-function FlipCard({ loggedInUser }) {
+function FlipCard({ loggedInUser, setRefreshAttempts }) {
 
     const [coinsToEarn, setCoinsToEarn] = useState(0);
     const [gameStarted, setGameStarted] = useState(false);
@@ -36,12 +36,6 @@ function FlipCard({ loggedInUser }) {
         setTimeLeft(10);
         setScore(0);
     }
-
-    useEffect(() => {
-        if (level !== 0 && loggedInUser.email !== "guest"){
-            // ...existing code...
-        }
-    },[level])
 
     useEffect(() => {
         if (level !== 0) {
@@ -97,6 +91,23 @@ function FlipCard({ loggedInUser }) {
         }
     }
 
+    const updatePrevAttempts = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userEmail: loggedInUser.email, gameId: 'M-3', score: score})
+            });
+            if (response.ok) {
+                console.log('prev attempts updated');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const handleCardClick = (index) => {
         const newEmojis = [...shuffledEmojis];
         newEmojis[index].flipped = !newEmojis[index].flipped;
@@ -130,6 +141,8 @@ function FlipCard({ loggedInUser }) {
         if (gameOver && loggedInUser.email !== "guest") {
             updateScore();
             updateDBCoins();
+            setRefreshAttempts(true);
+            updatePrevAttempts();
         }
     },[gameOver])
 

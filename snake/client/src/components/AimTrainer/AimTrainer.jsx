@@ -4,7 +4,7 @@ import AimTrainerLevelSelector from './AimTrainerLevelSelector';
 import '../../styles/AimTrainer.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-function AimTrainer({ loggedInUser }) {
+function AimTrainer({ loggedInUser, setRefreshAttempts }) {
     const [level, setLevel] = useState(0);
     const [targetCount, setTargetCount] = useState(0);
     const [heartCount, setHeartCount] = useState(3);
@@ -92,6 +92,23 @@ function AimTrainer({ loggedInUser }) {
         }
     }
 
+    const updatePrevAttempts = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userEmail: loggedInUser.email, gameId: 'R-2', score: score})
+            });
+            if (response.ok) {
+                console.log('prev attempts updated');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         if (gameEnded) {
             const finalScore = Math.floor(score * level * (accuracy / 100));
@@ -100,16 +117,18 @@ function AimTrainer({ loggedInUser }) {
             if (loggedInUser.name !== "guest") {
                 handleUpdateUserCoins();
                 handleUpdateUserFinalScore();
+                setRefreshAttempts(true);
+                updatePrevAttempts();
             }
         }
     }, [gameEnded]);
 
-    useEffect(() => {
-        if (gameEnded && loggedInUser.name !== "guest") {
-            handleUpdateUserCoins();
-            handleUpdateUserFinalScore();
-        }
-    },[coinsEarned])
+    // useEffect(() => {
+    //     if (gameEnded && loggedInUser.name !== "guest") {
+    //         handleUpdateUserCoins();
+    //         handleUpdateUserFinalScore();
+    //     }
+    // },[coinsEarned])
 
     return (
         <div className="aim-trainer-gameplay-wrapper" onClick={handleMissClick}>

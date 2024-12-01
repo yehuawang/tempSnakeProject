@@ -9,57 +9,57 @@ import AimTrainer from './AimTrainer/AimTrainer'
 import FlipCard from './FlipCard/FlipCard'
 import '../styles/Gameboard.css'
 
-function GameLoader({ game, loggedInUser }) {
+function GameLoader({ game, loggedInUser, refreshAttempts, setRefreshAttempts }) {
     console.log(loggedInUser)
     const gamebody = game.body
     if (gamebody === "snake") {
         return (
             <>
                 {console.log(`passing ${loggedInUser} to Snake`)}
-                <SnakeGame loggedInUser={loggedInUser} />
+                <SnakeGame loggedInUser={loggedInUser} refreshAttempts={refreshAttempts} setRefreshAttempts={setRefreshAttempts} />
             </>
         )
     } else if (gamebody === "word-game") {
         return (
             <>
-                <WordGame loggedInUser={loggedInUser} />
+                <WordGame loggedInUser={loggedInUser} refreshAttempts={refreshAttempts} setRefreshAttempts={setRefreshAttempts} />
             </>
         )
     } else if (gamebody === "emoji-memo") {
         return (
             <>
-                <EmojiMemo loggedInUser={loggedInUser} />
+                <EmojiMemo loggedInUser={loggedInUser} refreshAttempts={refreshAttempts} setRefreshAttempts={setRefreshAttempts} />
             </>
         )
     } else if (gamebody === "typin-test") {
             return (
                 <>
-                    <TypinTest loggedInUser={loggedInUser} />
+                    <TypinTest loggedInUser={loggedInUser} refreshAttempts={refreshAttempts} setRefreshAttempts={setRefreshAttempts} />
                 </>
             )
         
     } else if (gamebody === "reaction-test") {
         return (
             <>
-                <ReactionTest loggedInUser={loggedInUser} />
+                <ReactionTest loggedInUser={loggedInUser} refreshAttempts={refreshAttempts} setRefreshAttempts={setRefreshAttempts} />
             </>
         )
     } else if (gamebody === "sequence-memory") {
         return (
             <>
-                <SequenceMemory loggedInUser={loggedInUser} />
+                <SequenceMemory loggedInUser={loggedInUser} refreshAttempts={refreshAttempts} setRefreshAttempts={setRefreshAttempts} />
             </>
         )
     } else if (gamebody === "aim-trainer") {
         return (
             <>
-                <AimTrainer loggedInUser={loggedInUser} />
+                <AimTrainer loggedInUser={loggedInUser} refreshAttempts={refreshAttempts} setRefreshAttempts={setRefreshAttempts} />
             </>
         )
     } else if (gamebody === "flip-cards") {
         return (
             <>
-                <FlipCard loggedInUser={loggedInUser} />
+                <FlipCard loggedInUser={loggedInUser} setRefreshAttempts={setRefreshAttempts} />
             </>
         )
     } else {
