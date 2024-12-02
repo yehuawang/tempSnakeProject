@@ -5,9 +5,7 @@ import AboutUs from '../pages/AboutUs'
 import GameList from '../pages/GameList'
 import Dashboard from '../pages/Dashboard.jsx'
 import Themes from '../components/Themes/Themes.jsx'
-
-
-
+import Survey from '../components/Survey/Survey.jsx'
 
 
 
@@ -57,6 +55,7 @@ function NavRouters({ loggedInUser, setLoggedInUser }) {
             <Route path="/login" element={<LoginPage loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
             <Route path="/dashboard" element={<Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
             <Route path="/themes" element={<Themes loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
+            <Route path="/survey" element= {<Survey />} />
         </Routes>
     )
 }
