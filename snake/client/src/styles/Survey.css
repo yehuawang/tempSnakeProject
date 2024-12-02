@@ -47,8 +47,8 @@ form {
 }
 
 /* Input fields and select dropdown */
-input[type="text"],
-input[type="email"],
+.form-group input[type="text"],
+.form-group input[type="email"],
 select {
     width: 100%;
     max-width: 400px;
@@ -95,8 +95,8 @@ textarea::placeholder {
     opacity: 0.8;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
 textarea:focus,
 select:focus {
     border-color: var(--accent-color); /* Accent color on focus */

@@ -19,19 +19,21 @@ export const getGameTopThreeScoresAndUserPosition = async (req, res) => {
         } else {
             scores.sort((a, b) => a.score - b.score)
         }
-        scores.map((score, index) => {
-            if (score.user_email === userEmail) {
-                res.status(200).json({
-                    topThreeScores: scores.slice(0, 3),
-                    usersAhead: index
-                })
-            }
-        })
+        const topThreeScores = scores.slice(0, 3);
+        const userPosition = scores.findIndex(score => score.user_email === userEmail);
+
+        res.status(200).json({
+            topThreeScores,
+            usersAhead: userPosition
+        });
     } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            message: "Error when retrieving top three scores and user position"
-        })
+        if (!res.headersSent) {
+            res.status(500).json({
+                message: "Error when retrieving top three scores and user position"
+            });
+        } else {
+            console.error('Error occurred after headers were sent:', error);
+        }
     }
 }
 
@@ -104,23 +106,20 @@ export const updateUserScore = async (req, res) => {
             if (userScore > oldScore) {
                 scoreResponse.score = userScore
                 await response.save()
-                console.log("game controller calling addNewAttempt...")
-                await addNewAttempt(req, res)
                 return res.status(200).json({
                     message: "Score updated"
                 })
+            } else {
+                return res.status(200).json({
+                    message: "Score not updated as it is not higher than the old score"
+                })
             }
-            return res.status(200).json({
-                message: "Score not updated as it is not higher than the old score"
-            })
         } else {
             scores.push({
                 score: userScore,
                 user_email: userEmail
             })
             await response.save()
-            console.log("game controller calling addNewAttempt...")
-            await addNewAttempt(req, res)
             return res.status(201).json({
                 message: "Score record for new user created"
             })
@@ -151,23 +150,20 @@ export const updateUserScoreLessIsBest = async (req, res) => {
             if (userScore < oldScore) {
                 scoreResponse.score = userScore
                 await response.save()
-                console.log("game controller calling addNewAttempt...")
-                await addNewAttempt(req, res)
                 return res.status(200).json({
                     message: "Score updated"
                 })
+            } else {
+                return res.status(200).json({
+                    message: "Score not updated as it is not lower than the old score"
+                })
             }
-            return res.status(200).json({
-                message: "Score not updated as it is not lower than the old score"
-            })
         } else {
             scores.push({
                 score: userScore,
                 user_email: userEmail
             })
             await response.save()
-            console.log("game controller calling addNewAttempt...")
-            await addNewAttempt(req, res)
             return res.status(201).json({
                 message: "Score record for new user created"
             })

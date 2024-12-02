@@ -1,76 +1,75 @@
 /* Container for the entire login page */
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom:300px;
-    height: 100vh; 
-    background-color: var(--primary-color);
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-bottom:300px !important;
+    height: 100vh !important; 
+    background-color: var(--primary-color) !important;
 }
 
 
 .login-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 400px;
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    padding: 20px; 
-    background-color: var(--primary-color); 
-    box-shadow: 0 4px 16px var(--secondary-color);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-width: 400px !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 8px !important;
+    padding: 20px !important; 
+    background-color: var(--primary-color) !important; 
+    box-shadow: 0 4px 16px var(--secondary-color) !important;
 }
 
 .login-content h2 {
-    color: var(--accent-color);
+    color: var(--accent-color) !important;
 }
 
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.signup-form {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
 }
 
 .form-container div{
-    margin: 20px;
-    width: 100%;
+    margin: 20px !important;
+    width: 100% !important;
 }
 
-input, button {
-    width: 300px;
-    height: 50px;
-    border-radius: 5px;
-    border-style: none;
-    padding: 10px;
+.form-box input, button {
+    width: 300px !important;
+    height: 50px !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
 }
 
 .login-button {
-    margin: 10px;
-    color: var(--accent-color);
-    border: 2px solid var(--accent-color);
-    font-weight: bold;
-    font-size: 1.2em;
-    cursor: pointer;
+    margin: 10px !important;
+    color: var(--accent-color) !important;
+    border: 2px solid var(--accent-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    cursor: pointer !important;
 }
 
 .login-button:hover {
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    transition: 0.3s ease;
+    background-color: var(--accent-color) !important;
+    color: var(--primary-color) !important;
+    transition: 0.3s ease !important;
 }
 
 .assist-box {
-    margin-bottom: 3px;
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
+    margin-bottom: 3px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 80% !important;
 }
 
 .assist-box span:hover {
-    cursor: pointer;
-    color: var(--accent-color);
-    transition: 0.3s ease;
+    cursor: pointer !important;
+    color: var(--accent-color) !important;
+    transition: 0.3s ease !important;
 }

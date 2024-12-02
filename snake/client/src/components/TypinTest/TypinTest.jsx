@@ -6,7 +6,7 @@ import playSound from '../Audio/playSound.js'
 const sampleText =
     "We should always treat others with kindness and respect, no matter the situation. If everyone would take a moment to consider the feelings of others, the world could be a much better place. Remember, words have power, and we should choose them wisely. We should always treat others with kindness and respect, no matter the situation. If everyone would take a moment to consider the feelings of others, the world could be a much better place. Remember, words have power, and we should choose them wisely.";
 
-const TypinTest = ({ loggedInUser, setRefreshAttenpts }) => {
+const TypinTest = ({ loggedInUser, refreshAttempts, setRefreshAttempts }) => {
     const [currentCharIndex, setCurrentCharIndex] = useState(0);
     const [inputValue, setInputValue] = useState("");
     const [isRunning, setIsRunning] = useState(false);
@@ -28,11 +28,69 @@ const TypinTest = ({ loggedInUser, setRefreshAttenpts }) => {
         };
     }, []);
 
+
+    const updateDBCoins = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/users/updateCoinCount`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userEmail: loggedInUser.email, deltaCoinCount: wpm })
+            });
+            if (response.ok) {
+                console.log('coins updated to ', wpm);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+  
+    const updateScore = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/games/updateUserScore`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ gameId: 'R-3', userEmail: loggedInUser.email, userScore: wpm })
+            });
+            if (response.ok) {
+                console.log('score sent to backend db');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+  
+    const updatePrevAttempts = async () => {
+      try {
+          const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ userEmail: loggedInUser.email, gameId: 'R-3', score: reactionTime})
+          });
+          if (response.ok) {
+              console.log('prev attempts updated');
+          }
+      } catch (error) {
+          console.log(error);
+      }
+  }
+
     useEffect(() => {
         if (isRunning && timeLeft > 0) {
             const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
             return () => clearTimeout(timer);
         } else if (timeLeft === 0) {
+            if (loggedInUser.email !== "guest" && wpm > 0) {
+                updateDBCoins();
+                setRefreshAttempts(true);
+                updatePrevAttempts();
+                updateScore();
+            }
             setIsRunning(false);
             setCompleted(true);
         }
