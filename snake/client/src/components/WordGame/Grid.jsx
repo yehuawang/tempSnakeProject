@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../../styles/WordGame.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import dictionary from '../../data/wordGameDic.js';
+import keystroke from '../../sounds/keystroke.mp3';
+import playSound from '../Audio/playSound.js'
 
 
 // short dictionary for testing...
@@ -18,8 +20,17 @@ function Grid({ loggedInUser, coinsToEarn, setCoinsToEarn, setGameStarted, userW
         gameEnded: false
     });
 
+    const playSoundInstance = playSound(keystroke);
+
+    useEffect(() => {
+        return () => {
+            playSoundInstance.stop();
+        };
+    }, []);
+
     useEffect(() => {
         const handleKey = (e) => {
+            playSoundInstance.play();
             if (gameState.gameEnded) return;
 
             const keyStroke = e.key;

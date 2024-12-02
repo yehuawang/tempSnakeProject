@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import "../../styles/ReactionTest.css"
+import playSound from '../Audio/playSound.js'
+import flip from '../../sounds/flip.mp3'
 
 const ReactionTest = ({ loggedInUser, refreshAttempts, setRefreshAttempts }) => {
   const [gameState, setGameState] = useState('idle');
@@ -7,6 +9,7 @@ const ReactionTest = ({ loggedInUser, refreshAttempts, setRefreshAttempts }) => 
   const [coinsToEarn, setCoinsToEarn] = useState(0);
   const startTimeRef = useRef(null);
   const timeoutRef = useRef(null);
+  const playSoundInstance = playSound(flip);
 
   const startGame = useCallback(() => {
     setGameState('waiting');
@@ -20,7 +23,14 @@ const ReactionTest = ({ loggedInUser, refreshAttempts, setRefreshAttempts }) => 
     }, randomDelay);
   }, []);
 
+  useEffect(() => {
+        return () => {
+            playSoundInstance.stop();
+        };
+    }, []);
+
   const handleClick = useCallback(() => {
+    playSoundInstance.play();
     if (gameState === 'waiting') {
       clearTimeout(timeoutRef.current);
       setGameState('early');

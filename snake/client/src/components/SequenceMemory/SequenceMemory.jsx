@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import SequenceBoard from "./SequenceBoard";
 import SequenceInfoPanel from "./SequenceInfoPanel";
 import "../../styles/SequenceMemory.css"
+import bell from '../../sounds/bell.mp3';
+import playSound from '../Audio/playSound.js'
+
 
 const cards = Array.from({ length: 9 }, (_, i) => `Card ${i + 1}`);
 
@@ -18,6 +21,14 @@ function SequenceMemory({ loggedInUser, setRefreshAttempts }) {
   const [coinsToEarn, setCoinsToEarn] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
+
+  const playSoundInstance = playSound(bell);
+
+  useEffect(() => {
+      return () => {
+          playSoundInstance.stop();
+      };
+  }, []);
 
 
   const tabulateCoinsToEarn = () => {
@@ -144,6 +155,8 @@ function SequenceMemory({ loggedInUser, setRefreshAttempts }) {
   };
 
   const handleCardClick = (card) => {
+
+    playSoundInstance.play();
     if (!isPlaying) return;
     setUserSequence((prev) => [...prev, card]);
     const isCorrect = sequence[userSequence.length] === card;

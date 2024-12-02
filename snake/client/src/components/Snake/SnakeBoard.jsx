@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../../styles/Snake.css';
-import { set } from 'mongoose';
+import eat from '../../sounds/eat.mp3';
+import playSound from '../Audio/playSound.js'
+
+
 
 
 const BOARD_SIZE = 20;
@@ -35,6 +38,14 @@ function SnakeBoard({ userEmail, setRefreshAttempts }) {
     const [deathReason, setDeathReason] = useState('');
     const [board, setBoard] = useState(INITIAL_BOARD);
     const gameWindow = useRef(null);
+
+    const playSoundInstance = playSound(eat);
+
+    useEffect(() => {
+        return () => {
+            playSoundInstance.stop();
+        };
+    }, []);
 
     const generateFoodCoordinates = () => {
         let coord;
@@ -87,6 +98,7 @@ function SnakeBoard({ userEmail, setRefreshAttempts }) {
     const checkEatFood = (newHead) => {
         if (newHead.x === foodCoordinates.x && newHead.y === foodCoordinates.y) {
             setFoodCoordinates(generateFoodCoordinates());
+            playSoundInstance.play();
             setScore(prevScore => {
                 const newScore = prevScore + 1;
                 if (newScore > 0 && newScore % 5 === 0) {
