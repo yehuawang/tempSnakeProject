@@ -22,6 +22,7 @@
 .navbar-toggler {
     position: absolute;
     top: 0.75rem;
+    right: 2rem;
     border: none !important;
     color: var(--secondary-color) !important;
     transition: color 0.3s ease;
@@ -153,3 +154,63 @@
 .audio-toggle-button:hover {
     color: var(--accent-color);
 }
+
+.navbar-contianer {
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+}
+
+.user-nav-info-container {
+    position: absolute;
+    right: 5%;
+    margin: 0;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: end !important;
+}
+
+
+.user-navbar-img-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-navbar-img-container img {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    margin: 10px !important;
+    object-fit: cover !important;
+    cursor: pointer !important;
+}
+
+.username-dashboard-link {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.username-dashboard-link:hover {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+.username-dashboard-link.active {
+    color: var(--accent-color) !important;
+    border-bottom: 2px solid var(--accent-color);
+    transition: 0.5s ease;
+}
+
+@media (max-width: 1000px) {
+    .dashboard-nav-link {
+        position: absolute;
+        right: 13rem !important;
+        top: 25px !important;
+    }
+}
+
+

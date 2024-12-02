@@ -5,6 +5,7 @@ import TypinTest from './TypinTest/TypinTest'
 import EmojiMemo from './EmojiMemo/EmojiMemo'
 import ReactionTest from './ReactionTest/ReactionTest'
 import SequenceMemory from './SequenceMemory/SequenceMemory'
+import AimTrainer from './AimTrainer/AimTrainer'
 import '../styles/Gameboard.css'
 
 function GameLoader({ game, loggedInUser }) {
@@ -46,6 +47,12 @@ function GameLoader({ game, loggedInUser }) {
         return (
             <>
                 <SequenceMemory loggedInUser={loggedInUser} />
+            </>
+        )
+    } else if (gamebody === "aim-trainer") {
+        return (
+            <>
+                <AimTrainer loggedInUser={loggedInUser} />
             </>
         )
     } else {

@@ -1,17 +1,19 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import "../../styles/ReactionTest.css"
 
-const ReactionTest = () => {
+const ReactionTest = ({ loggedInUser }) => {
   const [gameState, setGameState] = useState('idle');
-  const [reactionTime, setReactionTime] = useState(null);
+  const [reactionTime, setReactionTime] = useState(10000000);
+  const [coinsToEarn, setCoinsToEarn] = useState(0);
   const startTimeRef = useRef(null);
   const timeoutRef = useRef(null);
 
   const startGame = useCallback(() => {
     setGameState('waiting');
-    setReactionTime(null);
+    setCoinsToEarn(0);
+    setReactionTime(10000000);
 
-    const randomDelay = Math.floor(Math.random() * 3000) + 2000; // Random delay between 2-5 seconds
+    const randomDelay = Math.floor(Math.random() * 3000) + 2000;
     timeoutRef.current = setTimeout(() => {
       setGameState('ready');
       startTimeRef.current = Date.now();
@@ -54,11 +56,72 @@ const ReactionTest = () => {
       case 'early':
         return 'Too early! Click to try again';
       case 'result':
-        return `Your reaction time: ${reactionTime} ms. Click to try again`;
+        return (
+          <>
+            Your reaction time: {reactionTime} ms. <br />
+            { loggedInUser.email !== "guest" && `You have earned ${coinsToEarn} coins! `}<br />
+            Click to play again
+          </>
+        );
       default:
         return '';
     }
   };
+
+  const updateDBCoins = async () => {
+      try {
+          const response = await fetch(`http://localhost:5001/api/users/updateCoinCount`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ userEmail: loggedInUser.email, deltaCoinCount: coinsToEarn })
+          });
+          if (response.ok) {
+              console.log('coins updated to ', coinsToEarn);
+          }
+      } catch (error) {
+          console.log(error);
+      }
+  }
+
+  const updateScore = async () => {
+      try {
+          const response = await fetch(`http://localhost:5001/api/games/updateUserScoreLessIsBest`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ gameId: 'R-4', userEmail: loggedInUser.email, userScore: reactionTime })
+          });
+          if (response.ok) {
+              console.log('score sent to backend db');
+          }
+      } catch (error) {
+          console.log(error);
+      }
+  }
+
+  useEffect(() => {
+    if (loggedInUser.email !== "guest") {
+        if (reactionTime < 200) {
+            setCoinsToEarn(3);
+        } else if (reactionTime < 300) {
+            setCoinsToEarn(2);
+        } else if (reactionTime < 500) {
+            setCoinsToEarn(1);
+        }
+
+
+        updateScore();
+    }
+  },[reactionTime])
+
+  useEffect(() => {
+    if (loggedInUser.email !== "guest" && coinsToEarn > 0) {
+        updateDBCoins();
+    }
+  }, [coinsToEarn])
 
   return (
     <>
@@ -72,7 +135,7 @@ const ReactionTest = () => {
           width: '100%',
           borderRadius: '15px',
           backgroundColor: getBackgroundColor(),
-          
+          cursor: 'pointer',
         }}
         onClick={handleClick}
       >

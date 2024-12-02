@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import '../styles/LoginPage.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -75,7 +76,10 @@ function LoginPage({ loggedInUser, setLoggedInUser }) {
             {/* redirect to dashboard if IsLoggedIn is true */}
             {
                 loggedInUser.email !== 'guest' && (
-                    <Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+                    <>
+                        <Navigate to="/dashboard" />
+                        <Dashboard loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+                    </>
                 )
             }
 

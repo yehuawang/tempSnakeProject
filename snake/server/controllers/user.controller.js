@@ -1,6 +1,7 @@
-import User from "../models/user.model.js"
-import mongoose from "mongoose"
-import { genToken } from "../utils/genToken.jwt.js"
+import User from "../models/user.model.js";
+import mongoose from "mongoose";
+import { genToken } from "../utils/genToken.jwt.js";
+import bcrypt from 'bcryptjs';
 
 
 
@@ -52,40 +53,27 @@ export const updateUserAboutMe = async (req, res) => {
 
 
 
-/**
- * 
- * @param {userEmail} req 
- * @param {*} res 
- */
-export const getUserThemeList = async (req, res) => {
-    const { userEmail } = req.body
-    try {
-        const user = await User.findOne({ email: userEmail })
-        res.status(200).json({ theme_list: user.theme_list })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            message: "Error when retrieving user theme list"
-        })
-    }
-}
+
+
+/* ----------------- Theme ----------------- */
 
 /**
  * 
  * @param {userEmail} req 
  * @param {*} res 
  */
-export const getUserBackgroundTheme = async (req, res) => {
+export const getUserPurchasedThemesList = async (req, res) => {
     const { userEmail } = req.body
     try {
         const user = await User.findOne({ email: userEmail })
+        const themeList = user.purchased_theme_list
         res.status(200).json({
-            theme: user.theme
+            themeList
         })
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            message: "Error when retrieving user background theme"
+            message: "Error when retrieving user purchased themes list"
         })
     }
 }
@@ -93,39 +81,45 @@ export const getUserBackgroundTheme = async (req, res) => {
 
 /**
  * 
- * @param {userEmail: String, theme: String} req 
+ * @param {userEmail} req 
  * @param {*} res 
  */
-export const setUserBackgroundTheme = async (req, res) => {
+export const getUserSelectedTheme = async (req, res) => {
+    const { userEmail } = req.body
+    try {
+        const user = await User.findOne({ email: userEmail })
+        const selectedTheme = user.selected_theme
+        res.status(200).json({
+            selectedTheme
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when retrieving user selected theme"
+        })
+    }
+}
+
+
+/**
+ * 
+ * @param {userEmail, theme} req 
+ * @param {*} res 
+ */
+export const setUserTheme = async (req, res) => {
     const { userEmail, theme } = req.body
     try {
-        if (!theme) {
-            return res.status(400).json({
-                message: "empty theme string, db is not updated"
-            })
-        }
         const user = await User.findOne({ email: userEmail })
-        const theme_list = user.theme_list
-
-        for (const themeItem of theme_list) {
-            console.log(`theme_name: ${themeItem.theme_name}, purchased: ${themeItem.purchased}`)
-            if (themeItem.theme_name === theme && themeItem.purchased === true) {
-                user.theme = theme
-                await user.save()
-                return res.status(200).json({
-                    message: "User background theme updated successfully"
-                })
-            }
-        }
-        
-        return res.status(404).json({
-            message: "User theme not found in record"
+        user.selected_theme = theme
+        await user.save()
+        res.status(200).json({
+            message: "User theme updated successfully",
+            selectedTheme: user.selected_theme
         })
-        
     } catch (error) {
         console.log(error)
-        return res.status(500).json({
-            message: "Error when updating user background theme"
+        res.status(500).json({
+            message: "Error when updating user theme"
         })
     }
 }
@@ -133,43 +127,34 @@ export const setUserBackgroundTheme = async (req, res) => {
 
 /**
  * 
- * @param {userEmail: String, theme: String} req 
+ * @param {userEmail: String, theme: String, themePrice: Number} req 
  * @param {*} res 
  */
 export const purchaseTheme = async (req, res) => {
-    const { userEmail, theme } = req.body
-    console.log(`userEmail: ${userEmail}, theme: ${theme}`)
+    const { userEmail, theme, themePrice } = req.body
     try {
         const user = await User.findOne({ email: userEmail })
-        const coinCount = user.coins
-        const theme_list = user.theme_list
+        const theme_list = user.purchased_theme_list
 
-        const theme_item = theme_list.find((themeItem) => themeItem.theme_name === theme) 
-
-        if (!theme_item) {
-            res.status(404).json({
-                message: "User theme not found in record"
-            })
-        }
-
-        if (theme_item.purchased) {
+        if (theme_list.includes(theme)) {
             return res.status(400).json({
-                message: "User has already purchased this theme"
+                message: "User already has this theme"
             })
         }
 
-        if (user.coins < theme_item.price) {
+        if (user.coins < themePrice) {
             return res.status(400).json({
                 message: "User does not have enough coins to purchase this theme"
             })
         }
 
-        user.coins -= theme_item.price
-        theme_item.purchased = true
+        user.coins -= themePrice
+        theme_list.push(theme)
+        user.selected_theme = theme
         await user.save()
 
         return res.status(200).json({
-            message: "Theme purchased successfully"
+            message: "Theme purchased successfully, userSelectedTheme updated"
         })
         
     } catch (error) {
