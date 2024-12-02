@@ -5,6 +5,7 @@ import cors from "cors"
 import userRoutes from "./routes/user.route.js"
 import chatRoutes from "./routes/chat.route.js"
 import gameRoutes from "./routes/game.route.js"
+import themeRoutes from "./routes/theme.route.js"
 import path from "path"
 import { fileURLToPath } from 'url'
 
@@ -26,6 +27,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 app.use("/api/users", userRoutes)
 app.use("/api/chat", chatRoutes)
 app.use("/api/games", gameRoutes)
+app.use("/api/themes", themeRoutes)
 
 app.listen(PORT, () => {
     connectDB()

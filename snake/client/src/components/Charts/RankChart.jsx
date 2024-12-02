@@ -106,13 +106,13 @@ function RankChart({ selectedGameId, userEmail }) {
     return (
         <div style={{ width: '100%', height: '90%' }}>
             <h2>All User Performances</h2>
-            <p>Your highest score: {userScore}</p>
+            <p>Your Best score: {userScore}</p>
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart 
                     data={gameScores}
                     margin={{
-                        top: 5,
-                        right: 5,
+                        top: 20,
+                        right: 100,
                         left: 20,
                         bottom: 20,
                     }}
@@ -130,7 +130,7 @@ function RankChart({ selectedGameId, userEmail }) {
                         type="number" 
                         domain={['auto', 'auto']} 
                     >
-                        <Label value="Highest Score" offset={-5} position="insideBottom" />
+                        <Label value="Best Score" offset={-5} position="insideBottom" />
                     </XAxis>
                     
                     <Tooltip />
