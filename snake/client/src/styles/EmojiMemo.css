@@ -1,3 +1,11 @@
+.emoji-memo-game-canvas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .emoji-memo-game-heading {
     font-size: 3em;
     margin-top: 30px;
@@ -6,7 +14,6 @@
 
 .emoji-memo-container {
     display: flex;
-    height: 600px;
     width: 100%;
     flex-direction: column;
     align-items: center;
@@ -16,7 +23,7 @@
 
 .emoji-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, auto);
     grid-gap: 10px;
     margin-top: 10px;
 }
@@ -62,4 +69,20 @@
 .heart {
     color: var(--accent-color);
     padding: 5px;
+}
+
+
+.level-selector-emoji-memo {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.level-selector {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }

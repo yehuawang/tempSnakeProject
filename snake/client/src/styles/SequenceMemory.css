@@ -1,0 +1,56 @@
+.sequence-memory-button {
+    justify-content: center;
+    height: 100%;
+    margin: 20px;
+    font-size: 25px;
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+  
+.sequence-memory-p {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+}
+  
+.info-panel {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.card {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.card.highlight {
+    border: 2px solid var(--accent-color);
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.card.clicked {
+    transform: scale(1.1);
+}
+
+.card.correct {
+    background-color: var(--secondary-color);
+}
+.card.wrong {
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+
+.SequenceBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-gap: 20px;
+    justify-content: center;
+    margin-top: 20px auto;
+}
+
