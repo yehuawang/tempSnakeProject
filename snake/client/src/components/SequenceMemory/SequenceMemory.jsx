@@ -5,6 +5,7 @@ import "../../styles/SequenceMemory.css"
 import bell from '../../sounds/bell.mp3';
 import playSound from '../Audio/playSound.js'
 
+
 const cards = Array.from({ length: 9 }, (_, i) => `Card ${i + 1}`);
 
 function SequenceMemory({ loggedInUser, setRefreshAttempts }) {
@@ -29,7 +30,6 @@ function SequenceMemory({ loggedInUser, setRefreshAttempts }) {
       };
   }, []);
 
-  
 
   const tabulateCoinsToEarn = () => {
     setCoinsToEarn(level);
@@ -155,6 +155,7 @@ function SequenceMemory({ loggedInUser, setRefreshAttempts }) {
   };
 
   const handleCardClick = (card) => {
+
     playSoundInstance.play();
     if (!isPlaying) return;
     setUserSequence((prev) => [...prev, card]);

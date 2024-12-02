@@ -6,6 +6,8 @@ import eat from '../../sounds/eat.mp3';
 import playSound from '../Audio/playSound.js'
 
 
+
+
 const BOARD_SIZE = 20;
 const INITIAL_HUNGER = 100;
 const INITIAL_SNAKE_PARTS = [

@@ -4,3 +4,19 @@
 .p {
     color: var(--secondary-color);
 }
+
+.survey-button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.survey-button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}

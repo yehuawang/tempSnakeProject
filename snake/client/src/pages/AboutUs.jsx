@@ -1,11 +1,16 @@
+
 import React  from 'react';
 import "../styles/AboutUs.css"
 import LogGame from '../components/ForDeveloperUserOnly/LogGame';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import "../styles/AboutUs.css";
 import CreateArbitraryUserAndGameData from '../components/ForDeveloperUserOnly/CreateArbitraryUserAndGameData';
 import MovingSnake from '../components/Snake/MovingSnake';
 
 function AboutUs() {
 
+    const navigate = useNavigate();
 
     return (
         <div className="page-element-div aboutus-container">
@@ -26,9 +31,17 @@ function AboutUs() {
             </p>
 
             <MovingSnake />
+
             {/* Developer use to add new games into database in a simple way... DO NOT CLICK THE BUTTON UNLESS YOU KNOW WHAT YOU ARE DOING*/}
             {/* <LogGame /> */}
             <CreateArbitraryUserAndGameData />
+            {/* Developer use to add new games into database in a simple way */}
+            <CreateArbitraryUserAndGameData />
+
+            {/* Button to navigate to the survey page */}
+            <button className="survey-nav-button" onClick={() => navigate('/survey')}>
+                Share Feedback
+            </button>
         </div>
     );
 }

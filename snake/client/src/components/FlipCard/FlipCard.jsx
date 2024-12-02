@@ -3,6 +3,7 @@ import '../../styles/FlipCard.css'
 import bell from '../../sounds/bell.mp3';
 import playSound from '../Audio/playSound.js'
 
+
 function FlipCard({ loggedInUser, setRefreshAttempts }) {
 
     const [coinsToEarn, setCoinsToEarn] = useState(0);
@@ -38,7 +39,6 @@ function FlipCard({ loggedInUser, setRefreshAttempts }) {
         setTimeLeft(10);
         setScore(0);
     }
-
 
     const playSoundInstance = playSound(bell);
 
@@ -120,6 +120,7 @@ function FlipCard({ loggedInUser, setRefreshAttempts }) {
     }
 
     const handleCardClick = (index) => {
+
         playSoundInstance.play();
         const newEmojis = [...shuffledEmojis];
         newEmojis[index].flipped = !newEmojis[index].flipped;

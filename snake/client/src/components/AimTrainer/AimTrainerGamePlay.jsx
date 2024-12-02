@@ -33,17 +33,20 @@ function AimTrainerGamePlay({ userEmail, score, setScore, level, targetCount, he
         return () => clearInterval(interval);
     }, [level, targetCount, targets, score]);
 
+
     useEffect(() => {
         return () => {
             playSoundInstance.stop();
         };
     }, []);
 
+
     const handleRemoveTarget = (id) => {
         setTargets(prevTargets => prevTargets.filter(target => target.id !== id));
     };
 
     const handleClickTarget = (id) => {
+
         playSoundInstance.play();
         setScore(prevScore => prevScore + 1);
         setTotalClicks(prevTotalClicks => {
