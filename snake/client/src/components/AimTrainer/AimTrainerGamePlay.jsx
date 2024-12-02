@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import Target from './Target'
 import '../../styles/AimTrainer.css'
+import playSound from '../Audio/playSound.js'
+import gunshot from '../../sounds/gunshot.mp3'
 
 function AimTrainerGamePlay({ userEmail, score, setScore, level, targetCount, heartCount, setHeartCount, setGameEnded, setTotalClicks, setAccuracy }) {
     const [targets, setTargets] = useState([]);
     const padding = 5; 
+    const playSoundInstance = playSound(gunshot);
 
     useEffect(() => {
         if (heartCount === 0) {
@@ -30,11 +33,18 @@ function AimTrainerGamePlay({ userEmail, score, setScore, level, targetCount, he
         return () => clearInterval(interval);
     }, [level, targetCount, targets, score]);
 
+    useEffect(() => {
+        return () => {
+            playSoundInstance.stop();
+        };
+    }, []);
+
     const handleRemoveTarget = (id) => {
         setTargets(prevTargets => prevTargets.filter(target => target.id !== id));
     };
 
     const handleClickTarget = (id) => {
+        playSoundInstance.play();
         setScore(prevScore => prevScore + 1);
         setTotalClicks(prevTotalClicks => {
             const newTotalClicks = prevTotalClicks + 1;

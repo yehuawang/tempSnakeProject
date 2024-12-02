@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../../styles/EmojiMemo.css'
+import bell from '../../sounds/bell.mp3';
+import playSound from '../Audio/playSound.js'
 
 const emojis = [
     '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
@@ -73,6 +75,14 @@ function EmojiMemo({ loggedInUser, setRefreshAttempts }) {
     const [hearts, setHearts] = useState(5)
     const [feedback, setFeedback] = useState('')
     const [coinsToEarn, setCoinsToEarn] = useState(0)
+
+    const playSoundInstance = playSound(bell);
+
+    useEffect(() => {
+        return () => {
+            playSoundInstance.stop();
+        };
+    }, []);
 
     useEffect(() => {
         if (gameStarted) {
@@ -161,6 +171,7 @@ function EmojiMemo({ loggedInUser, setRefreshAttempts }) {
 
     useEffect(() => {
         if (userHasMadeAChoice && enterPhaseOne) {
+            playSoundInstance.play();
             checkSelectionCorrectness()
             
             setCorrectEmoji(currentEmoji)
