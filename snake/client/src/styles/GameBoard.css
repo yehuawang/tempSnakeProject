@@ -80,3 +80,67 @@
         display: none;
     }
 }
+
+.top-three-list-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 5px;
+    padding: 5px;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.top-three-rank-number {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    width: 30px;
+    height: 30px;
+    margin: 20px;
+    aspect-ratio: 1 / 1;
+}
+
+
+
+.top-three-rank-username {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+.top-three-rank-user-score {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+
+
+.prev-attempt-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 15px;
+}
+
+
+.prev-attempt-time {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 0 15px 0 15px;
+}
+
+.prev-attempt-score {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

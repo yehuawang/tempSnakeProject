@@ -57,7 +57,7 @@ function getRandomEmoji() {
     return emojis[Math.floor(Math.random() * emojis.length)]
 }
 
-function EmojiMemo({ loggedInUser }) {
+function EmojiMemo({ loggedInUser, setRefreshAttempts }) {
     const [level, setLevel] = useState(0)
     const [previousEmoji, setPreviousEmoji] = useState('🥄')
     const [currentEmoji, setCurrentEmoji] = useState('😀') // corresponds to the correct one in nextGrid
@@ -118,9 +118,28 @@ function EmojiMemo({ loggedInUser }) {
             }
         }
 
+        const updatePrevAttempts = async () => {
+            try {
+                const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userEmail: loggedInUser.email, gameId: 'M-1', score: points})
+                });
+                if (response.ok) {
+                    console.log('prev attempts updated');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
         if (loggedInUser.email !== "guest" && gameStarted && hearts === 0) {
             updateUserCoins();
             handleUpdateUserFinalScore();
+            setRefreshAttempts(true);
+            updatePrevAttempts();
         }
     },[hearts])
 

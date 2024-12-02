@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import "../../styles/ReactionTest.css"
 
-const ReactionTest = ({ loggedInUser }) => {
+const ReactionTest = ({ loggedInUser, refreshAttempts, setRefreshAttempts }) => {
   const [gameState, setGameState] = useState('idle');
   const [reactionTime, setReactionTime] = useState(10000000);
   const [coinsToEarn, setCoinsToEarn] = useState(0);
@@ -102,6 +102,23 @@ const ReactionTest = ({ loggedInUser }) => {
       }
   }
 
+  const updatePrevAttempts = async () => {
+    try {
+        const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userEmail: loggedInUser.email, gameId: 'R-4', score: reactionTime})
+        });
+        if (response.ok) {
+            console.log('prev attempts updated');
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
   useEffect(() => {
     if (loggedInUser.email !== "guest") {
         if (reactionTime < 200) {
@@ -120,6 +137,8 @@ const ReactionTest = ({ loggedInUser }) => {
   useEffect(() => {
     if (loggedInUser.email !== "guest" && coinsToEarn > 0) {
         updateDBCoins();
+        setRefreshAttempts(true);
+        updatePrevAttempts();
     }
   }, [coinsToEarn])
 

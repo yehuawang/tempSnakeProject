@@ -4,7 +4,7 @@ import Grid from './Grid'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
-function WordGame({ loggedInUser }) {
+function WordGame({ loggedInUser, setRefreshAttempts }) {
     const [gameStarted, setGameStarted] = useState(false)
     const [userWin, setUserWin] = useState(false)
     const [coinsToEarn, setCoinsToEarn] = useState(0)
@@ -43,6 +43,7 @@ function WordGame({ loggedInUser }) {
                                 setGameStarted={setGameStarted}
                                 userWin={userWin}
                                 setUserWin={setUserWin}
+                                setRefreshAttempts={setRefreshAttempts}
                             />
                         </>
                     )

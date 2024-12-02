@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../../styles/Snake.css';
+import { set } from 'mongoose';
 
 
 const BOARD_SIZE = 20;
@@ -16,7 +17,7 @@ let INITIAL_BOARD = Array.from({ length: BOARD_SIZE }, () => Array.from({ length
 
 
 
-function SnakeBoard({ userEmail }) {
+function SnakeBoard({ userEmail, setRefreshAttempts }) {
     const [pause, setPause] = useState(false);
     const [coinsToEarn, setCoinsToEarn] = useState(0);
     const [gameStart, setGameStart] = useState(false);
@@ -123,16 +124,16 @@ function SnakeBoard({ userEmail }) {
         let dir = snakeState.direction;
 
         switch (dir) {
-            case 'U': // move up
+            case 'U': 
                 newHead = { x: newHead.x, y: newHead.y - 1 };
                 break;
-            case 'L': // move left
+            case 'L': 
                 newHead = { x: newHead.x - 1, y: newHead.y };
                 break;
-            case 'D': // move down
+            case 'D': 
                 newHead = { x: newHead.x, y: newHead.y + 1 };
                 break;
-            case 'R': // move right
+            case 'R': 
                 newHead = { x: newHead.x + 1, y: newHead.y };
                 break;
             default:
@@ -241,9 +242,29 @@ function SnakeBoard({ userEmail }) {
                     console.log(error);
                 }
             }
+
+            const updatePrevAttempts = async () => {
+                try {
+                    const response = await fetch(`http://localhost:5001/api/attempts/addNewAttempt`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ userEmail: userEmail, gameId: 'R-1', score: score})
+                    });
+                    if (response.ok) {
+                        console.log('prev attempts updated');
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+
             if (userEmail !== 'guest') {
                 updateDBCoins();
                 updateScore();
+                setRefreshAttempts(true);
+                updatePrevAttempts();
             }
         }
     }, [gameStart, snakeState, gameOver]);

@@ -1,5 +1,39 @@
 import Game from '../models/game.model.js'
-import mongoose from 'mongoose'
+import { addNewAttempt } from './userPreviousAttempts.controller.js'
+
+
+
+/**
+ * 
+ * @param {userEmail, gameId, highest: true / false} req //if highest === true, return top 3 highest scores, if highest === false, return top 3 lowest scores
+ * @param {topThreeScores, usersAhead} res returns how many users are ahead of the current user
+ */
+export const getGameTopThreeScoresAndUserPosition = async (req, res) => {
+    const { userEmail, gameId, highest } = req.body
+
+    try {
+        const response = await Game.findOne({ id:gameId })
+        const scores = response.scores
+        if (highest) {
+            scores.sort((a, b) => b.score - a.score)
+        } else {
+            scores.sort((a, b) => a.score - b.score)
+        }
+        scores.map((score, index) => {
+            if (score.user_email === userEmail) {
+                res.status(200).json({
+                    topThreeScores: scores.slice(0, 3),
+                    usersAhead: index
+                })
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: "Error when retrieving top three scores and user position"
+        })
+    }
+}
 
 /**
  * 
@@ -70,28 +104,34 @@ export const updateUserScore = async (req, res) => {
             if (userScore > oldScore) {
                 scoreResponse.score = userScore
                 await response.save()
+                console.log("game controller calling addNewAttempt...")
+                await addNewAttempt(req, res)
+                return res.status(200).json({
+                    message: "Score updated"
+                })
             }
-            res.status(200).json({
-                message: "Score updated"
+            return res.status(200).json({
+                message: "Score not updated as it is not higher than the old score"
             })
         } else {
             scores.push({
                 score: userScore,
                 user_email: userEmail
             })
-            await response.save() 
-            res.status(201).json({
-                message: "score record for new user created"
+            await response.save()
+            console.log("game controller calling addNewAttempt...")
+            await addNewAttempt(req, res)
+            return res.status(201).json({
+                message: "Score record for new user created"
             })
         }
     } catch (error) {
         console.log(error)
-        res.status(500).json({
+        return res.status(500).json({
             message: "Error when updating user score"
         })
     }
 }
-
 
 /**
  * 
@@ -111,28 +151,34 @@ export const updateUserScoreLessIsBest = async (req, res) => {
             if (userScore < oldScore) {
                 scoreResponse.score = userScore
                 await response.save()
+                console.log("game controller calling addNewAttempt...")
+                await addNewAttempt(req, res)
+                return res.status(200).json({
+                    message: "Score updated"
+                })
             }
-            res.status(200).json({
-                message: "Score updated"
+            return res.status(200).json({
+                message: "Score not updated as it is not lower than the old score"
             })
         } else {
             scores.push({
                 score: userScore,
                 user_email: userEmail
             })
-            await response.save() 
-            res.status(201).json({
-                message: "score record for new user created"
+            await response.save()
+            console.log("game controller calling addNewAttempt...")
+            await addNewAttempt(req, res)
+            return res.status(201).json({
+                message: "Score record for new user created"
             })
         }
     } catch (error) {
         console.log(error)
-        res.status(500).json({
+        return res.status(500).json({
             message: "Error when updating user score"
         })
     }
 }
-
 
 /** developer use only! */
 export const modifyUserScore = async (req, res) => {

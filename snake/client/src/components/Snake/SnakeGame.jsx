@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import SnakeBoard from './SnakeBoard'
 import '../../styles/Snake.css'
 
-function SnakeGame({ loggedInUser }) {
+function SnakeGame({ loggedInUser, setRefreshAttempts}) {
 
 
 
@@ -12,6 +12,7 @@ function SnakeGame({ loggedInUser }) {
             
             <SnakeBoard 
                 userEmail = {loggedInUser.email}
+                setRefreshAttempts = {setRefreshAttempts}
             />
                 
         </div>

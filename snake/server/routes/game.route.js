@@ -1,10 +1,11 @@
 import express from "express"
-import {getGames, getGameScores, updateUserScore, updateUserScoreLessIsBest, modifyUserScore, createGame} from "../controllers/game.controller.js"
+import {getGameTopThreeScoresAndUserPosition, getGames, getGameScores, updateUserScore, updateUserScoreLessIsBest, modifyUserScore, createGame} from "../controllers/game.controller.js"
 
 
 const router = express.Router()
 
 
+router.post("/getGameTopThreeScoresAndUserPosition", getGameTopThreeScoresAndUserPosition)
 router.post("/getGames", getGames)
 router.post("/modifyUserScore", modifyUserScore) /* this is a developer use only route to modify scores in snake database */
 router.post("/getGameScores", getGameScores)
