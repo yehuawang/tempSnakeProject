@@ -290,9 +290,17 @@ function EmojiMemo({ loggedInUser, setRefreshAttempts }) {
 
                                                         <h3>Choose the previous emoji you saw:</h3>
                                                         <div className="emoji-grid">
-                                                        {currentGrid.map((emoji, index) => (
-                                                            <button className="emoji-button" key={index} onClick={() => {setUserSelection(emoji)}}>{emoji}</button>
-                                                        ))}
+                                                            {currentGrid.map((emoji, index) => (
+                                                                <div
+                                                                    className="emoji-button"
+                                                                    key={index}
+                                                                    onClick={() => {
+                                                                        setUserSelection(emoji);
+                                                                    }}
+                                                                >
+                                                                    {emoji}
+                                                                </div>
+                                                            ))}
                                                         </div>
                                                     </>
                                                 )
